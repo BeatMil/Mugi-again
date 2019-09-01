@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/jump01.png-3b557d125b3b0e7a101324b63aae0465.stex"
+path="res://.import/crouching1f 128x256.png-2b0688755fb69af81115e9e2fb5dfa38.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://media/jump01.png"
-dest_files=[ "res://.import/jump01.png-3b557d125b3b0e7a101324b63aae0465.stex" ]
+source_file="res://media/Player/crouching1f 128x256.png"
+dest_files=[ "res://.import/crouching1f 128x256.png-2b0688755fb69af81115e9e2fb5dfa38.stex" ]
 
 [params]
 

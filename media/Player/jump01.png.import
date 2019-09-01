@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/MugiQT.png-1c0d293995271c5ea2172e50a7660b40.stex"
+path="res://.import/jump01.png-fa4bb27b2c8e4190f3f9a4eb92f7cb59.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://media/MugiQT.png"
-dest_files=[ "res://.import/MugiQT.png-1c0d293995271c5ea2172e50a7660b40.stex" ]
+source_file="res://media/Player/jump01.png"
+dest_files=[ "res://.import/jump01.png-fa4bb27b2c8e4190f3f9a4eb92f7cb59.stex" ]
 
 [params]
 

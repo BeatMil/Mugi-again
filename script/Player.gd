@@ -5,7 +5,9 @@ extends KinematicBody2D
 var gravity = 90
 var ground = Vector2(0,-1)
 var jumpPower = 1500
-var walkPower = 120
+var walkPower = 240
+
+var is_death = false
 
 
 #Cache
@@ -14,12 +16,20 @@ onready var sprite = get_node("Sprite")
 var velocity = Vector2()
 var direction = 1 	# 1 = facing right
 var falling = false
+
+func _ready():
+	pass
 	
 func _physics_process(delta):
-	Gravity()
-	Move()
-	Jump()
-	velocity = move_and_slide(velocity,ground);
+	if !is_death:
+		Gravity()
+		Move()
+		Jump()
+		Crouch()
+		velocity = move_and_slide(velocity,ground);
+		CollisionCheck()
+	else:
+		dead()
 
 
 func Move():
@@ -48,18 +58,34 @@ func Jump():
 		
 	if !is_on_floor():
 		anim.play("jump")
+		
+func Crouch():
+	if Input.is_action_pressed("ui_down"):
+		velocity.x = 0
+		anim.play("crouch")
 	
 func Gravity():
 	velocity.y += gravity
 
-func DirectionSwitch():
+func CollisionCheck():
+	if get_slide_count() > 1:
+		for i in range(get_slide_count()):
+			var getType : String = get_slide_collision(i).collider.get_meta("type")
+			print("getType: %s"%getType)
+			if getType == "enemy":
+				dead()
+
+func DirectionSwitch(): # unused
 	direction *= -1
 
 func sayWord(word):
 	print("Mugi: %s" %(word))
 	anim.play("jump")
 	
-
+func dead():
+	is_death = true
+	velocity.normalized()
+	print("dead")
 	
 	
 func is_falling():

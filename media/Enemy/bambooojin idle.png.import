@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/idle sheet4f trans 128x256.png-f1bcdd2facb12589510bececb2c388bc.stex"
+path="res://.import/bambooojin idle.png-53d71087db63c9ba673273d401b75f6e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://media/idle sheet4f trans 128x256.png"
-dest_files=[ "res://.import/idle sheet4f trans 128x256.png-f1bcdd2facb12589510bececb2c388bc.stex" ]
+source_file="res://media/Enemy/bambooojin idle.png"
+dest_files=[ "res://.import/bambooojin idle.png-53d71087db63c9ba673273d401b75f6e.stex" ]
 
 [params]
 

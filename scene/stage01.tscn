@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://media/MugiQT.png" type="Texture" id=1]
+[ext_resource path="res://media/Player/MugiQT.png" type="Texture" id=1]
 [ext_resource path="res://prefab/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scene/TouchScreenButton.gd" type="Script" id=3]
+[ext_resource path="res://script/TouchScreenButton.gd" type="Script" id=3]
+[ext_resource path="res://prefab/PaperMask.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 776.42, 10 )
@@ -30,4 +31,7 @@ position = Vector2( 314.915, 57.1512 )
 scale = Vector2( 5, 5 )
 shape = SubResource( 2 )
 script = ExtResource( 3 )
+
+[node name="PaperMask" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1181.38, 439.616 )
 [connection signal="pressed" from="TouchScreenButton" to="TouchScreenButton" method="_on_TouchScreenButton_pressed"]
