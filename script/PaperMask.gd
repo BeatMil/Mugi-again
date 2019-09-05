@@ -9,9 +9,7 @@ var direction : int = 1 # Facing Right
 
 func _ready():
 	get_node(".").set_meta("type", "enemy")
-	print(get_meta("type"))
 	var getType : String = get_node(".").get_meta("type")
-	print(getType)
 
 func _physics_process(delta):
 	direction = -1

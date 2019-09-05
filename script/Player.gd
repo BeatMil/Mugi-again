@@ -21,15 +21,17 @@ func _ready():
 	pass
 	
 func _physics_process(delta):
+	print('on floor %s' %is_on_floor())
 	if !is_death:
 		Gravity()
 		Move()
 		Jump()
 		Crouch()
-		velocity = move_and_slide(velocity,ground);
-		CollisionCheck()
+		velocity = move_and_slide(velocity,ground)
 	else:
 		dead()
+		
+	
 
 
 func Move():
@@ -71,21 +73,20 @@ func CollisionCheck():
 	if get_slide_count() > 1:
 		for i in range(get_slide_count()):
 			var getType : String = get_slide_collision(i).collider.get_meta("type")
-			print("getType: %s"%getType)
 			if getType == "enemy":
-				dead()
+				is_death = true
 
 func DirectionSwitch(): # unused
 	direction *= -1
-
-func sayWord(word):
-	print("Mugi: %s" %(word))
-	anim.play("jump")
 	
 func dead():
-	is_death = true
-	velocity.normalized()
-	print("dead")
+	if !is_on_floor():
+		velocity = Vector2(100,100)
+		move_and_slide(velocity,ground)
+	else:
+		velocity = Vector2(0,100)
+		move_and_slide(velocity,ground)
+		
 	
 	
 func is_falling():
@@ -93,3 +94,10 @@ func is_falling():
 		return true
 	else:
 		return false
+
+func _on_Area2D_body_entered(body):
+#	print('%s %s'%[body.name, body.get_meta('type')])
+	var tag : String = body.get_meta('type')
+	if 'enemy' == tag:
+		is_death = true
+	pass
