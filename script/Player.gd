@@ -1,28 +1,33 @@
-extends KinematicBody2D
 #Player.gd
+extends KinematicBody2D
 
 # Configuration
 var gravity = 90
 var ground = Vector2(0,-1)
-var jumpPower = 1500
-var walkPower = 240
+var jumpPower = 2000
+var walkPower = 500
 
-var is_death = false
+var is_dead = false
+
+var velocity = Vector2()
+var direction = 1 	# 1 = facing right
+
+signal dead
 
 
 #Cache
 onready var anim = get_node("AnimationPlayer")
 onready var sprite = get_node("Sprite")
-var velocity = Vector2()
-var direction = 1 	# 1 = facing right
-var falling = false
+onready var collision = get_node('CollisionShape2D')
+
+var count = false
+
 
 func _ready():
 	pass
 	
 func _physics_process(delta):
-	print('on floor %s' %is_on_floor())
-	if !is_death:
+	if !is_dead:
 		Gravity()
 		Move()
 		Jump()
@@ -60,6 +65,9 @@ func Jump():
 		
 	if !is_on_floor():
 		anim.play("jump")
+		if is_falling():
+			anim.play('falling')
+	
 		
 func Crouch():
 	if Input.is_action_pressed("ui_down"):
@@ -69,25 +77,20 @@ func Crouch():
 func Gravity():
 	velocity.y += gravity
 
-func CollisionCheck():
-	if get_slide_count() > 1:
-		for i in range(get_slide_count()):
-			var getType : String = get_slide_collision(i).collider.get_meta("type")
-			if getType == "enemy":
-				is_death = true
-
 func DirectionSwitch(): # unused
 	direction *= -1
 	
 func dead():
-	if !is_on_floor():
-		velocity = Vector2(100,100)
-		move_and_slide(velocity,ground)
-	else:
-		velocity = Vector2(0,100)
-		move_and_slide(velocity,ground)
-		
+
+	if !count:
+		emit_signal("dead")
+		print("sound")
+		count = true
+	velocity = Vector2.ZERO
+	collision.set_disabled(true)
 	
+	move_and_slide(velocity,ground)	
+	anim.play("dead")
 	
 func is_falling():
 	if velocity.y > 0:
@@ -96,8 +99,7 @@ func is_falling():
 		return false
 
 func _on_Area2D_body_entered(body):
-#	print('%s %s'%[body.name, body.get_meta('type')])
 	var tag : String = body.get_meta('type')
 	if 'enemy' == tag:
-		is_death = true
-	pass
+		is_dead = true
+	

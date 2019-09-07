@@ -1,6 +1,5 @@
 extends KinematicBody2D
 #PaperMask.gd
-
 var velocity = Vector2()
 var ground = Vector2(0,-1)
 
@@ -8,8 +7,8 @@ var walkSpeed : int = 100
 var direction : int = 1 # Facing Right
 
 func _ready():
-	get_node(".").set_meta("type", "enemy")
-	var getType : String = get_node(".").get_meta("type")
+	get_node(".").set_meta("type", "enemy") # set this node tag to enemy
+	
 
 func _physics_process(delta):
 	direction = -1

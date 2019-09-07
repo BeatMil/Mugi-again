@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/rabi ribi park original.ogg-9c927e52b6f12fd7ee185527b51dd27a.oggstr"
+
+[deps]
+
+source_file="res://media/Sound/rabi ribi park original.ogg"
+dest_files=[ "res://.import/rabi ribi park original.ogg-9c927e52b6f12fd7ee185527b51dd27a.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
