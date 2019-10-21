@@ -7,11 +7,13 @@
 [ext_resource path="res://media/Player/falling01.png" type="Texture" id=5]
 [ext_resource path="res://media/Player/jump01.png" type="Texture" id=6]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 28.5273, 88.9669 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "crouch"
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32.7048, 89.5991 )
+
+[sub_resource type="Animation" id=3]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -74,8 +76,7 @@ tracks/4/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=8]
-resource_name = "falling"
+[sub_resource type="Animation" id=4]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:hframes")
@@ -126,7 +127,7 @@ tracks/3/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=5]
 resource_name = "falling"
 length = 0.001
 tracks/0/type = "value"
@@ -190,7 +191,7 @@ tracks/4/keys = {
 "values": [ 1 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=6]
 length = 0.001
 loop = true
 tracks/0/type = "value"
@@ -242,7 +243,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=7]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -305,7 +306,7 @@ tracks/4/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=8]
 length = 0.8
 loop = true
 step = 0.2
@@ -358,9 +359,6 @@ tracks/3/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 32.7048, 89.5991 )
-
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
 __meta__ = {
@@ -368,25 +366,26 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.630249, 36.5545 )
+position = Vector2( 1.9, 34 )
+shape = SubResource( 2 )
+
+[node name="Stand" type="Area2D" parent="."]
+editor/display_folded = true
+position = Vector2( 1.89996, 34.2 )
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stand"]
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 hframes = 4
-frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/crouch = SubResource( 2 )
-anims/dead = SubResource( 8 )
-anims/falling = SubResource( 9 )
-anims/idle = SubResource( 4 )
-anims/jump = SubResource( 5 )
-anims/run = SubResource( 6 )
-
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2( 0.630249, 36.5545 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 7 )
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+anims/crouch = SubResource( 3 )
+anims/dead = SubResource( 4 )
+anims/falling = SubResource( 5 )
+anims/idle = SubResource( 6 )
+anims/jump = SubResource( 7 )
+anims/run = SubResource( 8 )
+[connection signal="body_entered" from="Stand" to="." method="_on_Area2D_body_entered"]

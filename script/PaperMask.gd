@@ -8,13 +8,10 @@ var direction : int = 1 # Facing Right
 
 func _ready():
 	get_node(".").set_meta("type", "enemy") # set this node tag to enemy
+	direction = -1
 	
 
 func _physics_process(delta):
-	direction = -1
-	
-	
-	
 	velocity.y = 100
 	if (is_on_floor()):
 		velocity.x = walkSpeed * direction
