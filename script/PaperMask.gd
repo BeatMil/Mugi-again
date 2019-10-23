@@ -19,3 +19,10 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, ground)
 	
 	
+
+
+func _on_Area2D_area_entered(area):
+	if area.get_meta("type") == "fireball":
+		area.queue_free()
+		queue_free()
+	pass # Replace with function body.

@@ -16,6 +16,7 @@ signal dead
 
 
 #Cache
+const FIREBALL = preload("res://prefab/Hadoken.tscn")
 onready var anim = get_node("AnimationPlayer")
 onready var sprite = get_node("Sprite")
 onready var collision = get_node('CollisionShape2D')
@@ -50,6 +51,7 @@ func _physics_process(delta):
 		Jump()
 		Crouch()
 		velocity = move_and_slide(velocity,ground)
+		attack()
 		dead_check()
 	else:
 		dead()
@@ -100,6 +102,17 @@ func Crouch():
 		area.set_scale(stand_collision_scale)
 		collision.set_position(stand_collision_position)
 		collision.set_scale(stand_collision_scale)
+
+func attack():
+	if Input.is_action_just_pressed("ui_accept"):
+		var fireball = FIREBALL.instance()
+		fireball.set_position($".".get_position() + Vector2(100 * direction,0))
+		$"..".add_child(fireball)
+
+
+	
+	
+
 		
 	
 func Gravity():

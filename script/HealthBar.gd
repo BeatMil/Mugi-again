@@ -11,7 +11,6 @@ func _ready():
 	max_hp = 5.00
 	hp = max_hp
 	health_num.text = String(hp)
-	print(health_bar.get_tint_progress())
 	health_bar.set_tint_progress(Color(0, 1, 0))
 	pass
 
