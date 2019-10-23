@@ -6,7 +6,6 @@ var gravity = 90
 var ground = Vector2(0,-1)
 var jumpPower = 2000
 var walkPower = 500
-var hp = 3
 
 var is_dead = false
 
@@ -21,6 +20,7 @@ onready var anim = get_node("AnimationPlayer")
 onready var sprite = get_node("Sprite")
 onready var collision = get_node('CollisionShape2D')
 onready var area = get_node('Stand')
+onready var health_bar = $"."/HealthBar
 
 # area2D collision changer
 var stand_collision_position = Vector2()
@@ -29,12 +29,11 @@ var stand_collision_scale = Vector2()
 var crouch_collision_scale = Vector2()
 
 # kinematic2D collision changer
-"""
-var stand_kinematic_position = Vector2()
-var crouch_kinematic_position = Vector2()
-var stand_kinematic_scale = Vector2()
-var crouch_kinematic_scale = Vector2()
-"""
+# var stand_kinematic_position = Vector2()
+# var crouch_kinematic_position = Vector2()
+# var stand_kinematic_scale = Vector2()
+# var crouch_kinematic_scale = Vector2()
+
 var count = false # dead() helper
 
 func _ready():
@@ -130,9 +129,10 @@ func is_falling():
 func _on_Area2D_body_entered(body):
 	var tag : String = body.get_meta('type')
 	if 'enemy' == tag:
-		hp -= 1
-		print("hp: %s" % hp)
+		health_bar.health_decrease(1)
+		move_and_slide(Vector2(20000 * -direction,-10000), ground)
 
+	
 func dead_check():
-	if hp <= 0:
+	if health_bar.hp <= 0:
 		is_dead = true

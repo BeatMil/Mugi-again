@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://script/Player.gd" type="Script" id=1]
 [ext_resource path="res://media/Player/idle sheet4f trans 128x256.png" type="Texture" id=2]
@@ -6,11 +6,12 @@
 [ext_resource path="res://media/Player/dead01.png" type="Texture" id=4]
 [ext_resource path="res://media/Player/falling01.png" type="Texture" id=5]
 [ext_resource path="res://media/Player/jump01.png" type="Texture" id=6]
+[ext_resource path="res://prefab/HealthBar.tscn" type="PackedScene" id=7]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 28.5273, 88.9669 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 32.7048, 89.5991 )
 
 [sub_resource type="Animation" id=3]
@@ -361,13 +362,10 @@ tracks/3/keys = {
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1.9, 34 )
-shape = SubResource( 2 )
+shape = SubResource( 9 )
 
 [node name="Stand" type="Area2D" parent="."]
 editor/display_folded = true
@@ -375,7 +373,7 @@ position = Vector2( 1.89996, 34.2 )
 input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stand"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -388,4 +386,11 @@ anims/falling = SubResource( 5 )
 anims/idle = SubResource( 6 )
 anims/jump = SubResource( 7 )
 anims/run = SubResource( 8 )
+
+[node name="HealthBar" parent="." instance=ExtResource( 7 )]
+margin_left = -71.5789
+margin_top = -131.579
+margin_right = -31.5789
+margin_bottom = -91.5789
+rect_scale = Vector2( 0.250677, 0.203678 )
 [connection signal="body_entered" from="Stand" to="." method="_on_Area2D_body_entered"]
