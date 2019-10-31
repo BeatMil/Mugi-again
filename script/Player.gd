@@ -2,11 +2,11 @@
 extends KinematicBody2D
 
 # enum that I don't use how to use
-const State = {
-    STATE_IDLE = 0,
-    STATE_PATROL = 1,
-    STATE_ATTACK = 2
-}
+# const State = {
+#     STATE_IDLE = 0,
+#     STATE_PATROL = 1,
+#     STATE_ATTACK = 2
+# }
 
 # Configuration
 var gravity = 90
@@ -156,6 +156,8 @@ func _on_Area2D_body_entered(body):
 	if 'enemy' == tag:
 		health_bar.health_decrease(1)
 		move_and_slide(Vector2(20000 * -direction,-10000), ground)
+	elif body.is_in_group("enemy"):
+		print(body.get_node(".").name)
 
 	
 func dead_check():
