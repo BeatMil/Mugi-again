@@ -8,6 +8,7 @@ var direction : int = 1 # Facing Right
 
 func _ready():
 	get_node(".").set_meta("type", "enemy") # set this node tag to enemy
+	add_to_group("enemy")
 	direction = -1
 	
 
@@ -22,7 +23,8 @@ func _physics_process(delta):
 
 
 func _on_Area2D_area_entered(area):
-	if area.get_meta("type") == "fireball":
+	# if area.get_meta("type") == "fireball":
+	if area.is_in_group("attack"):
 		area.queue_free()
 		queue_free()
 	pass # Replace with function body.

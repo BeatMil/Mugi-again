@@ -7,7 +7,12 @@ extends KinematicBody2D
 #     STATE_PATROL = 1,
 #     STATE_ATTACK = 2
 # }
-
+var state = IDLE
+enum {
+	IDLE,
+	AIR,
+	RECOVERY
+}
 # Configuration
 var gravity = 90
 var ground = Vector2(0,-1)
@@ -20,7 +25,7 @@ var velocity = Vector2()
 var direction = 1 	# 1 = facing right
 
 signal dead
-
+signal state_change
 
 #Cache
 const FIREBALL = preload("res://prefab/Hadoken.tscn")
@@ -30,6 +35,7 @@ onready var collision = get_node('CollisionShape2D')
 onready var area = get_node('Stand')
 onready var health_bar = $"."/HealthBar
 onready var timer = $"Timer"
+onready var recover_timer = $"Recovery-timer"
 
 # area2D collision changer
 var stand_collision_position = Vector2()
@@ -50,11 +56,13 @@ func _ready():
 	crouch_collision_position = Vector2(area.get_position().x, 80)
 	stand_collision_scale = Vector2(1,1)
 	crouch_collision_scale = Vector2(1,0.5)
+	print("state: %s" % state)
 	
 	pass
 func _physics_process(delta):
+	# print("state: %s" % state)
 	if !is_dead:
-		if !is_attacking:
+		if !is_attacking and state != RECOVERY:
 			Gravity()
 			Move()
 			Jump()
@@ -62,6 +70,8 @@ func _physics_process(delta):
 			velocity = move_and_slide(velocity,ground)
 			attack()
 			dead_check()
+		elif state == RECOVERY:
+			recovery_from_enemy()
 	else:
 		dead()
 		
@@ -83,6 +93,7 @@ func Move():
 	else:
 		velocity.x = 0
 		anim.play("idle")
+		state = IDLE
 		
 func Jump():
 	
@@ -96,6 +107,7 @@ func Jump():
 		anim.play("jump")
 		if is_falling():
 			anim.play('falling')
+		state = AIR
 	
 		
 func Crouch():
@@ -121,11 +133,9 @@ func attack():
 		$"..".add_child(fireball)
 		anim.play("attack01")
 
-
-	
-	
-
-		
+func recovery_from_enemy():
+	velocity = Vector2(300 * -direction,-800)
+	velocity = move_and_slide(velocity, ground)
 	
 func Gravity():
 	velocity.y += gravity
@@ -152,10 +162,12 @@ func is_falling():
 		return false
 
 func _on_Area2D_body_entered(body):
-	var tag : String = body.get_meta('type')
-	if 'enemy' == tag:
+	# var tag : String = body.get_meta('type')
+	if body.is_in_group("enemy"):
 		health_bar.health_decrease(1)
-		move_and_slide(Vector2(20000 * -direction,-10000), ground)
+		velocity = move_and_slide(Vector2(9000 * -direction,-1000), ground)
+		state = RECOVERY
+		recover_timer.start()
 	elif body.is_in_group("enemy"):
 		print(body.get_node(".").name)
 
@@ -167,3 +179,14 @@ func dead_check():
 func _on_Timer_timeout():
 	is_attacking = false
 	pass # Replace with function body.
+
+func change_state(state):
+	state = state
+	emit_signal("state_change")
+
+func _on_Player_state_change():
+	print("state: %s" % state)
+
+
+func _on_Recovery_timeout():
+	state = IDLE

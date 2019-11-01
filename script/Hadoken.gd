@@ -14,6 +14,7 @@ func _ready():
 	# print("parent of %s is %s" % [$".".name, $".."/Player.direction])
 	
 	$".".set_meta("type", "fireball") # set this node tag to enemy
+	add_to_group("attack")
 	pass # Replace with function body.
 	
 func _process(delta):
