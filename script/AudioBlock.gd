@@ -12,10 +12,7 @@ func _ready():
 	# audio.play()
 
 func _on_Player_dead():
-	play_death_sfx()
-	pass
-	
-func play_death_sfx():
 	audio.stream = load(death01)
 	audio.play()
-	pass
+	
+

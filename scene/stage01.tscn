@@ -1,14 +1,15 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://media/Player/MugiQT.png" type="Texture" id=1]
 [ext_resource path="res://prefab/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://script/Ground.gd" type="Script" id=3]
 [ext_resource path="res://prefab/PaperMask.tscn" type="PackedScene" id=4]
-[ext_resource path="res://script/AudioBlock.gd" type="Script" id=5]
-[ext_resource path="res://script/cheat.gd" type="Script" id=6]
-[ext_resource path="res://media/Block/block-fish-01.png" type="Texture" id=7]
-[ext_resource path="res://icon.png" type="Texture" id=8]
-[ext_resource path="res://prefab/PaperMask02.tscn" type="PackedScene" id=9]
+[ext_resource path="res://script/cheat.gd" type="Script" id=5]
+[ext_resource path="res://media/Block/block-fish-01.png" type="Texture" id=6]
+[ext_resource path="res://icon.png" type="Texture" id=7]
+[ext_resource path="res://prefab/PaperMask02.tscn" type="PackedScene" id=8]
+[ext_resource path="res://script/AudioBlock.gd" type="Script" id=9]
+[ext_resource path="res://script/SfxBlock.gd" type="Script" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 776.42, 10 )
@@ -50,23 +51,27 @@ disabled = true
 [node name="PaperMask" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1181.38, 439.616 )
 
-[node name="AudioBlock" type="AudioStreamPlayer" parent="."]
-script = ExtResource( 5 )
-
 [node name="CheatBox" type="Node2D" parent="."]
-script = ExtResource( 6 )
+script = ExtResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
 self_modulate = Color( 0.831373, 0.376471, 0.376471, 1 )
 position = Vector2( 304, 416 )
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
 centered = false
 
 [node name="icon-godot" type="Sprite" parent="."]
 position = Vector2( 256, 400 )
-texture = ExtResource( 8 )
+texture = ExtResource( 7 )
 
-[node name="PaperMask02" parent="." instance=ExtResource( 9 )]
+[node name="PaperMask02" parent="." instance=ExtResource( 8 )]
 position = Vector2( 720, 352 )
+
+[node name="AudioBlock" type="AudioStreamPlayer" parent="."]
+script = ExtResource( 9 )
+
+[node name="SfxBlock" type="AudioStreamPlayer" parent="."]
+script = ExtResource( 10 )
+[connection signal="damaged" from="Player" to="SfxBlock" method="_on_Player_damaged"]
 [connection signal="dead" from="Player" to="AudioBlock" method="_on_Player_dead"]
 [connection signal="state_change" from="Player" to="Player" method="_on_Player_state_change"]

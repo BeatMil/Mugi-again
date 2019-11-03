@@ -8,7 +8,7 @@ var hp
 
 
 func _ready():
-	max_hp = 5.00
+	max_hp = get_parent().hp_max
 	hp = max_hp
 	health_num.text = String(hp)
 	health_bar.set_tint_progress(Color(0, 1, 0))

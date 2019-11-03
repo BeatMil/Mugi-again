@@ -18,6 +18,8 @@ var gravity = 90
 var ground = Vector2(0,-1)
 var jumpPower = 2000
 var walkPower = 500
+var hp_max = 5.00  # float for calculation. 
+#being used in HealthBar.gd
 
 var is_dead = false
 var is_attacking = false
@@ -25,6 +27,7 @@ var velocity = Vector2()
 var direction = 1 	# 1 = facing right
 
 signal dead
+signal damaged
 signal state_change
 
 #Cache
@@ -34,7 +37,7 @@ onready var sprite = get_node("Sprite")
 onready var collision = get_node('CollisionShape2D')
 onready var area = get_node('Stand')
 onready var health_bar = $"."/HealthBar
-onready var timer = $"Timer"
+onready var timer_attack = $"Timer_attack"
 onready var recover_timer = $"Recovery-timer"
 
 # area2D collision changer
@@ -57,7 +60,6 @@ func _ready():
 	stand_collision_scale = Vector2(1,1)
 	crouch_collision_scale = Vector2(1,0.5)
 	print("state: %s" % state)
-	
 	pass
 func _physics_process(delta):
 	# print("state: %s" % state)
@@ -127,7 +129,7 @@ func Crouch():
 func attack():
 	if Input.is_action_just_pressed("ui_accept"):
 		is_attacking = true
-		timer.start()
+		timer_attack.start()
 		var fireball = FIREBALL.instance()
 		fireball.set_position($".".get_position() + Vector2(100 * direction,0))
 		$"..".add_child(fireball)
@@ -167,6 +169,7 @@ func _on_Area2D_body_entered(body):
 		health_bar.health_decrease(1)
 		velocity = move_and_slide(Vector2(9000 * -direction,-1000), ground)
 		state = RECOVERY
+		emit_signal("damaged")
 		recover_timer.start()
 	elif body.is_in_group("enemy"):
 		print(body.get_node(".").name)
@@ -178,7 +181,6 @@ func dead_check():
 
 func _on_Timer_timeout():
 	is_attacking = false
-	pass # Replace with function body.
 
 func change_state(state):
 	state = state

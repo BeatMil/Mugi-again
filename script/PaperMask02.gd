@@ -9,12 +9,19 @@ enum {
 var enum_array = [IDLE,JUMP,MOVE,MOVE_LEFT]
 onready var sprite = $"Sprite"
 
+# configuration
 const SPEED = 100
 const JUMP_POWER = 500
+var gravity = 10
+var hp = 2
+
+
+
+
+
 var state = JUMP
 var motion2 = Vector2()
 var direction = 1 # 1 = facing rightc
-var gravity = 10
 var ground = Vector2(0,-1)
 func _ready():
 	add_to_group("enemy")
@@ -57,6 +64,19 @@ func change_state_ramdomly(array):
 	state = array.front()
 	# return array[0] # or array.front()
 
+func being_damaged(amount):
+	hp -= amount
 
 func _on_Timer_timeout():
 	change_state_ramdomly(enum_array)
+
+
+func _on_Area2D_area_entered(area):
+	if area.is_in_group("attack") and hp > 0:
+		area.queue_free()
+		being_damaged(1)
+		
+	if area.is_in_group("attack") and hp <= 0:
+		area.queue_free()
+		queue_free()
+	print("%s: %s" %[$".".name, hp])
