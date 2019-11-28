@@ -3,8 +3,9 @@ extends KinematicBody2D
 enum {
 	IDLE,
 	JUMP,
-	MOVE
-	MOVE_LEFT
+	MOVE,
+	MOVE_LEFT,
+	RECOVERY_HIT
 }
 var enum_array = [IDLE,JUMP,MOVE,MOVE_LEFT]
 onready var sprite = $"Sprite"
@@ -13,7 +14,7 @@ onready var sprite = $"Sprite"
 const SPEED = 100
 const JUMP_POWER = 500
 var gravity = 10
-var hp = 2
+var hp = 4
 
 
 
@@ -29,17 +30,18 @@ func _ready():
 func _physics_process(delta):
 	gravity()
 	# print("%s motion2: %s" %[$".".name,motion2])
-	match state:
-		IDLE:
-			motion2 = Vector2(0,0)
+	if state != RECOVERY_HIT:
+		match state:
+			IDLE:
+				motion2 = Vector2(0,0)
 
-		JUMP:
-			jump()
+			JUMP:
+				jump()
 
-		MOVE:
-			move(delta)
-		MOVE_LEFT:
-			move_left(delta)
+			MOVE:
+				move(delta)
+			MOVE_LEFT:
+				move_left(delta)
 	motion2 = move_and_slide(motion2,ground)
 	# change_state_ramdomly([IDLE,JUMP,MOVE])
 	
@@ -62,7 +64,7 @@ func jump():
 func change_state_ramdomly(array):
 	array.shuffle()
 	state = array.front()
-	# return array[0] # or array.front()
+	# return array[0] or array.front()
 
 func being_damaged(amount):
 	hp -= amount
@@ -70,11 +72,18 @@ func being_damaged(amount):
 func _on_Timer_timeout():
 	change_state_ramdomly(enum_array)
 
+func recovery_hit():
+	state = RECOVERY_HIT
+	motion2 = Vector2(400 * direction,-400)
+	motion2 = move_and_slide(motion2, ground)
+
 
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("attack") and hp > 0:
 		area.queue_free()
 		being_damaged(1)
+		recovery_hit()
+		
 		
 	if area.is_in_group("attack") and hp <= 0:
 		area.queue_free()
