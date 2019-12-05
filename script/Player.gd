@@ -1,12 +1,6 @@
 #Player.gd
 extends KinematicBody2D
 
-# enum that I don't use how to use
-# const State = {
-#     STATE_IDLE = 0,
-#     STATE_PATROL = 1,
-#     STATE_ATTACK = 2
-# }
 var state = IDLE
 enum {
 	IDLE,

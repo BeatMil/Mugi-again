@@ -9,6 +9,7 @@ enum {
 }
 var enum_array = [IDLE,JUMP,MOVE,MOVE_LEFT]
 onready var sprite = $"Sprite"
+onready var player = get_node("../Player")
 
 # configuration
 const SPEED = 100
@@ -34,10 +35,8 @@ func _physics_process(delta):
 		match state:
 			IDLE:
 				motion2 = Vector2(0,0)
-
 			JUMP:
 				jump()
-
 			MOVE:
 				move(delta)
 			MOVE_LEFT:
@@ -74,7 +73,9 @@ func _on_Timer_timeout():
 
 func recovery_hit():
 	state = RECOVERY_HIT
-	motion2 = Vector2(400 * direction,-400)
+	$"./Timer".stop()
+	$"./Recover01".start()
+	motion2 = Vector2(400 * player.direction,-400)
 	motion2 = move_and_slide(motion2, ground)
 
 
@@ -89,3 +90,7 @@ func _on_Area2D_area_entered(area):
 		area.queue_free()
 		queue_free()
 	print("%s: %s" %[$".".name, hp])
+
+func _on_Recover01_timeout():
+	$"./Timer".start()
+	pass # Replace with function body.

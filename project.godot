@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Mugi-again"
-run/main_scene="res://scene/stage01.tscn"
+run/main_scene="res://scene/Menu.tscn"
 config/icon="res://media/Player/MugiQT.png"
 
 [display]
