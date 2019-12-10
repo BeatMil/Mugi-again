@@ -26,12 +26,14 @@ signal state_change
 
 #Cache
 const FIREBALL = preload("res://prefab/Hadoken.tscn")
+const ATTACK02 = preload("res://prefab/attack02.tscn")
 onready var anim = get_node("AnimationPlayer")
 onready var sprite = get_node("Sprite")
 onready var collision = get_node('CollisionShape2D')
 onready var area = get_node('Stand')
 onready var health_bar = $"."/HealthBar
 onready var timer_attack = $"Timer_attack"
+onready var attack02_timer = $"attack02-timer"
 onready var recover_timer = $"Recovery-timer"
 
 # area2D collision changer
@@ -92,7 +94,6 @@ func Move():
 		state = IDLE
 		
 func Jump():
-	
 	if Input.is_action_pressed("ui_up") and is_on_floor():
 		velocity.y = -jumpPower
 		
@@ -124,10 +125,17 @@ func attack():
 	if Input.is_action_just_pressed("ui_accept"):
 		is_attacking = true
 		timer_attack.start()
+		anim.play("attack01")
 		var fireball = FIREBALL.instance()
 		fireball.set_position($".".get_position() + Vector2(100 * direction,0))
 		$"..".add_child(fireball)
-		anim.play("attack01")
+	elif Input.is_action_just_pressed("attack02") and is_on_floor(): #control
+		is_attacking = true
+		attack02_timer.start()
+		anim.play("attack02")
+		var attack02 = ATTACK02.instance()
+		attack02.set_position($".".get_position() + Vector2(150 * direction,0))
+		$"..".add_child(attack02)
 
 func recovery_from_enemy():
 	velocity = Vector2(300 * -direction,-800)
@@ -186,3 +194,10 @@ func _on_Player_state_change():
 
 func _on_Recovery_timeout():
 	state = IDLE
+
+
+func _on_attack02timer_timeout():
+	if get_parent().has_node("attack02"):
+		get_parent().get_node("attack02").queue_free()
+	is_attacking = false
+	attack02_timer.stop()
