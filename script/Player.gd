@@ -63,8 +63,8 @@ func _physics_process(delta):
 		if !is_attacking and state != RECOVERY:
 			Gravity()
 			Move()
-			Jump()
 			Crouch()
+			Jump()
 			velocity = move_and_slide(velocity,ground)
 			attack()
 			dead_check()
@@ -140,6 +140,7 @@ func attack():
 func recovery_from_enemy():
 	velocity = Vector2(300 * -direction,-800)
 	velocity = move_and_slide(velocity, ground)
+	anim.play("damaged01")
 	
 func Gravity():
 	velocity.y += gravity
@@ -148,7 +149,6 @@ func DirectionSwitch(): # unused
 	direction *= -1
 	
 func dead():
-
 	if !count:
 		emit_signal("dead")
 		print("sound")
@@ -171,7 +171,7 @@ func _on_Area2D_body_entered(body):
 		health_bar.health_decrease(1)
 		velocity = move_and_slide(Vector2(9000 * -direction,-1000), ground)
 		state = RECOVERY
-		emit_signal("damaged")
+		emit_signal("damaged") # for SFX
 		recover_timer.start()
 	elif body.is_in_group("enemy"):
 		print(body.get_node(".").name)
