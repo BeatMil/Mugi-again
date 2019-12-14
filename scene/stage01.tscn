@@ -3,10 +3,10 @@
 [ext_resource path="res://media/Player/MugiQT.png" type="Texture" id=1]
 [ext_resource path="res://prefab/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://script/Ground.gd" type="Script" id=3]
-[ext_resource path="res://prefab/PaperMask.tscn" type="PackedScene" id=4]
-[ext_resource path="res://script/cheat.gd" type="Script" id=5]
-[ext_resource path="res://media/Block/block-fish-01.png" type="Texture" id=6]
-[ext_resource path="res://icon.png" type="Texture" id=7]
+[ext_resource path="res://script/cheat.gd" type="Script" id=4]
+[ext_resource path="res://media/Block/block-fish-01.png" type="Texture" id=5]
+[ext_resource path="res://icon.png" type="Texture" id=6]
+[ext_resource path="res://prefab/PaperMask.tscn" type="PackedScene" id=7]
 [ext_resource path="res://prefab/PaperMask02.tscn" type="PackedScene" id=8]
 [ext_resource path="res://script/AudioBlock.gd" type="Script" id=9]
 [ext_resource path="res://script/SfxBlock.gd" type="Script" id=10]
@@ -50,21 +50,21 @@ scale = Vector2( 15.28, 15.28 )
 shape = SubResource( 2 )
 disabled = true
 
-[node name="PaperMask" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1181.38, 439.616 )
-
 [node name="CheatBox" type="Node2D" parent="."]
-script = ExtResource( 5 )
+script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
 self_modulate = Color( 0.831373, 0.376471, 0.376471, 1 )
 position = Vector2( 304, 416 )
-texture = ExtResource( 6 )
+texture = ExtResource( 5 )
 centered = false
 
 [node name="icon-godot" type="Sprite" parent="."]
 position = Vector2( 256, 400 )
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
+
+[node name="PaperMask" parent="." instance=ExtResource( 7 )]
+position = Vector2( 635, 567.616 )
 
 [node name="PaperMask02" parent="." instance=ExtResource( 8 )]
 position = Vector2( 720, 352 )

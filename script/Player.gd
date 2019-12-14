@@ -5,7 +5,8 @@ var state = IDLE
 enum {
 	IDLE,
 	AIR,
-	RECOVERY
+	RECOVERY,
+	BLOCK
 }
 # Configuration
 var gravity = 90
@@ -62,9 +63,10 @@ func _physics_process(delta):
 	if !is_dead:
 		if !is_attacking and state != RECOVERY:
 			Gravity()
-			Move()
-			Crouch()
-			Jump()
+			if state != BLOCK:
+				Move()
+				Crouch()
+				Jump()
 			velocity = move_and_slide(velocity,ground)
 			attack()
 			dead_check()
@@ -136,6 +138,11 @@ func attack():
 		var attack02 = ATTACK02.instance()
 		attack02.set_position($".".get_position() + Vector2(150 * direction,0))
 		$"..".add_child(attack02)
+	elif Input.is_action_pressed("block"):
+		state = BLOCK
+		anim.play("block01")
+	elif Input.is_action_just_released("block"):
+		state = IDLE
 
 func recovery_from_enemy():
 	velocity = Vector2(300 * -direction,-800)
@@ -167,14 +174,19 @@ func is_falling():
 
 func _on_Area2D_body_entered(body):
 	# var tag : String = body.get_meta('type')
-	if body.is_in_group("enemy"):
+	if body.is_in_group("enemy") and state != BLOCK:
 		health_bar.health_decrease(1)
 		velocity = move_and_slide(Vector2(9000 * -direction,-1000), ground)
 		state = RECOVERY
 		emit_signal("damaged") # for SFX
 		recover_timer.start()
-	elif body.is_in_group("enemy"):
-		print(body.get_node(".").name)
+	elif body.is_in_group("enemy") and state == BLOCK:
+		velocity = move_and_slide(Vector2(9000 * -direction,-1000), ground)
+		state = RECOVERY
+		recover_timer.start()
+
+
+	# print(body.get_node(".").name)
 
 	
 func dead_check():
@@ -194,6 +206,7 @@ func _on_Player_state_change():
 
 func _on_Recovery_timeout():
 	state = IDLE
+	recover_timer.stop()
 
 
 func _on_attack02timer_timeout():
