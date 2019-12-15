@@ -14,3 +14,11 @@ rect_scale = Vector2( 3.25, 4.5 )
 text = "PLACE HOLDER"
 align = 1
 valign = 1
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 525.534
+margin_top = 469.687
+margin_right = 565.534
+margin_bottom = 483.687
+rect_scale = Vector2( 8.16859, 8.45342 )
+text = "LABEL2"

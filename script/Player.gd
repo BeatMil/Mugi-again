@@ -1,20 +1,29 @@
 #Player.gd
 extends KinematicBody2D
 
-var state = IDLE
-enum {
-	IDLE,
-	AIR,
-	RECOVERY,
-	BLOCK
-}
+#enum {
+#	IDLE,
+#	AIR,
+#	RECOVERY,
+#	BLOCK
+#}
+
+const anum = {
+ 	IDLE = 0,
+ 	AIR = 1,
+ 	RECOVERY = 2,
+ 	BLOCK = 3
+ }
+var state2 = 0
+var state = 0
+
 # Configuration
 var gravity = 90
 var ground = Vector2(0,-1)
 var jumpPower = 2000
 var walkPower = 500
 var hp_max = 5.00  # float for calculation. 
-#being used in HealthBar.gd
+					#being used in HealthBar.gd
 
 var is_dead = false
 var is_attacking = false
@@ -23,7 +32,6 @@ var direction = 1 	# 1 = facing right
 
 signal dead
 signal damaged
-signal state_change
 
 #Cache
 const FIREBALL = preload("res://prefab/Hadoken.tscn")
@@ -49,6 +57,7 @@ var crouch_collision_scale = Vector2()
 # var stand_kinematic_scale = Vector2()
 # var crouch_kinematic_scale = Vector2()
 
+# helper
 var count = false # dead() helper
 
 func _ready():
@@ -56,22 +65,22 @@ func _ready():
 	crouch_collision_position = Vector2(area.get_position().x, 80)
 	stand_collision_scale = Vector2(1,1)
 	crouch_collision_scale = Vector2(1,0.5)
-	print("state: %s" % state)
-	pass
+	state2 = 0
+	
 func _physics_process(delta):
-	# print("state: %s" % state)
 	if !is_dead:
-		if !is_attacking and state != RECOVERY:
-			Gravity()
-			if state != BLOCK:
-				Move()
-				Crouch()
-				Jump()
-			velocity = move_and_slide(velocity,ground)
-			attack()
-			dead_check()
-		elif state == RECOVERY:
-			recovery_from_enemy()
+		if !is_attacking: 
+			if state != anum["RECOVERY"]:
+					Gravity()
+					if state != anum["BLOCK"]:
+						Move()
+						Crouch()
+						_jump()
+					velocity = move_and_slide(velocity,ground)
+					attack()
+					dead_check()
+			elif state == anum["RECOVERY"]:
+				recovery_from_enemy()
 	else:
 		dead()
 		
@@ -93,9 +102,9 @@ func Move():
 	else:
 		velocity.x = 0
 		anim.play("idle")
-		state = IDLE
+		state2 = anum["IDLE"]
 		
-func Jump():
+func _jump():
 	if Input.is_action_pressed("ui_up") and is_on_floor():
 		velocity.y = -jumpPower
 		
@@ -103,11 +112,15 @@ func Jump():
 		velocity.y = gravity
 		
 	if !is_on_floor():
+		state2 = ["AIR"]
 		anim.play("jump")
 		if is_falling():
 			anim.play('falling')
-		state = AIR
-	
+		state = anum["AIR"]
+	else:
+		state = anum["IDLE"]
+
+
 		
 func Crouch():
 	if Input.is_action_pressed("ui_down") and is_on_floor():
@@ -139,13 +152,13 @@ func attack():
 		attack02.set_position($".".get_position() + Vector2(150 * direction,0))
 		$"..".add_child(attack02)
 	elif Input.is_action_pressed("block"):
-		state = BLOCK
+		state = anum["BLOCK"]
 		anim.play("block01")
 	elif Input.is_action_just_released("block"):
-		state = IDLE
+		state = anum["IDLE"]
 
 func recovery_from_enemy():
-	velocity = Vector2(300 * -direction,-800)
+	velocity = Vector2(3000 * -direction,-800)
 	velocity = move_and_slide(velocity, ground)
 	anim.play("damaged01")
 	
@@ -158,7 +171,6 @@ func DirectionSwitch(): # unused
 func dead():
 	if !count:
 		emit_signal("dead")
-		print("sound")
 		count = true
 	velocity = Vector2.ZERO
 	collision.set_disabled(true)
@@ -174,15 +186,15 @@ func is_falling():
 
 func _on_Area2D_body_entered(body):
 	# var tag : String = body.get_meta('type')
-	if body.is_in_group("enemy") and state != BLOCK:
+	if body.is_in_group("enemy") and state != anum["BLOCK"]:
 		health_bar.health_decrease(1)
-		velocity = move_and_slide(Vector2(9000 * -direction,-1000), ground)
-		state = RECOVERY
+		# velocity = move_and_slide(Vector2(12000 * -direction,-1000), ground)
+		state = anum["RECOVERY"]
 		emit_signal("damaged") # for SFX
 		recover_timer.start()
-	elif body.is_in_group("enemy") and state == BLOCK:
-		velocity = move_and_slide(Vector2(9000 * -direction,-1000), ground)
-		state = RECOVERY
+	elif body.is_in_group("enemy") and state == anum["BLOCK"]:
+		# velocity = move_and_slide(Vector2(9000 * -direction,-1000), ground)
+		state = anum["RECOVERY"]
 		recover_timer.start()
 
 
@@ -196,18 +208,9 @@ func dead_check():
 func _on_Timer_timeout():
 	is_attacking = false
 
-func change_state(state):
-	state = state
-	emit_signal("state_change")
-
-func _on_Player_state_change():
-	print("state: %s" % state)
-
-
 func _on_Recovery_timeout():
-	state = IDLE
+	state = anum["IDLE"]
 	recover_timer.stop()
-
 
 func _on_attack02timer_timeout():
 	if get_parent().has_node("attack02"):
