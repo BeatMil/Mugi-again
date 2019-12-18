@@ -172,7 +172,7 @@ func attack():
 		state = anum["IDLE"]
 
 func recovery_from_enemy():
-	velocity = Vector2(3000 * -direction,-800)
+	velocity = Vector2(1500 * -direction,-400)
 	velocity = move_and_slide(velocity, ground)
 	anim.play("damaged01")
 	

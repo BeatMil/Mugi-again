@@ -17,6 +17,7 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
+flip_h = true
 hframes = 4
 
 [node name="Area2D" type="Area2D" parent="."]

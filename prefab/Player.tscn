@@ -664,7 +664,7 @@ rect_scale = Vector2( 0.250677, 0.203678 )
 wait_time = 0.8
 
 [node name="Recovery-timer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.2
 
 [node name="attack02-timer" type="Timer" parent="."]
 wait_time = 0.4

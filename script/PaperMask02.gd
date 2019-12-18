@@ -8,7 +8,8 @@ enum {
 	MOVE_LEFT,
 	RECOVERY_HIT
 }
-var enum_array = [IDLE,JUMP,MOVE,MOVE_LEFT]
+var enum_array = [IDLE,JUMP,MOVE_LEFT,MOVE_LEFT,MOVE_LEFT,MOVE]
+var pre_state = IDLE # just a default value
 
 onready var sprite = $"Sprite"
 onready var player = get_node("../Player")
@@ -18,7 +19,7 @@ onready var player = get_node("../Player")
 const SPEED = 100
 const JUMP_POWER = 500
 var gravity = 10
-var hp = 4
+var hp = 6
 
 
 
@@ -32,13 +33,13 @@ func _ready():
 	add_to_group("enemy")
 
 func _physics_process(delta):
-	print("%s state: %s"%[$".".name,state])
-	gravity()
+#	print("%s state: %s"%[$".".name,state])
 	# print("%s motion2: %s" %[$".".name,motion2])
 #	if !is_on_floor():
 #		state = AIR
 #	else:
 #		state = IDLE
+	gravity()
 	if state != RECOVERY_HIT and is_on_floor():
 		if state != AIR:
 			match state:
@@ -53,7 +54,6 @@ func _physics_process(delta):
 		else: # state == AIR
 			$"Timer".stop()
 	motion2 = move_and_slide(motion2,ground)
-	# change_state_ramdomly([IDLE,JUMP,MOVE])
 	
 
 func gravity():
@@ -68,6 +68,10 @@ func move_left(delta):
 	motion2.x = direction * -1 * SPEED 
 	
 func jump():
+	if pre_state == MOVE_LEFT:
+		motion2.x = -SPEED
+	elif pre_state == MOVE:
+		motion2.x = SPEED
 	motion2.y -= JUMP_POWER
 
 func change_state_ramdomly(array):
@@ -75,6 +79,7 @@ func change_state_ramdomly(array):
 	state = array.front()
 	# return array[0] or array.front()
 func _on_Timer_timeout():
+	pre_state = state
 	change_state_ramdomly(enum_array)
 
 func being_damaged(amount):
