@@ -349,7 +349,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.77093e-005 ),
+"times": PoolRealArray( 0, 1.77093e-05 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 1, 1 ]
@@ -361,7 +361,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1.77093e-005 ),
+"times": PoolRealArray( 0, 1.77093e-05 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, 80 ) ]
@@ -373,7 +373,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 1.77093e-005 ),
+"times": PoolRealArray( 0, 1.77093e-05 ),
 "transitions": PoolRealArray( 1.36604, 1 ),
 "update": 1,
 "values": [ ExtResource( 7 ), ExtResource( 7 ) ]
@@ -400,7 +400,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.77093e-005 ),
+"times": PoolRealArray( 0, 1.77093e-05 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 4, 4 ]
@@ -424,7 +424,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 1.77093e-005 ),
+"times": PoolRealArray( 0, 1.77093e-05 ),
 "transitions": PoolRealArray( 1, 1.8025 ),
 "update": 1,
 "values": [ ExtResource( 8 ), ExtResource( 8 ) ]
@@ -563,7 +563,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 5.20139e-005 ),
+"times": PoolRealArray( 5.20139e-05 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ) ]
@@ -616,7 +616,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 5.20139e-005 ),
+"times": PoolRealArray( 5.20139e-05 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ) ]
@@ -664,7 +664,7 @@ rect_scale = Vector2( 0.250677, 0.203678 )
 wait_time = 0.8
 
 [node name="Recovery-timer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.2
 
 [node name="attack02-timer" type="Timer" parent="."]
 wait_time = 0.4

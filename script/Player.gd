@@ -71,6 +71,7 @@ var crouch_collision_scale = Vector2()
 
 # helper
 var count = false # dead() helper
+var input = "" # display input in state_label
 
 func _ready():
 	stand_collision_position = Vector2(area.get_position().x, 34)
@@ -88,6 +89,7 @@ func _physics_process(delta):
 						Move()
 						Crouch()
 						_jump()
+						lerpFish()
 					velocity = move_and_slide(velocity,ground)
 					attack()
 					dead_check()
@@ -96,9 +98,21 @@ func _physics_process(delta):
 	else:
 		dead()
 		
-	
-
-
+func _input(event):
+	if event.is_pressed():
+		input = event.as_text()
+#		print(event.as_text())
+		
+#		if event.as_text() == "8":
+#			lerpFish()
+func lerpFish():
+#	if Input.is_key_pressed(KEY_8):
+	if Input.is_action_just_pressed("cheat_08"):
+		velocity.x = 800
+		while velocity.x > 0:
+			velocity.x -= 10
+			velocity = move_and_slide(velocity,ground)
+			print(get_floor_velocity())
 func Move():
 	if Input.is_action_pressed("ui_right"):
 		direction = 1
@@ -174,7 +188,7 @@ func attack():
 		state = anum.IDLE
 
 func recovery_from_enemy():
-	velocity = Vector2(3000 * -direction,-800)
+	velocity = Vector2(1500 * -direction,-400)
 	velocity = move_and_slide(velocity, ground)
 	anim.play("damaged01")
 	

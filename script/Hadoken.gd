@@ -15,7 +15,6 @@ func _ready():
 	
 	$".".set_meta("type", "fireball") # set this node tag to enemy
 	add_to_group("attack")
-	pass # Replace with function body.
 	
 func _process(delta):
 	velocity.x = SPEED * delta * direction

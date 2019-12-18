@@ -21,4 +21,15 @@ margin_top = 469.687
 margin_right = 565.534
 margin_bottom = 483.687
 rect_scale = Vector2( 8.16859, 8.45342 )
-text = "LABEL2"
+text = "COMMAND"
+
+[node name="input" type="Label" parent="."]
+margin_left = 186.371
+margin_top = 480.212
+margin_right = 226.371
+margin_bottom = 494.212
+rect_scale = Vector2( 4.8, 4.68 )
+text = "input"
+
+[node name=" input_window" type="Timer" parent="."]
+[connection signal="timeout" from=" input_window" to="." method="_on__input_window_timeout"]
