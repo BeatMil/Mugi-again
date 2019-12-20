@@ -17,7 +17,7 @@ onready var player = get_node("../Player")
 
 # configuration
 const SPEED = 100
-const JUMP_POWER = 500
+const JUMP_POWER = 600
 var gravity = 10
 var hp = 6
 
@@ -89,7 +89,7 @@ func recovery_hit():
 	state = RECOVERY_HIT
 	$"./Timer".stop()
 	$"./Recover01".start()
-	motion2 = Vector2(400 * player.direction,-100)
+	motion2 = Vector2(400 * player.direction,-400)
 	motion2 = move_and_slide(motion2, ground)
 
 

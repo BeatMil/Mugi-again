@@ -100,7 +100,7 @@ position = Vector2( 256, 400 )
 texture = ExtResource( 7 )
 
 [node name="PaperMask" parent="." instance=ExtResource( 8 )]
-position = Vector2( 813.212, 566.583 )
+position = Vector2( 1365.78, 579.534 )
 
 [node name="PaperMask02" parent="." instance=ExtResource( 9 )]
 position = Vector2( 1742.55, 806.529 )

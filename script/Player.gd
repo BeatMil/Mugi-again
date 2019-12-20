@@ -74,6 +74,7 @@ var count = false # dead() helper
 var input = "" # display input in state_label
 
 func _ready():
+	add_to_group("player")
 	stand_collision_position = Vector2(area.get_position().x, 34)
 	crouch_collision_position = Vector2(area.get_position().x, 80)
 	stand_collision_scale = Vector2(1,1)
@@ -216,16 +217,7 @@ func is_falling():
 
 func _on_Area2D_body_entered(body):
 	# var tag : String = body.get_meta('type')
-	if body.is_in_group("enemy") and state != anum.BLOCK:
-		health_bar.health_decrease(1)
-		# velocity = move_and_slide(Vector2(12000 * -direction,-1000), ground)
-		state = anum.RECOVERY
-		emit_signal("damaged") # for SFX
-		recover_timer.start()
-	elif body.is_in_group("enemy") and state == anum.BLOCK:
-		# velocity = move_and_slide(Vector2(9000 * -direction,-1000), ground)
-		state = anum.RECOVERY
-		recover_timer.start()
+	pass
 
 
 	# print(body.get_node(".").name)
@@ -249,3 +241,17 @@ func _on_attack02timer_timeout():
 	# is_attacking = false
 	state = anum.IDLE
 	attack02_timer.stop()
+
+
+func _on_Stand_area_entered(area):
+	if area.is_in_group("enemy") and state != anum.BLOCK:
+		health_bar.health_decrease(1)
+		# velocity = move_and_slide(Vector2(12000 * -direction,-1000), ground)
+		state = anum.RECOVERY
+		emit_signal("damaged") # for SFX
+		recover_timer.start()
+	elif area.is_in_group("enemy") and state == anum.BLOCK:
+		# velocity = move_and_slide(Vector2(9000 * -direction,-1000), ground)
+		state = anum.RECOVERY
+		recover_timer.start()
+	pass # Replace with function body.
