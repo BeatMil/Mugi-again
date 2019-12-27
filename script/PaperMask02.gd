@@ -31,6 +31,7 @@ var direction = 1 # 1 = facing rightc
 var ground = Vector2(0,-1)
 func _ready():
 	add_to_group("enemy")
+	$Area2D.add_to_group("enemy")
 
 func _physics_process(delta):
 #	print("%s state: %s"%[$".".name,state])

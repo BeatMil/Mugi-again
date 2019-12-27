@@ -14,6 +14,7 @@ enum anum {
 	RECOVERY,
 	BLOCK,
 	ATTACK,
+	AIR_ATTACK,
 	DEAD
 }
 
@@ -71,6 +72,7 @@ var crouch_collision_scale = Vector2()
 
 # helper
 var count = false # dead() helper
+var air_attack = false # air state helper
 var input = "" # display input in state_label
 
 func _ready():
@@ -86,11 +88,15 @@ func _physics_process(delta):
 		if state != anum.ATTACK:
 			if state != anum.RECOVERY:
 					Gravity()
-					if state != anum.BLOCK:
-						Move()
-						Crouch()
-						_jump()
-						lerpFish()
+					if state != anum.BLOCK: # if not blocking can do below 
+						if state == anum.AIR_ATTACK:
+							Move()
+							_jump()
+						else:
+							Move()
+							Crouch()
+							_jump()
+							lerpFish()
 					velocity = move_and_slide(velocity,ground)
 					attack()
 					dead_check()
@@ -108,7 +114,7 @@ func _input(event):
 #			lerpFish()
 func lerpFish():
 #	if Input.is_key_pressed(KEY_8):
-	if Input.is_action_just_pressed("cheat_08"):
+	if Input.is_action_just_pressed("cheat_08"): #KEY_8
 		velocity.x = 800
 		while velocity.x > 0:
 			velocity.x -= 10
@@ -119,37 +125,21 @@ func Move():
 		direction = 1
 		velocity.x = walkPower * direction
 		sprite.set_flip_h(false)
-		anim.play("run")
-		state = anum.MOVE
+		if !air_attack:
+			anim.play("run")
+			state = anum.MOVE
 	elif Input.is_action_pressed("ui_left"):
 		direction = -1
 		velocity.x = walkPower * direction
 		sprite.set_flip_h(true)
-		anim.play("run")
-		state = anum.MOVE
+		if !air_attack:
+			anim.play("run")
+			state = anum.MOVE
 	else:
 		velocity.x = 0
-		anim.play("idle")
-		state = anum.IDLE
-		
-func _jump():
-	if Input.is_action_pressed("ui_up") and is_on_floor():
-		velocity.y = -jumpPower
-		
-	if Input.is_action_just_released("ui_up") and !is_falling():
-		velocity.y = gravity
-		
-	if !is_on_floor():
-		anim.play("jump")
-		if is_falling():
-			anim.play('falling')
-		state = anum.AIR
-	# else:
-	# 	state = anum.IDLE
-	# above code runs after state = anum.MOVE 
-	# making state become IDLE
-
-
+		if !air_attack:
+			anim.play("idle")
+			state = anum.IDLE
 		
 func Crouch():
 	if Input.is_action_pressed("ui_down") and is_on_floor():
@@ -165,15 +155,43 @@ func Crouch():
 		collision.set_position(stand_collision_position)
 		collision.set_scale(stand_collision_scale)
 
+func _jump():
+	if Input.is_action_pressed("ui_up") and is_on_floor():
+		state = anum.AIR
+		velocity.y = -jumpPower
+		
+	if Input.is_action_just_released("ui_up") and !is_falling():
+		velocity.y = gravity
+		
+	if !is_on_floor():
+		if air_attack:
+			state = anum.AIR_ATTACK
+		else:
+			state = anum.AIR
+
+		if state == anum.AIR:
+			anim.play("jump")
+			if is_falling():
+				anim.play('falling')
+		elif state == anum.AIR_ATTACK:
+			anim.play("attack03")
+	else:
+		air_attack = false
+
+
+
+		
+
 func attack():
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		# is_attacking = true
 		state = anum.ATTACK
 		timer_attack.start()
+		$"hadoken-timer".start()
 		anim.play("attack01")
-		var fireball = FIREBALL.instance()
-		fireball.set_position($".".get_position() + Vector2(100 * direction,0))
-		$"..".add_child(fireball)
+		# var fireball = FIREBALL.instance()
+		# fireball.set_position($".".get_position() + Vector2(100 * direction,0))
+		# $"..".add_child(fireball)
 	elif Input.is_action_just_pressed("attack02") and is_on_floor(): #control
 		# is_attacking = true
 		state = anum.ATTACK
@@ -182,6 +200,8 @@ func attack():
 		var attack02 = ATTACK02.instance()
 		attack02.set_position($".".get_position() + Vector2(150 * direction,0))
 		$"..".add_child(attack02)
+	elif Input.is_action_just_pressed("ui_accept") and !is_on_floor():
+		air_attack = true
 	elif Input.is_action_pressed("block"):
 		state = anum.BLOCK
 		anim.play("block01")
@@ -215,14 +235,6 @@ func is_falling():
 	else:
 		return false
 
-func _on_Area2D_body_entered(body):
-	# var tag : String = body.get_meta('type')
-	pass
-
-
-	# print(body.get_node(".").name)
-
-	
 func dead_check():
 	if health_bar.hp <= 0:
 		state = anum.DEAD
@@ -255,3 +267,10 @@ func _on_Stand_area_entered(area):
 		state = anum.RECOVERY
 		recover_timer.start()
 	pass # Replace with function body.
+
+
+func _on_hadokentimer_timeout():
+	var fireball = FIREBALL.instance()
+	fireball.set_position($".".get_position() + Vector2(100 * direction,0))
+	$"..".add_child(fireball)
+	$"hadoken-timer".stop()

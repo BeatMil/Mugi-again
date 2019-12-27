@@ -7,7 +7,8 @@ var walkSpeed : int = 100
 var direction : int = 1 # Facing Right
 onready var recovery01_timer = $"recovery01_timer"
 onready var state_label = $"state_label"
-onready var attack_hitbox = $"attack_area2D/CollisionShape2D"
+# onready var attack_hitbox = $"attack_area2D/CollisionShape2D"
+onready var player = $"../Player"
 enum anum {
 	WALK,
 	ATTACK,
@@ -34,7 +35,7 @@ func _physics_process(delta):
 	elif state == anum.ATTACK:
 		velocity = Vector2(500 * direction,0)
 	elif state == anum.RECOVERY:
-		velocity = Vector2(600 * -direction, -100)
+		velocity = Vector2(600 * player.direction, -100)
 	velocity = move_and_slide(velocity, ground)
 	state_label.text = "state: %s"%anum.keys()[state]
 	
