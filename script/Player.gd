@@ -166,6 +166,9 @@ func _jump():
 	if !is_on_floor():
 		if air_attack:
 			state = anum.AIR_ATTACK
+			if get_parent().has_node("attack02"):
+				get_node("../attack02").set_position($".".get_position() + Vector2(150 * direction,0))
+#			attack02.set_position($".".get_position() + Vector2(150 * direction,0))
 		else:
 			state = anum.AIR
 
@@ -175,8 +178,12 @@ func _jump():
 				anim.play('falling')
 		elif state == anum.AIR_ATTACK:
 			anim.play("attack03")
+
 	else:
 		air_attack = false
+		if get_parent().has_node("attack02"):
+			get_parent().get_node("attack02").queue_free()
+
 
 
 
@@ -200,8 +207,12 @@ func attack():
 		var attack02 = ATTACK02.instance()
 		attack02.set_position($".".get_position() + Vector2(150 * direction,0))
 		$"..".add_child(attack02)
-	elif Input.is_action_just_pressed("ui_accept") and !is_on_floor():
-		air_attack = true
+	elif Input.is_action_just_pressed("attack02") and !is_on_floor():
+		air_attack = true	
+		var attack02 = ATTACK02.instance()
+		attack02.set_position($".".get_position() + Vector2(150 * direction,0))
+		$"..".add_child(attack02)
+		print("air_attacking")
 	elif Input.is_action_pressed("block"):
 		state = anum.BLOCK
 		anim.play("block01")
@@ -266,7 +277,6 @@ func _on_Stand_area_entered(area):
 		# velocity = move_and_slide(Vector2(9000 * -direction,-1000), ground)
 		state = anum.RECOVERY
 		recover_timer.start()
-	pass # Replace with function body.
 
 
 func _on_hadokentimer_timeout():
