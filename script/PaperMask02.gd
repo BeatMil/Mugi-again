@@ -99,11 +99,11 @@ func _on_Area2D_area_entered(area):
 		area.queue_free()
 		being_damaged(1)
 		recovery_hit()
+		print("%s_hp: %s" %[$".".name, hp])
 		
 	if area.is_in_group("attack") and hp <= 0:
 		area.queue_free()
 		queue_free()
-	print("%s_hp: %s" %[$".".name, hp])
 
 func _on_Recover01_timeout():
 	$"./Timer".start()

@@ -42,8 +42,8 @@ func _physics_process(delta):
 	
 
 
-func _on_Area2D_area_entered(area):
-	# if area.get_meta("type") == "fireball":
+func _on_Area2D_area_entered(area):  # when collide with another area2D
+	# if area.get_mea("type") == "fireball":
 #	print(area.name)
 #	print(area.get_groups())
 	if area.is_in_group("attack"):

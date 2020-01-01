@@ -212,7 +212,6 @@ func attack():
 		var attack02 = ATTACK02.instance()
 		attack02.set_position($".".get_position() + Vector2(150 * direction,0))
 		$"..".add_child(attack02)
-		print("air_attacking")
 	elif Input.is_action_pressed("block"):
 		state = anum.BLOCK
 		anim.play("block01")
@@ -267,6 +266,7 @@ func _on_attack02timer_timeout():
 
 
 func _on_Stand_area_entered(area):
+	# print(area.get_groups())
 	if area.is_in_group("enemy") and state != anum.BLOCK:
 		health_bar.health_decrease(1)
 		# velocity = move_and_slide(Vector2(12000 * -direction,-1000), ground)
@@ -277,6 +277,8 @@ func _on_Stand_area_entered(area):
 		# velocity = move_and_slide(Vector2(9000 * -direction,-1000), ground)
 		state = anum.RECOVERY
 		recover_timer.start()
+	elif area.is_in_group("hp_up"):
+		health_bar.health_increase(1)
 
 
 func _on_hadokentimer_timeout():

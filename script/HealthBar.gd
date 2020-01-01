@@ -26,4 +26,19 @@ func health_decrease(amount : int):
 	elif hp == 1 :
 		health_bar.set_tint_progress(Color(1, 0, 0))
 
-		
+func health_increase(amount: int):
+	if hp < max_hp:
+		hp += amount
+		var remain_hp = (hp/max_hp) * 100
+		health_bar.value = remain_hp 
+		health_num.text = String(hp)
+		if hp == 3:
+			health_bar.set_tint_progress(Color(1, 1, 0))
+		elif hp == 2:
+			health_bar.set_tint_progress(Color(1, 0.5, 0))
+		elif hp == 1:
+			health_bar.set_tint_progress(Color(1, 0, 0))
+		elif hp <= 4:
+			health_bar.set_tint_progress(Color(0,1,0))
+
+			
