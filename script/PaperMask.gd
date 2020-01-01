@@ -18,7 +18,7 @@ enum anum {
 onready var state = anum.WALK
 
 func _ready():
-	get_node(".").set_meta("type", "enemy") # set this node tag to enemy
+	# get_node(".").set_meta("type", "enemy") # set this node tag to enemy
 	add_to_group("enemy")
 	$Area2D.add_to_group("enemy")
 	direction = -1
@@ -33,7 +33,7 @@ func _physics_process(delta):
 		if (is_on_floor()):
 			velocity.x = walkSpeed * direction
 	elif state == anum.ATTACK:
-		velocity = Vector2(500 * direction,0)
+		velocity = Vector2(500 * direction,300)
 	elif state == anum.RECOVERY:
 		velocity = Vector2(600 * player.direction, -100)
 	velocity = move_and_slide(velocity, ground)
