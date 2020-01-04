@@ -1,8 +1,8 @@
 [gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://script/Player.gd" type="Script" id=1]
-[ext_resource path="res://media/Player/hadoken-sprite-sheet.png" type="Texture" id=2]
-[ext_resource path="res://media/Player/atttack02.png" type="Texture" id=3]
+[ext_resource path="res://media/Player/atttack02.png" type="Texture" id=2]
+[ext_resource path="res://media/Player/hadoken-sprite-sheet.png" type="Texture" id=3]
 [ext_resource path="res://media/Player/attack03.png" type="Texture" id=4]
 [ext_resource path="res://media/Player/block01.png" type="Texture" id=5]
 [ext_resource path="res://media/Player/crouching1f 128x256.png" type="Texture" id=6]
@@ -34,7 +34,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 2 ) ]
+"values": [ ExtResource( 3 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -99,7 +99,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 3 ) ]
+"values": [ ExtResource( 2 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -413,7 +413,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.77093e-05 ),
+"times": PoolRealArray( 0, 1.77093e-005 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 1, 1 ]
@@ -425,7 +425,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1.77093e-05 ),
+"times": PoolRealArray( 0, 1.77093e-005 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, 80 ) ]
@@ -437,7 +437,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 1.77093e-05 ),
+"times": PoolRealArray( 0, 1.77093e-005 ),
 "transitions": PoolRealArray( 1.36604, 1 ),
 "update": 1,
 "values": [ ExtResource( 8 ), ExtResource( 8 ) ]
@@ -464,7 +464,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.77093e-05 ),
+"times": PoolRealArray( 0, 1.77093e-005 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 4, 4 ]
@@ -488,7 +488,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 1.77093e-05 ),
+"times": PoolRealArray( 0, 1.77093e-005 ),
 "transitions": PoolRealArray( 1, 1.8025 ),
 "update": 1,
 "values": [ ExtResource( 9 ), ExtResource( 9 ) ]
@@ -627,7 +627,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 5.20139e-05 ),
+"times": PoolRealArray( 5.20139e-005 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ) ]
@@ -680,7 +680,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 5.20139e-05 ),
+"times": PoolRealArray( 5.20139e-005 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ) ]
@@ -701,10 +701,10 @@ input_pickable = false
 shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, 30.018 )
+position = Vector2( 35, 0 )
 texture = ExtResource( 2 )
-hframes = 4
-frame = 2
+hframes = 2
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/attack01 = SubResource( 3 )

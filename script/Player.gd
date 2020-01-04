@@ -203,6 +203,15 @@ func attack():
 		# is_attacking = true
 		state = anum.ATTACK
 		attack02_timer.start()
+		# if sprite.is_flipped_h():
+		# 	sprite.set_position(Vector2(1000,1000))
+		# 	anim.play("attack02")
+		# 	print(sprite.position)
+		# else:
+		# 	sprite.set_position(Vector2(0,0))
+		# 	anim.play("attack02")
+		# 	print("not flip h")
+# it doesn't work I can't make it work			
 		anim.play("attack02")
 		var attack02 = ATTACK02.instance()
 		attack02.set_position($".".get_position() + Vector2(150 * direction,0))
@@ -279,6 +288,8 @@ func _on_Stand_area_entered(area):
 		recover_timer.start()
 	elif area.is_in_group("hp_up"):
 		health_bar.health_increase(1)
+	elif area.is_in_group("death_border"):
+        get_tree().reload_current_scene()
 
 
 func _on_hadokentimer_timeout():
