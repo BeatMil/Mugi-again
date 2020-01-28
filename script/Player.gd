@@ -102,6 +102,10 @@ func _physics_process(delta):
 					dead_check()
 			elif state == anum.RECOVERY:
 				recovery_from_enemy()
+		else:
+			Gravity()
+			velocity = move_and_slide(velocity,ground) # this two line (106,107) keep the player on moving platform
+														# while attacking
 	else:
 		dead()
 		
