@@ -693,7 +693,9 @@ script = ExtResource( 1 )
 position = Vector2( 1.54004, 33.8806 )
 shape = SubResource( 1 )
 
-[node name="Stand" type="Area2D" parent="."]
+[node name="Stand" type="Area2D" parent="." groups=[
+"player",
+]]
 position = Vector2( 1.89996, 34.2 )
 input_pickable = false
 

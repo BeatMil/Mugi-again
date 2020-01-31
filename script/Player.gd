@@ -279,7 +279,7 @@ func _on_attack02timer_timeout():
 
 
 func _on_Stand_area_entered(area):
-	# print(area.get_groups())
+#	print(area.get_groups())
 	if area.is_in_group("enemy") and state != anum.BLOCK:
 		health_bar.health_decrease(1)
 		# velocity = move_and_slide(Vector2(12000 * -direction,-1000), ground)
