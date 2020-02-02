@@ -9,3 +9,4 @@ var damaged = "res://media/Sound/damaged.ogg"
 func _on_Player_damaged():
 	audio.stream = load(damaged)
 	audio.play()
+

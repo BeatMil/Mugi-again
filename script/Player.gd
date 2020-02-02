@@ -97,8 +97,8 @@ func _physics_process(delta):
 							Crouch()
 							_jump()
 							lerpFish()
-					velocity = move_and_slide(velocity,ground)
 					attack()
+					velocity = move_and_slide(velocity,ground)
 					dead_check()
 			elif state == anum.RECOVERY:
 				recovery_from_enemy()
@@ -200,6 +200,7 @@ func attack():
 		timer_attack.start()
 		$"hadoken-timer".start()
 		anim.play("attack01")
+		velocity = Vector2.ZERO
 		# var fireball = FIREBALL.instance()
 		# fireball.set_position($".".get_position() + Vector2(100 * direction,0))
 		# $"..".add_child(fireball)
@@ -207,6 +208,7 @@ func attack():
 		# is_attacking = true
 		state = anum.ATTACK
 		attack02_timer.start()
+		velocity = Vector2.ZERO
 		# if sprite.is_flipped_h():
 		# 	sprite.set_position(Vector2(1000,1000))
 		# 	anim.play("attack02")
@@ -294,6 +296,11 @@ func _on_Stand_area_entered(area):
 		health_bar.health_increase(1)
 	elif area.is_in_group("death_border"):
         get_tree().reload_current_scene()
+	elif area.is_in_group("spikes"):
+		health_bar.health_decrease(1)
+		state = anum.RECOVERY
+		emit_signal("damaged") # for SFX
+		recover_timer.start()
 
 
 func _on_hadokentimer_timeout():
