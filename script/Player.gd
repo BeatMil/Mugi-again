@@ -49,6 +49,7 @@ signal damaged
 #Cache
 const FIREBALL = preload("res://prefab/Hadoken.tscn")
 const ATTACK02 = preload("res://prefab/attack02.tscn")
+const DIALOG01 = preload("res://prefab/dialog.tscn")
 onready var anim = get_node("AnimationPlayer")
 onready var sprite = get_node("Sprite")
 onready var collision = get_node('CollisionShape2D')
@@ -294,6 +295,12 @@ func _on_Stand_area_entered(area):
 		recover_timer.start()
 	elif area.is_in_group("hp_up"):
 		health_bar.health_increase(1)
+		$"../CanvasLayer/dialog/WindowDialog".popup(Rect2(500,100,700,100))
+#		var dlog = DIALOG01.instance()
+#		$"..".add_child(dlog)
+#		dlog.WindowDialog.popup(Rect2(500,100,700,100))
+#		print(dlog.name)
+#		dlog.get_children()[0].popup(Rect2(500,100,700,100))
 	elif area.is_in_group("death_border"):
         get_tree().reload_current_scene()
 	elif area.is_in_group("spikes"):
