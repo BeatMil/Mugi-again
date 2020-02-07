@@ -22,3 +22,11 @@ text = "It's CSGO time!!"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+__meta__ = {
+"_editor_description_": "make text appear stadily"
+}
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
