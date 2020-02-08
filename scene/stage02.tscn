@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://prefab/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://script/state_label.gd" type="Script" id=2]
-[ext_resource path="res://prefab/spike.tscn" type="PackedScene" id=3]
 [ext_resource path="res://media/tile/Tile003.tres" type="TileSet" id=4]
 [ext_resource path="res://prefab/moving_platform.tscn" type="PackedScene" id=5]
 [ext_resource path="res://script/AudioBlock.gd" type="Script" id=6]
@@ -11,43 +10,41 @@
 [node name="stage02" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-editor/display_folded = true
-position = Vector2( 270, 580 )
+position = Vector2( 1360, 160 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
-drag_margin_h_enabled = false
+zoom = Vector2( 3, 3 )
 smoothing_enabled = true
 drag_margin_top = 0.5
 
 [node name="state_label" type="Label" parent="Player"]
-margin_right = 40.0
-margin_bottom = 14.0
+margin_left = -46.0
+margin_top = -196.0
+margin_right = -6.0
+margin_bottom = -182.0
+rect_scale = Vector2( 3.6038, 3.24248 )
+text = "state"
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="velocity" type="Label" parent="Player/state_label"]
-margin_left = -90.0
-margin_top = -230.0
-margin_right = -40.0
-margin_bottom = -216.0
-rect_scale = Vector2( 2.12499, 2.69993 )
+margin_left = -4.43976
+margin_top = -24.6725
+margin_right = 45.5602
+margin_bottom = -10.6725
+rect_scale = Vector2( 0.863576, 0.99452 )
 text = "velocity"
 
 [node name="input" type="Label" parent="Player/state_label"]
-margin_left = -30.0
-margin_top = -192.201
-margin_right = 10.0
-margin_bottom = -178.201
-rect_scale = Vector2( 2.18618, 2.32856 )
+margin_left = 3.8147e-06
+margin_top = -9.86898
+margin_right = 40.0
+margin_bottom = 4.13102
+rect_scale = Vector2( 0.861067, 0.996304 )
 text = "input"
-
-[node name="spikes" type="Node2D" parent="."]
-position = Vector2( 1568, 672 )
-
-[node name="spike" parent="spikes" instance=ExtResource( 3 )]
-
-[node name="spike2" parent="spikes" instance=ExtResource( 3 )]
-position = Vector2( 64, 0 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 4 )
@@ -63,9 +60,10 @@ position = Vector2( 780, 1160 )
 [node name="moving_platform" parent="moving_plat01" instance=ExtResource( 5 )]
 
 [node name="pos1" type="Position2D" parent="moving_plat01"]
+position = Vector2( 1012, -520 )
 
 [node name="pos2" type="Position2D" parent="moving_plat01"]
-position = Vector2( 1140, 0 )
+position = Vector2( 1524, -520 )
 
 [node name="sound_nodes" type="Node2D" parent="."]
 

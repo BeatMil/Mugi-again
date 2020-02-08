@@ -4,9 +4,7 @@
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
-[node name="spike" type="Area2D" groups=[
-"spikes",
-]]
+[node name="spike" type="Area2D"]
 
 [node name="sprite" type="Sprite" parent="."]
 modulate = Color( 0.6, 0, 0, 1 )

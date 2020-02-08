@@ -303,11 +303,11 @@ func _on_Stand_area_entered(area):
 #		dlog.get_children()[0].popup(Rect2(500,100,700,100))
 	elif area.is_in_group("death_border"):
 		get_tree().reload_current_scene()
-	elif area.is_in_group("spikes"):
-		health_bar.health_decrease(1)
-		state = anum.RECOVERY
-		emit_signal("damaged") # for SFX
-		recover_timer.start()
+#	elif area.is_in_group("spikes"):
+#		health_bar.health_decrease(1)
+#		state = anum.RECOVERY
+#		emit_signal("damaged") # for SFX
+#		recover_timer.start()
 
 
 func _on_hadokentimer_timeout():
