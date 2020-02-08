@@ -75,7 +75,7 @@ script = ExtResource( 6 )
 [node name="SfxBlock" type="AudioStreamPlayer" parent="sound_nodes"]
 script = ExtResource( 7 )
 
-[node name="PaperMask02" parent="sound_nodes" instance=ExtResource( 3 )]
+[node name="PaperMask02" parent="." instance=ExtResource( 3 )]
 position = Vector2( 448, 544 )
 [connection signal="damaged" from="Player" to="sound_nodes/SfxBlock" method="_on_Player_damaged"]
 [connection signal="dead" from="Player" to="sound_nodes/AudioBlock" method="_on_Player_dead"]
