@@ -84,6 +84,7 @@ func _ready():
 	crouch_collision_scale = Vector2(1,0.5)
 	state2 = 0
 	
+	
 func _physics_process(delta):
 	if state != anum.DEAD:
 		if state != anum.ATTACK:

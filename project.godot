@@ -16,8 +16,12 @@ _global_script_class_icons={
 [application]
 
 config/name="Mugi-again"
-run/main_scene="res://scene/Menu.tscn"
+run/main_scene="res://scene/dew_intro.tscn"
 config/icon="res://media/Player/MugiQT.png"
+
+[autoload]
+
+singleton="*res://script/singleton.gd"
 
 [display]
 

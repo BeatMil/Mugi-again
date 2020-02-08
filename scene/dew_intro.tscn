@@ -12,7 +12,7 @@ outline_size = 1
 outline_color = Color( 0.27451, 0.65098, 0.0627451, 1 )
 font_data = ExtResource( 2 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "dew_logo"
 length = 2.0
 tracks/0/type = "value"
@@ -28,8 +28,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0.1, 0.1 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "text_big_small"
+[sub_resource type="Animation" id=3]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Button:custom_fonts/font:size")
@@ -84,7 +83,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0.1, 0.1 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=5]
 resource_name = "dew_logo_flash"
 length = 0.8
 loop = true
@@ -101,8 +100,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.392157, 0.388235, 0.388235, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "text_big_small"
+[sub_resource type="Animation" id=6]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Button:custom_fonts/font:size")
@@ -157,7 +155,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0.1, 0.1 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=8]
 resource_name = "flash_white"
 length = 2.5
 tracks/0/type = "value"
@@ -173,8 +171,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=8]
-resource_name = "text_big_small"
+[sub_resource type="Animation" id=9]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Button:custom_fonts/font:size")
@@ -213,7 +210,7 @@ tracks/2/keys = {
 "values": [ 1 ]
 }
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=10]
 size = 40
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -229,8 +226,9 @@ __meta__ = {
 }
 
 [node name="dew_intro_menu" type="Sprite" parent="."]
-modulate = Color( 0.923834, 0.923343, 0.923343, 1 )
+modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 672, 384 )
+scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 1 )
 
 [node name="Button" type="Button" parent="."]
@@ -250,25 +248,25 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/dew_logo = SubResource( 3 )
-anims/text_big_small = SubResource( 2 )
+anims/dew_logo = SubResource( 2 )
+anims/text_big_small = SubResource( 3 )
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
 anims/dew_logo = SubResource( 4 )
-anims/dew_logo_flash = SubResource( 10 )
-anims/text_big_small = SubResource( 5 )
+anims/dew_logo_flash = SubResource( 5 )
+anims/text_big_small = SubResource( 6 )
 
 [node name="AnimationPlayer3" type="AnimationPlayer" parent="."]
 anims/dew_logo = SubResource( 7 )
-anims/flash_white = SubResource( 9 )
-anims/text_big_small = SubResource( 8 )
+anims/flash_white = SubResource( 8 )
+anims/text_big_small = SubResource( 9 )
 
 [node name="esc" type="Label" parent="."]
 visible = false
 margin_top = 16.0
 margin_right = 128.0
 margin_bottom = 64.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 10 )
 text = "ESC"
 align = 1
 valign = 1
