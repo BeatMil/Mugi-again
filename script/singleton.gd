@@ -9,8 +9,8 @@ var current_hp = 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print($".".name)
-	print($"..")
+#	print($".".name)
+#	print($"..")
 	pass # Replace with function body.
 
 

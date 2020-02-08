@@ -9,10 +9,10 @@ func _ready():
 	$AnimationPlayer2.play("dew_logo")
 	$AnimationPlayer3.play("flash_white")
 #	print(singleton.player_name)
-	print($"/root".name)
-	print($".".name)
+#	print($"/root".name)
+#	print($".".name)
 func _process(delta):
-	$AudioStreamPlayer.volume_db = $VSlider.value
+	$"/root/AudioBlock".volume_db = $VSlider.value
 
 func _input(event):
 #	if event:

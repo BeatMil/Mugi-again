@@ -1,10 +1,9 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://media/dew_intro_menu.png" type="Texture" id=1]
 [ext_resource path="res://media/Font/Code Vein Fonts/DroidSansFallback.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://script/dew_intro.gd" type="Script" id=3]
 [ext_resource path="res://media/Font/Code Vein Fonts/DroidSansMono.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://media/Sound/yggdra-union_remake.ogg" type="AudioStream" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 17
@@ -273,11 +272,6 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
-volume_db = -20.0
-autoplay = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
