@@ -58,12 +58,13 @@ __meta__ = {
 position = Vector2( 780, 1160 )
 
 [node name="moving_platform" parent="moving_plat01" instance=ExtResource( 5 )]
+speed = 2
 
 [node name="pos1" type="Position2D" parent="moving_plat01"]
 position = Vector2( 1012, -520 )
 
 [node name="pos2" type="Position2D" parent="moving_plat01"]
-position = Vector2( 1524, -520 )
+position = Vector2( 2164, -520 )
 
 [node name="sound_nodes" type="Node2D" parent="."]
 

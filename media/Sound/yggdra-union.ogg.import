@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/yggdra-union.ogg-ef8a3383ca0e990ba62db6eea774be63.oggstr"
+
+[deps]
+
+source_file="res://media/Sound/yggdra-union.ogg"
+dest_files=[ "res://.import/yggdra-union.ogg-ef8a3383ca0e990ba62db6eea774be63.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

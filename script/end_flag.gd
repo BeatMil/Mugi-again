@@ -1,21 +1,20 @@
 extends Area2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+signal black_out # transition to another scene
 
 
 func _on_Area2D_area_entered(area):
+	var anim = $"../CanvasLayer/black_out/AnimationPlayer"
 	print("RETURN TO MENU")
 	print(area.get_groups())
 	if area.is_in_group("player"):
-		get_tree().change_scene("res://scene/Menu.tscn")
+#		emit_signal("black_out")
+		anim.play("black_out")
+		print(anim.get_animation("black_out").length)
+		$Timer.wait_time = anim.get_animation("black_out").length
+		$Timer.start()
 		
+
+
+func _on_Timer_timeout():
+		get_tree().change_scene("res://scene/Menu.tscn")

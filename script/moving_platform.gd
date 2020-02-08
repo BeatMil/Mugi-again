@@ -1,4 +1,7 @@
 extends KinematicBody2D
+
+export var speed : int = 1  # ex 1,2,3,4,5
+
 onready var pos1 = get_parent().get_node("pos1").global_position
 onready var pos2 = get_parent().get_node("pos2").global_position
 #export var pos3 = get_node()
@@ -20,14 +23,14 @@ func _physics_process(delta):
 			$Timer.start()
 #		move_and_slide(get_vector(), Vector2.ZERO)
 		if !is_stay:
-			move_local_x(8)
+			move_local_x(8 * speed)
 	elif !is_at_pos1:
 		if timer_helper == true:
 			timer_helper = false
 			is_stay = true
 			$Timer.start()
 		if !is_stay:
-			move_local_x(-8)
+			move_local_x(-8 * speed)
 		
 # get direction for the older method
 #func get_vector():

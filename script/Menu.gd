@@ -1,5 +1,6 @@
 extends Control
 func _ready():
+	$ColorRect.set_visible(true)
 	get_node("VBoxContainer/Button").grab_focus()
 	
 func _on_Button_pressed():
