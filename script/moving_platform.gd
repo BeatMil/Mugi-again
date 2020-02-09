@@ -45,6 +45,5 @@ func position_checker():
 
 
 func _on_Timer_timeout():
-	print("Timer stop!")
 	is_stay = false
 	$Timer.stop()

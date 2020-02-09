@@ -23,6 +23,7 @@ config/icon="res://media/Player/MugiQT.png"
 
 singleton="*res://script/singleton.gd"
 AudioBlock="*res://prefab/AudioBlock.tscn"
+SfxBlock="*res://prefab/SfxBlock.tscn"
 
 [display]
 

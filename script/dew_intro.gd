@@ -2,12 +2,14 @@ extends Control
 
 
 
-
+var rabi_ribi_ost = "res://media/Sound/rabi ribi park original.ogg"
+var menu_confirm = "res://media/Sound/menu_confirm.wav"
 func _ready():
 #	$Button.grab_click_focus()
 	$AnimationPlayer.play("text_big_small")
 	$AnimationPlayer2.play("dew_logo")
 	$AnimationPlayer3.play("flash_white")
+	$"/root/AudioBlock".play()
 #	print(singleton.player_name)
 #	print($"/root".name)
 #	print($".".name)
@@ -23,12 +25,12 @@ func _input(event):
 	if Input.is_key_pressed(KEY_ESCAPE):
 		get_tree().quit()
 	elif Input.is_key_pressed(KEY_SPACE):
-		get_tree().change_scene("res://scene/stage02.tscn")
+		$"/root/SfxBlock".set_stream(load(menu_confirm))
+		$"/root/SfxBlock".play()
+		$"/root/AudioBlock".stop()
+		get_tree().change_scene("res://scene/intro_dialog.tscn")
 		
 
-
-func _on_Button_pressed():
-	get_tree().change_scene("res://scene/stage02.tscn")
 
 
 func _on_Timer_timeout(): 

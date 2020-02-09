@@ -11,7 +11,6 @@ func _ready():
 	max_hp = get_parent().hp_max
 #	hp = max_hp
 	hp = $"/root/singleton".current_hp
-	print($"/root/singleton".current_hp)
 	health_num.text = String(hp)
 	health_bar.set_tint_progress(Color(0, 1, 0))
 	var remain_hp = (hp/max_hp) * 100

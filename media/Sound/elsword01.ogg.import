@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/elsword01.ogg-b842bfd46d2985fd723285e6f9f514a4.oggstr"
+
+[deps]
+
+source_file="res://media/Sound/elsword01.ogg"
+dest_files=[ "res://.import/elsword01.ogg-b842bfd46d2985fd723285e6f9f514a4.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

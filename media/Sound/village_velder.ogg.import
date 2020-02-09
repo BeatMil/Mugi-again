@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/village_velder.ogg-cae343210d19940447502ae9cb9108c5.oggstr"
+
+[deps]
+
+source_file="res://media/Sound/village_velder.ogg"
+dest_files=[ "res://.import/village_velder.ogg-cae343210d19940447502ae9cb9108c5.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
