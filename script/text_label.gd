@@ -1,17 +1,11 @@
-extends Node
+extends Node2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-var player_name = "Beat"
-var current_hp = 3
-var karate_been_to = false
+export var text : String = "PLACE HOLDER"
+export var text_array : Array = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-#	print($".".name)
-#	print($"..")
+	$Label.text = text
 	pass # Replace with function body.
 
 

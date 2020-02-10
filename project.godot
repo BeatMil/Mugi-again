@@ -17,6 +17,7 @@ _global_script_class_icons={
 
 config/name="Mugi-again"
 run/main_scene="res://scene/dew_intro.tscn"
+run/low_processor_mode=true
 config/icon="res://media/Player/MugiQT.png"
 
 [autoload]
@@ -25,12 +26,17 @@ singleton="*res://script/singleton.gd"
 AudioBlock="*res://prefab/AudioBlock.tscn"
 SfxBlock="*res://prefab/SfxBlock.tscn"
 
+[debug]
+
+gdscript/completion/autocomplete_setters_and_getters=true
+
 [display]
 
 window/size/width=1366
 window/size/height=768
-window/size/test_width=890
-window/size/test_height=500
+window/size/always_on_top=true
+window/size/test_width=1024
+window/size/test_height=576
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
@@ -91,4 +97,7 @@ cheat_08={
 
 [rendering]
 
+quality/2d/gles2_use_nvidia_rect_flicker_workaround=true
+quality/2d/use_pixel_snap=true
+threads/thread_model=2
 environment/default_environment="res://default_env.tres"

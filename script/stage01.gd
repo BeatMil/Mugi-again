@@ -2,13 +2,17 @@ extends Node2D
 
 const TEXT_ABOVE = preload("res://prefab/text_above.tscn")
 const FIREBALL = preload("res://prefab/Player.tscn")
+const STAGE015 = preload("res://scene/stage01-5.tscn")
 
 var dialog = ["Ummm....","I'm free now.","So...","Should I go home or go to karate club?"]
 var line : int = 0
 var switch = true # if line17 helper
 var play01 = false
+var karate = false
+var karate02 = false
 
 func _ready():
+	$signs.visible = false
 	$AnimationPlayer2.play("fade_in")
 	
 func _physics_process(_delta):
@@ -27,6 +31,19 @@ func _physics_process(_delta):
 		
 	if play01:
 		walk()
+	if karate:
+		var stage015 = STAGE015.instance()
+		stage015.set_position(Vector2.ZERO)
+		$".".add_child(stage015)
+		karate = false
+		karate02 = true
+	if karate02:
+		if !$".".has_node("stage01-5"):
+			$dew.position.x = 400
+			$AnimationPlayer2.play("fade_in")
+			karate02 = false
+			play01 = true
+		
 #		for i in get_children(): # a way to read children
 #			print(i.name)
 #	if $".".has_node("text_above"):
@@ -42,10 +59,24 @@ func walk():
 	else:
 		$dew/AnimationPlayer.play("idle")
 func _input(event):
-	if !switch and Input.is_key_pressed(KEY_SPACE):
+	if !switch and (Input.is_key_pressed(KEY_SPACE) or Input.is_key_pressed(KEY_ENTER)):
 		line += 1
 		if line < dialog.size():
 			$"text_above".get_child(0).text = dialog[line]
 		elif $".".has_node("text_above"):
 			play01 = true
+			$signs.visible = true
 			$"text_above".queue_free()
+
+
+func _on_VisibilityNotifier2D_screen_exited():
+	print($dew.position)
+	if $dew.position.x < 0:
+		play01 = false
+		$AnimationPlayer2.play("fade_out")
+		karate = true
+		print("go to karate club")
+	elif $dew.position.x > 0:
+		play01 = false
+		$AnimationPlayer2.play("fade_out")
+		print("go home")

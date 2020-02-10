@@ -2,10 +2,10 @@
 
 [ext_resource path="res://prefab/dialog02.tscn" type="PackedScene" id=1]
 
-[node name="Node2D" type="Node2D"]
+[node name="intro_dialog" type="Node2D"]
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_right = 1360.0
+margin_right = 1376.0
 margin_bottom = 768.0
 color = Color( 0, 0, 0, 1 )
 __meta__ = {

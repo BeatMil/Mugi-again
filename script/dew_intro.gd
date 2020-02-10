@@ -1,9 +1,7 @@
 extends Control
 
-
-
-var rabi_ribi_ost = "res://media/Sound/rabi ribi park original.ogg"
 var menu_confirm = "res://media/Sound/menu_confirm.wav"
+
 func _ready():
 #	$Button.grab_click_focus()
 	$AnimationPlayer.play("text_big_small")
@@ -13,10 +11,10 @@ func _ready():
 #	print(singleton.player_name)
 #	print($"/root".name)
 #	print($".".name)
-func _process(delta):
+func _process(_delta):
 	$"/root/AudioBlock".volume_db = $VSlider.value
 
-func _input(event):
+func _input(_event):
 #	if event:
 #		print(event.as_text())
 #	if event.as_text() == "Escape":

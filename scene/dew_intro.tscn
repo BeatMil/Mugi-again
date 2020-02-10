@@ -304,7 +304,7 @@ rect_scale = Vector2( 3.12076, 3.74766 )
 text = "volume"
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_right = 1360.0
+margin_right = 1376.0
 margin_bottom = 768.0
 color = Color( 1, 1, 1, 0 )
 __meta__ = {

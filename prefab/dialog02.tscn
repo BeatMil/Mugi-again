@@ -11,6 +11,7 @@ font_data = ExtResource( 1 )
 color = Color( 0.376471, 0.376471, 0.376471, 1 )
 polygon = PoolVector2Array( 128, 512, 128, 640, 1152, 640, 1152, 512 )
 script = ExtResource( 2 )
+dialogs = [ "Mukashi Mukashi...", "There is a main protagonist name Dew.", "He has the biggest dong and the most handsome face in the world.", "But, even him!", "has to choose between difficult choices in his life." ]
 
 [node name="text" type="RichTextLabel" parent="."]
 margin_left = 176.0
