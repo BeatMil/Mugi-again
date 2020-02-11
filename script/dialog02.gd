@@ -27,9 +27,8 @@ func _input(event):
 #			$"/root/SfxBlock".play()
 			if get_parent().name == "intro_dialog":
 				get_tree().change_scene("res://scene/stage01.tscn")
-			elif get_parent().name == "stage01-5":
+			elif get_parent().name == "stage01-5" or get_parent().name == "stage01-6":
 				get_parent().queue_free()
-				print_debug()
 		text.text = dialogs[line]
 		$Timer.start()
 

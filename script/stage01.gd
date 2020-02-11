@@ -3,6 +3,7 @@ extends Node2D
 const TEXT_ABOVE = preload("res://prefab/text_above.tscn")
 const FIREBALL = preload("res://prefab/Player.tscn")
 const STAGE015 = preload("res://scene/stage01-5.tscn")
+const STAGE016 = preload("res://scene/stage01-6.tscn")
 
 var dialog = ["Ummm....","I'm free now.","So...","Should I go home or go to karate club?"]
 var line : int = 0
@@ -10,6 +11,8 @@ var switch = true # if line17 helper
 var play01 = false
 var karate = false
 var karate02 = false
+var go_home = false
+var go_home02 = false
 
 func _ready():
 	$signs.visible = false
@@ -43,6 +46,17 @@ func _physics_process(_delta):
 			$AnimationPlayer2.play("fade_in")
 			karate02 = false
 			play01 = true
+	if go_home:
+		var stage016 = STAGE016.instance()
+		stage016.set_position(Vector2.ZERO)
+		$".".add_child(stage016)
+		go_home = false
+		go_home02 = true
+	if go_home02:
+		if !$".".has_node("stage01-6"):
+			$AnimationPlayer2.play("fade_in")
+			go_home02 = false
+			get_tree().change_scene("res://scene/stage02.tscn")
 		
 #		for i in get_children(): # a way to read children
 #			print(i.name)
@@ -79,4 +93,5 @@ func _on_VisibilityNotifier2D_screen_exited():
 	elif $dew.position.x > 0:
 		play01 = false
 		$AnimationPlayer2.play("fade_out")
+		go_home = true
 		print("go home")

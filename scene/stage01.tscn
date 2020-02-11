@@ -36,7 +36,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "fade_out"
 length = 0.5
 tracks/0/type = "value"
@@ -52,7 +52,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
 }
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
 size = 30
 font_data = ExtResource( 3 )
 
@@ -65,7 +65,7 @@ anims/fade_in = SubResource( 1 )
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
 anims/fade_in = SubResource( 2 )
-anims/fade_out = SubResource( 4 )
+anims/fade_out = SubResource( 3 )
 
 [node name="dew" parent="." instance=ExtResource( 2 )]
 position = Vector2( -480, 480 )
@@ -83,7 +83,7 @@ margin_left = 240.0
 margin_top = 239.0
 margin_right = 456.0
 margin_bottom = 314.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "Karate club 
 <-"
 align = 1
@@ -96,7 +96,7 @@ margin_left = 1008.0
 margin_top = 239.0
 margin_right = 1224.0
 margin_bottom = 314.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "Home
 ->"
 align = 1
@@ -109,7 +109,7 @@ margin_left = 512.0
 margin_top = 176.0
 margin_right = 980.0
 margin_bottom = 251.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "A,D and arrow keys to walk"
 align = 1
 __meta__ = {

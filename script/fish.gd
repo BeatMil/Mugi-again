@@ -33,7 +33,6 @@ func _input(event):
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("attack02"):
-<<<<<<< HEAD
 		state = anum.B
 		label.text = "Punch"
 	elif Input.is_action_just_pressed("ui_accept"):
@@ -41,20 +40,18 @@ func _physics_process(delta):
 		label.text = "hadoken"
 	label2.text = "state: %s"%anum.keys()[state]
 
-func get_state():
-	return anum.keys()[state]
-=======
-		state = anum.MOVE
-		label.text = "Punch"
-	elif Input.is_action_just_pressed("ui_accept"):
-		state = anum.NOT
-		label.text = "hadoken"
-	elif Input.is_action_pressed("attack02") and Input.is_action_pressed("ui_accept"):
-		state = anum.DASH
-	label2.text = anum.keys()[state]
+#func get_state():
+#	return anum.keys()[state]
+#	if state = anum.MOVE:
+#		label.text = "Punch"
+#	elif Input.is_action_just_pressed("ui_accept"):
+#		state = anum.NOT
+#		label.text = "hadoken"
+#	elif Input.is_action_pressed("attack02") and Input.is_action_pressed("ui_accept"):
+#		state = anum.DASH
+#	label2.text = anum.keys()[state]
 
 
 
 func _on__input_window_timeout():
 	pass # Replace with function body.
->>>>>>> 36bc6ff1c6366f6886abbc911c3f20522a75c876

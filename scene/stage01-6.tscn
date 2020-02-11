@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://prefab/dialog02.tscn" type="PackedScene" id=1]
+
+[node name="stage01-6" type="Node2D"]
+
+[node name="textPolygon" parent="." instance=ExtResource( 1 )]
+dialogs = [ "Dew decided to go home.", "He has no reason to go to karate club anyway 555." ]

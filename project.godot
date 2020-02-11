@@ -32,7 +32,7 @@ gdscript/completion/autocomplete_setters_and_getters=true
 
 [display]
 
-window/size/width=1366
+window/size/width=1360
 window/size/height=768
 window/size/always_on_top=true
 window/size/test_width=1024
