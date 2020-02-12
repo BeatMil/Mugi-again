@@ -76,7 +76,7 @@ anims/black_out = SubResource( 1 )
 [node name="Player" parent="." groups=[
 "player",
 ] instance=ExtResource( 3 )]
-position = Vector2( 2150, 810 )
+position = Vector2( 218, 579 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
@@ -137,6 +137,11 @@ position = Vector2( 1890, -60 )
 
 [node name="PaperMask02" parent="." instance=ExtResource( 11 )]
 position = Vector2( 1742.55, 806.529 )
+hp = 2
+
+[node name="PaperMask03" parent="." instance=ExtResource( 11 )]
+position = Vector2( 1935, 810 )
+hp = 3
 
 [node name="AudioBlock" type="AudioStreamPlayer" parent="."]
 script = ExtResource( 12 )

@@ -14,12 +14,12 @@ var pre_state = IDLE # just a default value
 onready var sprite = $"Sprite"
 onready var player = get_node("../Player")
 
+export var hp : int
 
 # configuration
 const SPEED = 100
 const JUMP_POWER = 600
 var gravity = 10
-var hp = 6
 
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://script/stage02.gd" type="Script" id=1]
 [ext_resource path="res://prefab/dew.tscn" type="PackedScene" id=2]
@@ -20,6 +20,12 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
 }
 
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 48, 160 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 80, 224 )
+
 [node name="stage02" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -29,6 +35,25 @@ anims/fade_in = SubResource( 1 )
 [node name="dew" parent="." instance=ExtResource( 2 )]
 position = Vector2( -128, 496 )
 
+[node name="Area2D" type="Area2D" parent="dew" groups=[
+"dew",
+]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dew/Area2D"]
+shape = SubResource( 2 )
+
+[node name="dew_label" type="Label" parent="dew"]
+visible = false
+margin_left = -80.0
+margin_top = -208.0
+margin_right = 8.0
+margin_bottom = -194.0
+rect_scale = Vector2( 1.90946, 2.06894 )
+text = "PRESS SPACE!!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="pos1" type="Position2D" parent="."]
 position = Vector2( 384, 496 )
 
@@ -37,6 +62,12 @@ position = Vector2( 384, 496 )
 [node name="text_label" parent="." instance=ExtResource( 3 )]
 position = Vector2( 16, 112 )
 text = "SLEEP"
+
+[node name="sleep" type="Area2D" parent="text_label"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="text_label/sleep"]
+position = Vector2( 192, 304 )
+shape = SubResource( 3 )
 
 [node name="text_label2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 368, 112 )
@@ -58,3 +89,5 @@ __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
+[connection signal="area_entered" from="text_label/sleep" to="." method="_on_sleep_area_entered"]
+[connection signal="area_exited" from="text_label/sleep" to="." method="_on_sleep_area_exited"]
