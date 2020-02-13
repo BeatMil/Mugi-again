@@ -10,6 +10,7 @@ var girlfriend = false
 var csgo = false
 var baito = false
 
+var shingg01 = load("res://media/Sound/shingg01.wav")
 var dialog = ["Tadaimaa","Wait..","I live alone 5555","What should I do?"]
 var line : int = 0
 func _ready():
@@ -24,7 +25,7 @@ func _ready():
 	state_walk01 = true
 
 
-func _process(delta):
+func _physics_process(_delta):
 	if state_walk01:
 		if $dew.position != $pos1.position:
 			$dew/AnimationPlayer.play("walk")
@@ -55,7 +56,7 @@ func walk():
 		$dew/AnimationPlayer.play("idle")
 
 
-func _input(event):
+func _input(_event):
 	if state_talk01 and (Input.is_key_pressed(KEY_SPACE) or Input.is_key_pressed(KEY_ENTER)):
 		line += 1
 		if line < dialog.size():
@@ -64,7 +65,17 @@ func _input(event):
 			state_talk01 = false
 			state_play01 = true
 			$"text_above".queue_free()
-
+			$choices.set_visible(true)
+			$choices/text_label/sleep.set_monitoring(true)
+			
+	if Input.is_action_just_pressed("ui_accept") and sleep:
+		print("sleep")
+	elif Input.is_action_just_pressed("ui_accept") and girlfriend:
+		print("gf")
+	elif Input.is_action_just_pressed("ui_accept") and csgo:
+		print("CSGO!")
+	elif Input.is_action_just_pressed("ui_accept") and baito:
+		print("baito")
 
 
 
@@ -72,11 +83,53 @@ func _on_sleep_area_entered(area):
 	if area.is_in_group("dew"):
 		sleep = true
 		$dew/dew_label.set_visible(true)
-	pass # Replace with function body.
 
 
 func _on_sleep_area_exited(area):
 	if area.is_in_group("dew"):
 		sleep = false
 		$dew/dew_label.set_visible(false)
-	pass # Replace with function body.
+
+
+func _on_girlfriend_area_entered(area):
+	if area.is_in_group("dew"):
+		girlfriend = true
+		$dew/dew_label.set_visible(true)
+
+
+func _on_girlfriend_area_exited(area):
+	if area.is_in_group("dew"):
+		girlfriend = false
+		$dew/dew_label.set_visible(false)
+
+
+func _on_csgo_area_entered(area):
+	if area.is_in_group("dew"):
+		csgo = true
+		$dew/dew_label.set_visible(true)
+
+
+func _on_csgo_area_exited(area):
+	if area.is_in_group("dew"):
+		csgo = false
+		$dew/dew_label.set_visible(false)
+
+
+func _on_baito_area_entered(area):
+	if area.is_in_group("dew"):
+		baito = true
+		$dew/dew_label.set_visible(true)
+
+func _on_baito_area_exited(area):
+	if area.is_in_group("dew"):
+		baito = false
+		$dew/dew_label.set_visible(false)
+
+
+func _on_VisibilityNotifier2D_screen_exited():
+	$"/root/SfxBlock".stream = shingg01
+	$"/root/SfxBlock".play()
+	if $dew.position.x < 0:
+		$dew.position.x = 1415
+	elif $dew.position.x > 0:
+		$dew.position.x = -111

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://script/stage02.gd" type="Script" id=1]
 [ext_resource path="res://prefab/dew.tscn" type="PackedScene" id=2]
@@ -25,6 +25,15 @@ extents = Vector2( 48, 160 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 80, 224 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 74.4385, 225.687 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 67.7923, 228.551 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 69.7804, 229.144 )
 
 [node name="stage02" type="Node2D"]
 script = ExtResource( 1 )
@@ -54,32 +63,56 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="dew"]
+
 [node name="pos1" type="Position2D" parent="."]
 position = Vector2( 384, 496 )
 
 [node name="Tween" type="Tween" parent="."]
 
-[node name="text_label" parent="." instance=ExtResource( 3 )]
+[node name="choices" type="Node2D" parent="."]
+visible = false
 position = Vector2( 16, 112 )
+
+[node name="text_label" parent="choices" instance=ExtResource( 3 )]
 text = "SLEEP"
 
-[node name="sleep" type="Area2D" parent="text_label"]
+[node name="sleep" type="Area2D" parent="choices/text_label"]
+monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="text_label/sleep"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="choices/text_label/sleep"]
 position = Vector2( 192, 304 )
 shape = SubResource( 3 )
 
-[node name="text_label2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 368, 112 )
+[node name="text_label2" parent="choices" instance=ExtResource( 3 )]
+position = Vector2( 352, 0 )
 text = "Girlfriend"
 
-[node name="text_label3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 704, 112 )
+[node name="girlfriend" type="Area2D" parent="choices/text_label2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="choices/text_label2/girlfriend"]
+position = Vector2( 203.34, 306.442 )
+shape = SubResource( 4 )
+
+[node name="text_label3" parent="choices" instance=ExtResource( 3 )]
+position = Vector2( 688, 0 )
 text = "CSGO!"
 
-[node name="text_label4" parent="." instance=ExtResource( 3 )]
-position = Vector2( 992, 112 )
+[node name="csgo" type="Area2D" parent="choices/text_label3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="choices/text_label3/csgo"]
+position = Vector2( 201.908, 305.01 )
+shape = SubResource( 5 )
+
+[node name="text_label4" parent="choices" instance=ExtResource( 3 )]
+position = Vector2( 976, 0 )
 text = "Baito"
+
+[node name="baito" type="Area2D" parent="choices/text_label4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="choices/text_label4/baito"]
+position = Vector2( 212.218, 300.643 )
+shape = SubResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_right = 1360.0
@@ -89,5 +122,12 @@ __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
-[connection signal="area_entered" from="text_label/sleep" to="." method="_on_sleep_area_entered"]
-[connection signal="area_exited" from="text_label/sleep" to="." method="_on_sleep_area_exited"]
+[connection signal="screen_exited" from="dew/VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="area_entered" from="choices/text_label/sleep" to="." method="_on_sleep_area_entered"]
+[connection signal="area_exited" from="choices/text_label/sleep" to="." method="_on_sleep_area_exited"]
+[connection signal="area_entered" from="choices/text_label2/girlfriend" to="." method="_on_girlfriend_area_entered"]
+[connection signal="area_exited" from="choices/text_label2/girlfriend" to="." method="_on_girlfriend_area_exited"]
+[connection signal="area_entered" from="choices/text_label3/csgo" to="." method="_on_csgo_area_entered"]
+[connection signal="area_exited" from="choices/text_label3/csgo" to="." method="_on_csgo_area_exited"]
+[connection signal="area_entered" from="choices/text_label4/baito" to="." method="_on_baito_area_entered"]
+[connection signal="area_exited" from="choices/text_label4/baito" to="." method="_on_baito_area_exited"]

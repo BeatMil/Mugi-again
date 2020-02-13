@@ -4,9 +4,9 @@ extends Node
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var player_name = "Beat"
 var current_hp = 3
 var karate_been_to = false
+var money : int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
