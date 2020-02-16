@@ -20,7 +20,9 @@ func _ready():
 	animu_figs.shuffle()
 	$".".set_texture(animu_figs.front())
 	
-
+func beat_set_texture(texture):
+	set_texture(texture)
+	
 func dir_contents(path):
 	var dir = Directory.new()
 	if dir.open(path) == OK:
