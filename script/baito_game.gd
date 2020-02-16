@@ -30,8 +30,7 @@ func _input(_event):
 	if Input.is_action_just_pressed("ui_accept") and on_point and !freak_out:
 		$dew_baito/put_down_timer.start()
 		$dew_baito/AnimationPlayer.play("put_down")
-		score += 100
-		score_text.text = str(score)
+		add_money(100)
 		$AnimationPlayer.play("money_up")
 		#destroying fig node
 #		get_node("@box@2").queue_free()  #new name for the newly spawn same name node
@@ -43,10 +42,18 @@ func _input(_event):
 			on_box.get_parent().add_child(animu)
 			animu.beat_set_texture(texture)
 	elif Input.is_action_just_pressed("ui_accept") and !on_point and !freak_out:
+		add_money(-100)
+		$AnimationPlayer.play("money_down")
 		$dew_baito/AnimationPlayer.play("freak_out")
 		freak_out = true
 		$dew_baito/freak_out_timer.start()
+		if $".".has_node("animu_fig"):
+			get_node("animu_fig").disappear()
 	
+
+func add_money(amount):
+	score += amount
+	score_text.text = str(score)
 
 func fig_spawn(position,scale,rotation):
 	var fig = FIG.instance()
@@ -77,6 +84,7 @@ func _on_dew_area2d_area_exited(area):
 
 func _on_freak_out_timer_timeout():
 	freak_out = false
+	fig_spawn($fig_spawner.position,Vector2(0.5,0.5),-90)
 	$dew_baito/AnimationPlayer.play("carry")
 	$dew_baito/freak_out_timer.stop()
 

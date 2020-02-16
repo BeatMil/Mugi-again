@@ -23,6 +23,9 @@ func _ready():
 func beat_set_texture(texture):
 	set_texture(texture)
 	
+func disappear():
+	$AnimationPlayer.play("not_feel_good")
+	
 func dir_contents(path):
 	var dir = Directory.new()
 	if dir.open(path) == OK:
@@ -40,3 +43,7 @@ func dir_contents(path):
 		dir.list_dir_end()
 	else:
 		print("An error occurred when trying to access the path.")
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	$".".queue_free()

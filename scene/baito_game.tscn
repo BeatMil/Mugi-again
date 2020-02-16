@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://script/baito_game.gd" type="Script" id=1]
 [ext_resource path="res://media/dew/dew_baito.png" type="Texture" id=2]
@@ -55,6 +55,34 @@ tracks/0/keys = {
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 64, 80 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "money_down"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("fivehundred:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.960784, 0.137255, 0.0980392, 0 ), Color( 0.960784, 0.137255, 0.0980392, 1 ), Color( 0.960784, 0.137255, 0.0980392, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("fivehundred:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1024, 4.76837e-07 ), Vector2( 1024, 160 ) ]
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "money_up"
@@ -134,15 +162,31 @@ wait_time = 0.5
 wait_time = 0.4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/money_down = SubResource( 7 )
 anims/money_up = SubResource( 6 )
 
 [node name="hundred" type="Label" parent="."]
 self_modulate = Color( 0.286275, 0.960784, 0.0980392, 0 )
 margin_left = 1104.0
+margin_top = 160.0
 margin_right = 1144.0
-margin_bottom = 14.0001
+margin_bottom = 174.0
 rect_scale = Vector2( 3.95797, 4.24019 )
 text = "+$100"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fivehundred" type="Label" parent="."]
+self_modulate = Color( 0.960784, 0.137255, 0.0980392, 0 )
+margin_left = 1024.0
+margin_top = 160.0
+margin_right = 1064.0
+margin_bottom = 174.0
+rect_scale = Vector2( 3.95797, 4.24019 )
+text = "-$100"
 align = 1
 valign = 1
 __meta__ = {
