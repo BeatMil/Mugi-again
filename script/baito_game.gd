@@ -1,6 +1,9 @@
 extends Node2D
 
 var animu_goods = ["kazuma","megumin","aqua"]
+
+
+
 var time_waits = [0.8,1.2,1.6,1.8,2.2,2.6]
 const BOX = preload("res://prefab/box.tscn")
 onready var score_text = $CanvasLayer/score
@@ -10,6 +13,7 @@ var on_point = false
 var freak_out = false
 
 func _ready():
+	randomize()
 	$box_timer.start()
 	score_text.text = "0"
 	
@@ -32,7 +36,7 @@ func _input(event):
 
 func _on_box_timer_timeout():
 	var box = BOX.instance()
-	box.set_position($figa_spawner.get_position())
+	box.set_position($box_spawner.get_position())
 	$".".add_child(box)
 	time_waits.shuffle()
 	$box_timer.set_wait_time(time_waits[0])
