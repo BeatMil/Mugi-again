@@ -76,6 +76,8 @@ func _input(_event):
 		print("CSGO!")
 	elif Input.is_action_just_pressed("ui_accept") and baito:
 		print("baito")
+		$dew/VisibilityNotifier2D.disconnect("screen_exited",self,"_on_VisibilityNotifier2D_screen_exited")
+		get_tree().change_scene("res://scene/baito_game.tscn")
 
 
 
@@ -133,3 +135,4 @@ func _on_VisibilityNotifier2D_screen_exited():
 		$dew.position.x = 1415
 	elif $dew.position.x > 0:
 		$dew.position.x = -111
+
