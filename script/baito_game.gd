@@ -12,6 +12,7 @@ var score : int = 0
 var on_box
 var on_point = false
 var freak_out = false
+var result = false
 
 func _ready():
 	randomize()
@@ -27,7 +28,7 @@ func _ready():
 #	pass
 
 func _input(_event):
-	if Input.is_action_just_pressed("ui_accept") and on_point and !freak_out:
+	if Input.is_action_just_pressed("ui_accept") and on_point and !freak_out and !result:
 		$dew_baito/put_down_timer.start()
 		$dew_baito/AnimationPlayer.play("put_down")
 		add_money(100)
@@ -41,7 +42,7 @@ func _input(_event):
 			animu.set_z_index(-1)
 			on_box.get_parent().add_child(animu)
 			animu.beat_set_texture(texture)
-	elif Input.is_action_just_pressed("ui_accept") and !on_point and !freak_out:
+	elif Input.is_action_just_pressed("ui_accept") and !on_point and !freak_out and !result:
 		add_money(-100)
 		$AnimationPlayer.play("money_down")
 		$dew_baito/AnimationPlayer.play("freak_out")
@@ -49,6 +50,14 @@ func _input(_event):
 		$dew_baito/freak_out_timer.start()
 		if $".".has_node("animu_fig"):
 			get_node("animu_fig").disappear()
+	elif Input.is_key_pressed(KEY_ESCAPE) and !result:
+		result = true
+		$ColorRect/result_money.set_text("You got\n$%s"%score)
+		$box_timer.stop()
+		$AnimationPlayer.play("result_down")
+		$AnimationPlayer2.play("money_shine")
+	elif Input.is_key_pressed(KEY_ESCAPE) and result:
+		$AnimationPlayer.play("fade_out")
 	
 
 func add_money(amount):
@@ -58,12 +67,15 @@ func add_money(amount):
 func fig_spawn(position,scale,rotation):
 	var fig = FIG.instance()
 	fig.set_scale(scale)
+	fig.set_z_index(-2)
 	fig.set_rotation_degrees(rotation)
 	fig.set_position(position)
 	$".".add_child(fig)
 	
 func _on_box_timer_timeout():
 	var box = BOX.instance()
+	box.set_z_index(-2)
+	box.set_z_index(-2)
 	box.set_position($box_spawner.get_position())
 	$".".add_child(box)
 	time_waits.shuffle()
@@ -93,3 +105,11 @@ func _on_put_down_timer_timeout():
 	fig_spawn($fig_spawner.position,Vector2(0.5,0.5),-90)
 	$dew_baito/AnimationPlayer.play("carry")
 	$dew_baito/put_down_timer.stop()
+
+
+
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == "fade_out":
+		get_tree().change_scene("res://scene/stage02.tscn")
