@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Inside UPRPRC_cut.ogg-0e750f76064fd5ea018c0a7d98d104d5.oggstr"
+
+[deps]
+
+source_file="res://media/Sound/Inside UPRPRC_cut.ogg"
+dest_files=[ "res://.import/Inside UPRPRC_cut.ogg-0e750f76064fd5ea018c0a7d98d104d5.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

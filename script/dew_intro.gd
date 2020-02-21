@@ -8,6 +8,7 @@ func _ready():
 	$AnimationPlayer2.play("dew_logo")
 	$AnimationPlayer3.play("flash_white")
 	$"/root/AudioBlock".play()
+	$dew_intro_menu.set_modulate(Color(0,0,0))
 #	print(singleton.player_name)
 #	print($"/root".name)
 #	print($".".name)
@@ -23,9 +24,11 @@ func _input(_event):
 	if Input.is_key_pressed(KEY_ESCAPE):
 		get_tree().quit()
 	elif Input.is_key_pressed(KEY_SPACE):
+		$"/root/singleton".volume = $VSlider.get_value()
 		$"/root/SfxBlock".set_stream(load(menu_confirm))
 		$"/root/SfxBlock".play()
 		$"/root/AudioBlock".stop()
+		$"/root/SfxBlock".set_volume_db($VSlider.get_value())
 		get_tree().change_scene("res://scene/intro_dialog.tscn")
 		
 

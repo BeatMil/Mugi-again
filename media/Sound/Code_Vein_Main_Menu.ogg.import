@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Code_Vein_Main_Menu.ogg-467c7591e12af0bb4ace0de10ed9adb0.oggstr"
+
+[deps]
+
+source_file="res://media/Sound/Code_Vein_Main_Menu.ogg"
+dest_files=[ "res://.import/Code_Vein_Main_Menu.ogg-467c7591e12af0bb4ace0de10ed9adb0.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

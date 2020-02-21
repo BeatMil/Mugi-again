@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/star01.wav-50a3d49cf1930ffbafd85616f7ec159f.sample"
+
+[deps]
+
+source_file="res://media/Sound/kirby/star01.wav"
+dest_files=[ "res://.import/star01.wav-50a3d49cf1930ffbafd85616f7ec159f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

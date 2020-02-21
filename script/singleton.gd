@@ -4,6 +4,6 @@ extends Node
 var current_hp = 3
 var karate_been_to = false
 var money : int = 0
-
+var volume = 0
 #story progress
-var stage02 = false
+var stage02 = true

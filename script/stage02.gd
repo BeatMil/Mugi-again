@@ -26,6 +26,8 @@ func _ready():
 		$dew.position = $pos1.position
 		state_play01 = true
 		$choices.set_visible(true)
+		$choices/text_label/sleep.set_monitoring(true)
+	$choices/money.set_text("$%s"%$"/root/singleton".money)
 
 
 func _physics_process(_delta):

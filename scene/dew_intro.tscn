@@ -6,14 +6,13 @@
 [ext_resource path="res://media/Font/Code Vein Fonts/DroidSansMono.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="DynamicFont" id=1]
-size = 17
 outline_size = 1
 outline_color = Color( 0.27451, 0.65098, 0.0627451, 1 )
 font_data = ExtResource( 3 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "dew_logo"
-length = 2.0
+length = 3.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("dew_intro_menu:scale")
 tracks/0/interp = 1
@@ -21,7 +20,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2 ),
+"times": PoolRealArray( 0, 3.6 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0.1, 0.1 ), Vector2( 1, 1 ) ]
@@ -68,7 +67,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=4]
 resource_name = "dew_logo"
-length = 2.0
+length = 3.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("dew_intro_menu:scale")
 tracks/0/interp = 1
@@ -76,8 +75,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 3.6 ),
+"transitions": PoolRealArray( 3.8, 4.75683 ),
 "update": 0,
 "values": [ Vector2( 0.1, 0.1 ), Vector2( 1, 1 ) ]
 }
@@ -156,7 +155,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=8]
 resource_name = "flash_white"
-length = 2.5
+length = 4.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
@@ -164,7 +163,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 1.9, 2, 2.5 ),
+"times": PoolRealArray( 3.6, 3.7, 4.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
@@ -225,18 +224,17 @@ __meta__ = {
 }
 
 [node name="dew_intro_menu" type="Sprite" parent="."]
-modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 672, 384 )
-scale = Vector2( 0.1, 0.1 )
+scale = Vector2( 0.550147, 0.550147 )
 texture = ExtResource( 2 )
 
 [node name="Button" type="Button" parent="."]
 visible = false
 anchor_right = 1.0
 margin_left = 464.0
-margin_top = 704.0
+margin_top = 641.0
 margin_right = -486.0
-margin_bottom = 688.0
+margin_bottom = 669.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.972549, 0.921569, 0.690196, 1 )
 text = "PRESS SPACE!"
@@ -273,7 +271,7 @@ __meta__ = {
 }
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 3.7
 one_shot = true
 autostart = true
 
@@ -289,7 +287,7 @@ margin_bottom = 704.0
 min_value = -60.0
 max_value = 0.0
 step = 2.0
-value = -20.0
+value = -10.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -302,10 +300,21 @@ margin_bottom = 670.0
 rect_scale = Vector2( 3.12076, 3.74766 )
 text = "volume"
 
+[node name="beat" type="Label" parent="VSlider"]
+margin_left = -1058.0
+margin_top = 691.0
+margin_right = -989.0
+margin_bottom = 705.0
+rect_scale = Vector2( 1.36563, 1.36563 )
+text = "By beatmil"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_right = 1376.0
 margin_bottom = 768.0
-color = Color( 1, 1, 1, 0 )
+color = Color( 1, 1, 1, 2.38418e-06 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false

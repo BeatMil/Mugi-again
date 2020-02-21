@@ -97,11 +97,11 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.6 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1024, 4.76837e-07 ), Vector2( 1024, 160 ) ]
+"values": [ Vector2( 600, 0 ), Vector2( 600, 160 ) ]
 }
 
 [sub_resource type="Animation" id=8]
-length = 0.6
+length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("hundred:self_modulate")
 tracks/0/interp = 1
@@ -109,7 +109,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4, 0.6 ),
+"times": PoolRealArray( 0, 0.2, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 0.286275, 0.960784, 0.0980392, 0 ), Color( 0.286275, 0.960784, 0.0980392, 1 ), Color( 0.286275, 0.960784, 0.0980392, 0 ) ]
@@ -121,10 +121,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4, 0.6 ),
+"times": PoolRealArray( 0, 0.2, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1104, 160 ), Vector2( 1104, 48 ), Vector2( 1104, 0 ) ]
+"values": [ Vector2( 600, 160 ), Vector2( 600, 48 ), Vector2( 600, 0 ) ]
 }
 
 [sub_resource type="Animation" id=9]
@@ -241,9 +241,10 @@ script = ExtResource( 1 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="score" type="Label" parent="CanvasLayer"]
-margin_left = 1200.0
-margin_right = 1360.0
+margin_left = 976.0
+margin_right = 1136.0
 margin_bottom = 58.0
+rect_scale = Vector2( 2.40421, 2.40421 )
 custom_fonts/font = SubResource( 1 )
 text = "SCORE"
 align = 1
@@ -297,13 +298,15 @@ anims/money_shine = SubResource( 11 )
 anims/money_up = SubResource( 12 )
 anims/result_down = SubResource( 13 )
 
+[node name="sfxblock" type="AudioStreamPlayer" parent="."]
+
 [node name="hundred" type="Label" parent="."]
 self_modulate = Color( 0.286275, 0.960784, 0.0980392, 0 )
-margin_left = 1104.0
+margin_left = 600.0
 margin_top = 160.0
-margin_right = 1144.0
+margin_right = 640.0
 margin_bottom = 174.0
-rect_scale = Vector2( 3.95797, 4.24019 )
+rect_scale = Vector2( 7.60542, 8.14772 )
 text = "+$100"
 align = 1
 valign = 1
@@ -313,11 +316,10 @@ __meta__ = {
 
 [node name="fivehundred" type="Label" parent="."]
 self_modulate = Color( 0.960784, 0.137255, 0.0980392, 0 )
-margin_left = 1024.0
-margin_top = 4.76837e-07
-margin_right = 1064.0
+margin_left = 600.0
+margin_right = 640.0
 margin_bottom = 14.0
-rect_scale = Vector2( 3.95797, 4.24019 )
+rect_scale = Vector2( 7.71888, 8.26927 )
 text = "-$100"
 align = 1
 valign = 1
@@ -366,6 +368,7 @@ margin_right = 1360.0
 margin_bottom = 763.651
 color = Color( 0, 0, 0, 0 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 [connection signal="timeout" from="box_timer" to="." method="_on_box_timer_timeout"]
