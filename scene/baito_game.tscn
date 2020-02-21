@@ -57,7 +57,7 @@ tracks/0/keys = {
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 64, 80 )
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=6]
 resource_name = "fade_out"
 length = 0.4
 tracks/0/type = "value"
@@ -73,8 +73,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "money_down"
+[sub_resource type="Animation" id=7]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("fivehundred:self_modulate")
@@ -101,7 +100,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1024, 4.76837e-07 ), Vector2( 1024, 160 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=8]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("hundred:self_modulate")
@@ -128,8 +127,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1104, 160 ), Vector2( 1104, 48 ), Vector2( 1104, 0 ) ]
 }
 
-[sub_resource type="Animation" id=8]
-resource_name = "result_down"
+[sub_resource type="Animation" id=9]
 length = 1.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:rect_position")
@@ -172,7 +170,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1024, 4.76837e-07 ), Vector2( 1024, 160 ) ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=11]
 resource_name = "money_shine"
 length = 0.6
 loop = true
@@ -189,7 +187,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 1 ), Color( 0.376471, 0.882353, 0.321569, 1 ), Color( 0, 0, 0, 1 ) ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=12]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("hundred:self_modulate")
@@ -216,8 +214,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1104, 160 ), Vector2( 1104, 48 ), Vector2( 1104, 0 ) ]
 }
 
-[sub_resource type="Animation" id=12]
-resource_name = "result_down"
+[sub_resource type="Animation" id=13]
 length = 1.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:rect_position")
@@ -232,7 +229,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, -768 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="DynamicFont" id=14]
 size = 80
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
@@ -288,17 +285,17 @@ wait_time = 0.5
 wait_time = 0.4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/fade_out = SubResource( 15 )
-anims/money_down = SubResource( 6 )
-anims/money_up = SubResource( 7 )
-anims/result_down = SubResource( 8 )
+anims/fade_out = SubResource( 6 )
+anims/money_down = SubResource( 7 )
+anims/money_up = SubResource( 8 )
+anims/result_down = SubResource( 9 )
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
-anims/fade_out = SubResource( 15 )
+anims/fade_out = SubResource( 6 )
 anims/money_down = SubResource( 10 )
-anims/money_shine = SubResource( 13 )
-anims/money_up = SubResource( 11 )
-anims/result_down = SubResource( 12 )
+anims/money_shine = SubResource( 11 )
+anims/money_up = SubResource( 12 )
+anims/result_down = SubResource( 13 )
 
 [node name="hundred" type="Label" parent="."]
 self_modulate = Color( 0.286275, 0.960784, 0.0980392, 0 )
@@ -354,7 +351,7 @@ margin_left = -121.0
 margin_top = -128.0
 margin_right = 121.0
 margin_bottom = -33.0
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 14 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "money"
 align = 1

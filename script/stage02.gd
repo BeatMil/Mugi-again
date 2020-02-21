@@ -15,28 +15,33 @@ var dialog = ["Tadaimaa","Wait..","I live alone 5555","What should I do?"]
 var line : int = 0
 func _ready():
 	$AnimationPlayer.play("fade_in")
-	
-	var tween = get_node("Tween")
-#	tween.set_repeat(true)
-	tween.interpolate_property($dew, "position",$dew.position,$pos1.position,
-	1.9,Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	tween.start()
-	
-	state_walk01 = true
+	if get_node("/root/singleton").stage02 == false:
+		var tween = get_node("Tween")
+	#	tween.set_repeat(true)
+		tween.interpolate_property($dew, "position",$dew.position,$pos1.position,
+		1.9,Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		tween.start()
+		state_walk01 = true
+	else:
+		$dew.position = $pos1.position
+		state_play01 = true
+		$choices.set_visible(true)
 
 
 func _physics_process(_delta):
-	if state_walk01:
-		if $dew.position != $pos1.position:
-			$dew/AnimationPlayer.play("walk")
-		elif $dew.position == $pos1.position:
-			$dew/AnimationPlayer.play("idle")
-			var text_above = TEXT_ABOVE.instance()
-			text_above.set_position($dew.get_global_position() + Vector2(-100,-250))
-			$".".add_child(text_above)
-			$"text_above".get_child(0).text = dialog[line]
-			state_walk01 = false
-			state_talk01 = true
+	if get_node("/root/singleton").stage02 == false:
+		if state_walk01:
+			if $dew.position != $pos1.position:
+				$dew/AnimationPlayer.play("walk")
+			elif $dew.position == $pos1.position:
+				$dew/AnimationPlayer.play("idle")
+				var text_above = TEXT_ABOVE.instance()
+				text_above.set_position($dew.get_global_position() + Vector2(-100,-250))
+				$".".add_child(text_above)
+				$"text_above".get_child(0).text = dialog[line]
+				$"/root/singleton".stage02 = true
+				state_walk01 = false
+				state_talk01 = true
 	if state_talk01:
 		pass
 		

@@ -41,6 +41,8 @@ script = ExtResource( 1 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/fade_in = SubResource( 1 )
 
+[node name="Tween" type="Tween" parent="."]
+
 [node name="dew" parent="." instance=ExtResource( 2 )]
 position = Vector2( -128, 496 )
 
@@ -67,8 +69,6 @@ __meta__ = {
 
 [node name="pos1" type="Position2D" parent="."]
 position = Vector2( 384, 496 )
-
-[node name="Tween" type="Tween" parent="."]
 
 [node name="choices" type="Node2D" parent="."]
 visible = false
