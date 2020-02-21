@@ -84,10 +84,10 @@ position = Vector2( 16, 112 )
 [node name="text_label" parent="choices" instance=ExtResource( 3 )]
 text = "SHOP"
 
-[node name="sleep" type="Area2D" parent="choices/text_label"]
+[node name="shop" type="Area2D" parent="choices/text_label"]
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="choices/text_label/sleep"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="choices/text_label/shop"]
 position = Vector2( 192, 304 )
 shape = SubResource( 10 )
 
@@ -143,8 +143,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="screen_exited" from="dew/VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
-[connection signal="area_entered" from="choices/text_label/sleep" to="." method="_on_sleep_area_entered"]
-[connection signal="area_exited" from="choices/text_label/sleep" to="." method="_on_sleep_area_exited"]
+[connection signal="area_entered" from="choices/text_label/shop" to="." method="_on_shop_area_entered"]
+[connection signal="area_exited" from="choices/text_label/shop" to="." method="_on_shop_area_exited"]
 [connection signal="area_entered" from="choices/text_label2/girlfriend" to="." method="_on_girlfriend_area_entered"]
 [connection signal="area_exited" from="choices/text_label2/girlfriend" to="." method="_on_girlfriend_area_exited"]
 [connection signal="area_entered" from="choices/text_label3/csgo" to="." method="_on_csgo_area_entered"]

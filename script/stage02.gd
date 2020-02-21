@@ -5,7 +5,7 @@ var state_walk01 = false
 var state_talk01 = false
 var state_play01 = false
 
-var sleep = false
+var shop = false
 var girlfriend = false
 var csgo = false
 var baito = false
@@ -26,7 +26,7 @@ func _ready():
 		$dew.position = $pos1.position
 		state_play01 = true
 		$choices.set_visible(true)
-		$choices/text_label/sleep.set_monitoring(true)
+		$choices/text_label/shop.set_monitoring(true)
 	$choices/money.set_text("$%s"%$"/root/singleton".money)
 
 
@@ -73,10 +73,10 @@ func _input(_event):
 			state_play01 = true
 			$"text_above".queue_free()
 			$choices.set_visible(true)
-			$choices/text_label/sleep.set_monitoring(true)
+			$choices/text_label/shop.set_monitoring(true)
 			
-	if Input.is_action_just_pressed("ui_accept") and sleep:
-		print("sleep")
+	if Input.is_action_just_pressed("ui_accept") and shop:
+		print("shop")
 	elif Input.is_action_just_pressed("ui_accept") and girlfriend:
 		print("gf")
 	elif Input.is_action_just_pressed("ui_accept") and csgo:
@@ -88,15 +88,15 @@ func _input(_event):
 
 
 
-func _on_sleep_area_entered(area):
+func _on_shop_area_entered(area):
 	if area.is_in_group("dew"):
-		sleep = true
+		shop = true
 		$dew/dew_label.set_visible(true)
 
 
-func _on_sleep_area_exited(area):
+func _on_shop_area_exited(area):
 	if area.is_in_group("dew"):
-		sleep = false
+		shop = false
 		$dew/dew_label.set_visible(false)
 
 

@@ -33,8 +33,8 @@ func dir_contents(path):
 		var file_name = dir.get_next()
 		while file_name != "":
 			if dir.current_is_dir():
-				pass
 #				print("Found directory: " + file_name)
+				pass
 			else:
 				if file_name[-1] == "g":
 #					print(file_name)

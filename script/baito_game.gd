@@ -48,6 +48,9 @@ func _input(_event):
 		#destroying fig node
 #		get_node("@box@2").queue_free()  #new name for the newly spawn same name node
 		if $".".has_node("animu_fig"):
+			# I was trying to move the animu_fig node to be child node of the box
+			# but it didn't work so I change the way
+			# I instance animu_fig as a child node of the box but change it's texture instead 555
 			var texture = get_node("animu_fig").get_texture()
 			get_node("animu_fig").queue_free()
 			var animu = FIG.instance()
