@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://script/baito_game.gd" type="Script" id=1]
 [ext_resource path="res://media/dew/dew_baito.png" type="Texture" id=2]
 [ext_resource path="res://media/Font/Code Vein Fonts/NanumGothic.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://media/Font/Code Vein Fonts/Roboto-Bold.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://script/tutorial_pause.gd" type="Script" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -371,9 +372,37 @@ __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
+
+[node name="tutorial_pause" type="ColorRect" parent="."]
+pause_mode = 2
+visible = false
+margin_right = 1360.0
+margin_bottom = 768.0
+color = Color( 0, 0, 0, 0.560784 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="tutorial_pause"]
+margin_left = 192.0
+margin_top = 336.0
+margin_right = 461.0
+margin_bottom = 350.0
+rect_scale = Vector2( 3.74537, 4.37854 )
+text = "press space to put animu figure into a box
+(press space)"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="queue_free_timer" type="Timer" parent="tutorial_pause"]
+wait_time = 0.1
 [connection signal="timeout" from="box_timer" to="." method="_on_box_timer_timeout"]
 [connection signal="area_entered" from="dew_baito/dew_area2d" to="." method="_on_dew_area2d_area_entered"]
 [connection signal="area_exited" from="dew_baito/dew_area2d" to="." method="_on_dew_area2d_area_exited"]
 [connection signal="timeout" from="dew_baito/freak_out_timer" to="." method="_on_freak_out_timer_timeout"]
 [connection signal="timeout" from="dew_baito/put_down_timer" to="." method="_on_put_down_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="timeout" from="tutorial_pause/queue_free_timer" to="tutorial_pause" method="_on_queue_free_timer_timeout"]

@@ -21,6 +21,8 @@ var inside_UPRPRC = preload("res://media/Sound/Inside UPRPRC_cut.ogg")
 var crab_rave = preload("res://media/Sound/Crab_Rave.wav")
 
 func _ready():
+	$tutorial_pause.set_visible(true)
+	get_tree().set_pause(true)
 	randomize()
 	fig_spawn($fig_spawner.position,Vector2(0.5,0.5),-90)
 	$box_timer.start()

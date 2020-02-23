@@ -1,0 +1,146 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://media/Font/Code Vein Fonts/Roboto-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://script/shop.gd" type="Script" id=2]
+[ext_resource path="res://media/re_merchant/re4_merchant01.png" type="Texture" id=3]
+[ext_resource path="res://media/re_merchant/re4_merchant02.png" type="Texture" id=4]
+[ext_resource path="res://prefab/curtain.tscn" type="PackedScene" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 90
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "idle",
+"speed": 6.0
+} ]
+
+[sub_resource type="Animation" id=3]
+resource_name = "money_shine"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("money:custom_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.294118, 0.752941, 0.227451, 1 ), Color( 0.396078, 0.992157, 0.290196, 1 ), Color( 0.294118, 0.752941, 0.227451, 1 ) ]
+}
+
+[node name="shop" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+margin_left = 128.0
+margin_top = 96.0
+margin_right = 544.0
+margin_bottom = 224.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Button"]
+margin_right = 416.0
+margin_bottom = 128.0
+custom_fonts/font = SubResource( 1 )
+text = "ITEM01"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="."]
+margin_left = 128.0
+margin_top = 320.0
+margin_right = 544.0
+margin_bottom = 448.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Button2"]
+margin_right = 416.0
+margin_bottom = 128.0
+custom_fonts/font = SubResource( 1 )
+text = "ITEM01"
+align = 1
+valign = 1
+
+[node name="Button3" type="Button" parent="."]
+margin_left = 128.0
+margin_top = 560.0
+margin_right = 544.0
+margin_bottom = 688.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Button3"]
+margin_right = 416.0
+margin_bottom = 128.0
+custom_fonts/font = SubResource( 1 )
+text = "ITEM01"
+align = 1
+valign = 1
+
+[node name="money" type="Label" parent="."]
+margin_left = 992.0
+margin_right = 1353.0
+margin_bottom = 106.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.294118, 0.752941, 0.227451, 1 )
+text = "$MONEY"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="esc" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+rect_scale = Vector2( 5.09378, 5.09378 )
+text = "ESC"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 992, 416 )
+frames = SubResource( 5 )
+animation = "idle"
+
+[node name="merchant" type="Sprite" parent="."]
+visible = false
+position = Vector2( 992, 416 )
+texture = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/money_shine = SubResource( 3 )
+
+[node name="curtain" parent="." instance=ExtResource( 5 )]
+[connection signal="animation_finish" from="curtain" to="." method="_on_curtain_animation_finish"]

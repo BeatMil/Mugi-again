@@ -13,7 +13,9 @@ var baito = false
 var shingg01 = load("res://media/Sound/shingg01.wav")
 var dialog = ["Tadaimaa","Wait..","I live alone 5555","What should I do?"]
 var line : int = 0
+
 func _ready():
+	$ColorRect.set_visible(true)
 	$AnimationPlayer.play("fade_in")
 	if get_node("/root/singleton").stage02 == false:
 		var tween = get_node("Tween")
@@ -64,6 +66,7 @@ func walk():
 
 
 func _input(_event):
+	# read dialog
 	if state_talk01 and (Input.is_key_pressed(KEY_SPACE) or Input.is_key_pressed(KEY_ENTER)):
 		line += 1
 		if line < dialog.size():
@@ -77,6 +80,9 @@ func _input(_event):
 			
 	if Input.is_action_just_pressed("ui_accept") and shop:
 		print("shop")
+		$dew/VisibilityNotifier2D.disconnect("screen_exited",self,"_on_VisibilityNotifier2D_screen_exited")
+		$fade_timer.start()
+		$AnimationPlayer.play_backwards("fade_in")
 	elif Input.is_action_just_pressed("ui_accept") and girlfriend:
 		print("gf")
 	elif Input.is_action_just_pressed("ui_accept") and csgo:
@@ -84,7 +90,8 @@ func _input(_event):
 	elif Input.is_action_just_pressed("ui_accept") and baito:
 		print("baito")
 		$dew/VisibilityNotifier2D.disconnect("screen_exited",self,"_on_VisibilityNotifier2D_screen_exited")
-		get_tree().change_scene("res://scene/baito_game.tscn")
+		$fade_timer.start()
+		$AnimationPlayer.play_backwards("fade_in")
 
 
 
@@ -143,3 +150,10 @@ func _on_VisibilityNotifier2D_screen_exited():
 	elif $dew.position.x > 0:
 		$dew.position.x = -111
 
+
+
+func _on_fade_timer_timeout() -> void:
+	if baito:
+		get_tree().change_scene("res://scene/baito_game.tscn")
+	elif shop:
+		get_tree().change_scene("res://scene/shop.tscn")
