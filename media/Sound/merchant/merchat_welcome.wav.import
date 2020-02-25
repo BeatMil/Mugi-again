@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/merchat_welcome.wav-49987d768db4741e923b0d557d967b63.sample"
+
+[deps]
+
+source_file="res://media/Sound/merchant/merchat_welcome.wav"
+dest_files=[ "res://.import/merchat_welcome.wav-49987d768db4741e923b0d557d967b63.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

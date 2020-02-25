@@ -3,4 +3,5 @@
 [ext_resource path="res://media/Sound/Code_Vein_Main_Menu.ogg" type="AudioStream" id=1]
 
 [node name="AudioBlock" type="AudioStreamPlayer"]
+pause_mode = 2
 stream = ExtResource( 1 )

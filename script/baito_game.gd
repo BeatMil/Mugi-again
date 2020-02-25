@@ -9,7 +9,7 @@ const BOX = preload("res://prefab/box.tscn")
 onready var score_text = $CanvasLayer/score
 var score : int = 0
 
-var on_box
+var on_box # area2D of the box
 var on_point = false
 var freak_out = false
 var put_down = false
@@ -18,9 +18,10 @@ var result = false
 var star01 = preload("res://media/Sound/kirby/star01.wav")
 var collect01 = preload("res://media/Sound/kirby/collect01.wav")
 var inside_UPRPRC = preload("res://media/Sound/Inside UPRPRC_cut.ogg")
-var crab_rave = preload("res://media/Sound/Crab_Rave.wav")
+var crab_rave = preload("res://media/Sound/Crab_Rave_lower_version.ogg")
 
 func _ready():
+	$AnimationPlayer2.play("fade_in")
 	$tutorial_pause.set_visible(true)
 	get_tree().set_pause(true)
 	randomize()
@@ -53,6 +54,7 @@ func _input(_event):
 			# I was trying to move the animu_fig node to be child node of the box
 			# but it didn't work so I change the way
 			# I instance animu_fig as a child node of the box but change it's texture instead 555
+			on_box.get_parent().animu_fig = true
 			var texture = get_node("animu_fig").get_texture()
 			get_node("animu_fig").queue_free()
 			var animu = FIG.instance()
@@ -71,6 +73,7 @@ func _input(_event):
 			get_node("animu_fig").disappear()
 	elif Input.is_key_pressed(KEY_ESCAPE) and !result:
 		result = true
+		$border_check.set_monitoring(false)
 		$ColorRect/result_money.set_text("You got\n$%s"%score)
 		$"/root/singleton".money += score
 		$box_timer.stop()
@@ -136,3 +139,18 @@ func _on_put_down_timer_timeout():
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "fade_out":
 		get_tree().change_scene("res://scene/stage02.tscn")
+
+
+func _on_border_check_area_entered(area):
+	if !area.get_parent().animu_fig:
+		add_money(-100)
+		$AnimationPlayer.play("money_down")
+		$dew_baito/AnimationPlayer.play("freak_out")
+		$sfxblock.set_stream(star01)
+		$sfxblock.play()
+		freak_out = true
+		$dew_baito/freak_out_timer.start()
+		if $".".has_node("animu_fig"):
+			get_node("animu_fig").disappear()
+	area.get_parent().queue_free()
+	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://script/baito_game.gd" type="Script" id=1]
 [ext_resource path="res://media/dew/dew_baito.png" type="Texture" id=2]
@@ -75,7 +75,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=7]
-length = 0.6
+length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("fivehundred:self_modulate")
 tracks/0/interp = 1
@@ -83,7 +83,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.6 ),
+"times": PoolRealArray( 0, 0.2, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 0.960784, 0.137255, 0.0980392, 0 ), Color( 0.960784, 0.137255, 0.0980392, 1 ), Color( 0.960784, 0.137255, 0.0980392, 0 ) ]
@@ -95,7 +95,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.6 ),
+"times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 600, 0 ), Vector2( 600, 160 ) ]
@@ -144,7 +144,22 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=10]
-resource_name = "money_down"
+resource_name = "fade_in"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=11]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("fivehundred:self_modulate")
@@ -171,8 +186,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1024, 4.76837e-07 ), Vector2( 1024, 160 ) ]
 }
 
-[sub_resource type="Animation" id=11]
-resource_name = "money_shine"
+[sub_resource type="Animation" id=12]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -188,7 +202,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 1 ), Color( 0.376471, 0.882353, 0.321569, 1 ), Color( 0, 0, 0, 1 ) ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=13]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("hundred:self_modulate")
@@ -215,7 +229,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1104, 160 ), Vector2( 1104, 48 ), Vector2( 1104, 0 ) ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=14]
 length = 1.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:rect_position")
@@ -230,11 +244,14 @@ tracks/0/keys = {
 "values": [ Vector2( 0, -768 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="DynamicFont" id=14]
+[sub_resource type="DynamicFont" id=15]
 size = 80
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
+
+[sub_resource type="RectangleShape2D" id=16]
+extents = Vector2( 16, 80 )
 
 [node name="baito_game" type="Node2D"]
 script = ExtResource( 1 )
@@ -293,11 +310,13 @@ anims/money_up = SubResource( 8 )
 anims/result_down = SubResource( 9 )
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+pause_mode = 2
+anims/fade_in = SubResource( 10 )
 anims/fade_out = SubResource( 6 )
-anims/money_down = SubResource( 10 )
-anims/money_shine = SubResource( 11 )
-anims/money_up = SubResource( 12 )
-anims/result_down = SubResource( 13 )
+anims/money_down = SubResource( 11 )
+anims/money_shine = SubResource( 12 )
+anims/money_up = SubResource( 13 )
+anims/result_down = SubResource( 14 )
 
 [node name="sfxblock" type="AudioStreamPlayer" parent="."]
 
@@ -318,8 +337,9 @@ __meta__ = {
 [node name="fivehundred" type="Label" parent="."]
 self_modulate = Color( 0.960784, 0.137255, 0.0980392, 0 )
 margin_left = 600.0
+margin_top = 160.0
 margin_right = 640.0
-margin_bottom = 14.0
+margin_bottom = 174.0
 rect_scale = Vector2( 7.71888, 8.26927 )
 text = "-$100"
 align = 1
@@ -354,7 +374,7 @@ margin_left = -121.0
 margin_top = -128.0
 margin_right = 121.0
 margin_bottom = -33.0
-custom_fonts/font = SubResource( 14 )
+custom_fonts/font = SubResource( 15 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "money"
 align = 1
@@ -367,7 +387,7 @@ __meta__ = {
 margin_top = -4.349
 margin_right = 1360.0
 margin_bottom = 763.651
-color = Color( 0, 0, 0, 0 )
+color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
@@ -399,6 +419,12 @@ __meta__ = {
 
 [node name="queue_free_timer" type="Timer" parent="tutorial_pause"]
 wait_time = 0.1
+
+[node name="border_check" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border_check"]
+position = Vector2( -240, 560 )
+shape = SubResource( 16 )
 [connection signal="timeout" from="box_timer" to="." method="_on_box_timer_timeout"]
 [connection signal="area_entered" from="dew_baito/dew_area2d" to="." method="_on_dew_area2d_area_entered"]
 [connection signal="area_exited" from="dew_baito/dew_area2d" to="." method="_on_dew_area2d_area_exited"]
@@ -406,3 +432,4 @@ wait_time = 0.1
 [connection signal="timeout" from="dew_baito/put_down_timer" to="." method="_on_put_down_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="tutorial_pause/queue_free_timer" to="tutorial_pause" method="_on_queue_free_timer_timeout"]
+[connection signal="area_entered" from="border_check" to="." method="_on_border_check_area_entered"]
