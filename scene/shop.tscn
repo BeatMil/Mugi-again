@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://media/Font/Code Vein Fonts/Roboto-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://script/shop.gd" type="Script" id=2]
@@ -14,6 +14,12 @@ font_data = ExtResource( 1 )
 size = 90
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 80
+outline_size = 3
+outline_color = Color( 0, 0, 0, 0 )
 font_data = ExtResource( 1 )
 
 [sub_resource type="SpriteFrames" id=3]
@@ -55,6 +61,46 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 0.556863, 0.556863, 0.556863, 1 ), Color( 0.784314, 0.784314, 0.784314, 1 ), Color( 0.556863, 0.556863, 0.556863, 1 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "money_down"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("money_down:custom_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.823529, 0.0980392, 0.0980392, 0 ), Color( 0.823529, 0.0980392, 0.0980392, 1 ), Color( 0.823529, 0.0980392, 0.0980392, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("money_down:custom_fonts/font:outline_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("money_down:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 0.3, 3, 1 ),
+"update": 0,
+"values": [ Vector2( 576, 80 ), Vector2( 576, 8 ), Vector2( 576, -64 ) ]
 }
 
 [node name="shop" type="Control"]
@@ -127,7 +173,7 @@ margin_left = 992.0
 margin_right = 1353.0
 margin_bottom = 106.0
 custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0.556863, 0.556863, 0.556863, 1 )
+custom_colors/font_color = Color( 0.294118, 0.752941, 0.227451, 1 )
 text = "$MONEY"
 align = 1
 valign = 1
@@ -145,21 +191,43 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 992, 416 )
-frames = SubResource( 3 )
-animation = "idle"
+[node name="money_down" type="Label" parent="."]
+margin_left = 576.0
+margin_top = -64.0
+margin_right = 1104.0
+margin_bottom = 144.0
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0.823529, 0.0980392, 0.0980392, 0 )
+text = "MONEY"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="merchant" type="Sprite" parent="."]
 visible = false
 position = Vector2( 992, 416 )
+z_index = -2
 texture = ExtResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 992, 416 )
+frames = SubResource( 3 )
+animation = "idle"
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/money_shine = SubResource( 4 )
 anims/money_zero = SubResource( 5 )
 
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+anims/money_down = SubResource( 6 )
+
 [node name="curtain" parent="." instance=ExtResource( 5 )]
+visible = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 [connection signal="pressed" from="teddy_bear" to="." method="_on_teddy_bear_pressed"]

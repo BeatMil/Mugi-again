@@ -7,7 +7,11 @@ var COME_BACK = preload("res://media/Sound/merchant/merchat_come_back.wav")
 var AWESOME = preload("res://media/Sound/merchant/merchat_awesome_choice.wav")
 var KACHING = preload("res://media/Sound/kaching.wav")
 
+#config
+var teddy_bear_price = 2000
+
 func _ready() -> void:
+	$curtain.set_visible(true)
 	$curtain/AnimationPlayer.play("fade_in")
 	$AnimationPlayer.play("money_shine")
 	$AnimatedSprite.play("idle")
@@ -33,11 +37,13 @@ func _on_curtain_animation_finish(anim_name) -> void:
 
 
 func _on_teddy_bear_pressed() -> void:
-	if $"/root/singleton".money < 2000:
+	if $"/root/singleton".money < teddy_bear_price:
 		$"/root/SfxBlock".set_stream(NOT_ENOUGH_CASH)
 		$"/root/SfxBlock".play()
 	else:
-		$"/root/singleton".money -= 2000
+		$"/root/singleton".money -= teddy_bear_price
+		$money_down.text = "-$%s"%teddy_bear_price
+		$AnimationPlayer2.play("money_down")
 		$money.text = "$%s"%$"/root/singleton".money
 		$"/root/SfxBlock".set_stream(AWESOME)
 		$"/root/SfxBlock".play()
