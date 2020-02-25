@@ -319,6 +319,7 @@ anims/money_up = SubResource( 13 )
 anims/result_down = SubResource( 14 )
 
 [node name="sfxblock" type="AudioStreamPlayer" parent="."]
+volume_db = 10.0
 
 [node name="hundred" type="Label" parent="."]
 self_modulate = Color( 0.286275, 0.960784, 0.0980392, 0 )

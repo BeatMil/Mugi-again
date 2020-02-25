@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/megumin_drop.wav-ed34c7c2772861a64f4b6a392d68286d.sample"
+
+[deps]
+
+source_file="res://media/Sound/baito_game/megumin_drop.wav"
+dest_files=[ "res://.import/megumin_drop.wav-ed34c7c2772861a64f4b6a392d68286d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

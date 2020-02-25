@@ -19,7 +19,7 @@ func _ready():
 	dir_contents("res://media/animu_goods/")
 	animu_figs.shuffle()
 	$".".set_texture(animu_figs.front())
-	
+
 func beat_set_texture(texture):
 	set_texture(texture)
 	
