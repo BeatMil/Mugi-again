@@ -9,8 +9,22 @@ var KACHING = preload("res://media/Sound/kaching.wav")
 
 #config
 var teddy_bear_price = 2000
+var laptop_price = 5000
+var dev_note_price = 100000
 
 func _ready() -> void:
+	if $"/root/singleton".csgo:
+		$laptop/Label.text = "NEW LAPTOP SOLD"
+		$laptop/Label.set_modulate(Color(0.35, 0.35, 0.35))
+		$laptop.set_disabled(true)
+	if $"/root/singleton".teddy_bear:
+		$teddy_bear/Label.text = "TEDDY BEAR SOLD"
+		$teddy_bear/Label.set_modulate(Color(0.35, 0.35, 0.35))
+		$teddy_bear.set_disabled(true)
+	if $"/root/singleton".dev_note:
+		$dev_note/Label.text = "DEV NOTE SOLD"
+		$dev_note/Label.set_modulate(Color(0.35, 0.35, 0.35))
+		$dev_note.set_disabled(true)
 	$curtain.set_visible(true)
 	$curtain/AnimationPlayer.play("fade_in")
 	$AnimationPlayer.play("money_shine")
@@ -49,6 +63,58 @@ func _on_teddy_bear_pressed() -> void:
 		$"/root/SfxBlock".play()
 		$AudioStreamPlayer.set_stream(KACHING)
 		$AudioStreamPlayer.play()
+		$teddy_bear/Label.text = "TEDDY BEAR SOLD"
+		$teddy_bear/Label.set_modulate(Color(0.35, 0.35, 0.35))
+		$teddy_bear.set_disabled(true)
+		$"/root/singleton".teddy_bear = true
+		
+	if $"/root/singleton".money <= 0:
+		$AnimationPlayer.play("money_zero")
+	else:
+		$AnimationPlayer.play("money_shine")
+
+
+func _on_laptop_pressed() -> void:
+	if $"/root/singleton".money < laptop_price:
+		$"/root/SfxBlock".set_stream(NOT_ENOUGH_CASH)
+		$"/root/SfxBlock".play()
+	else:
+		$"/root/singleton".money -= laptop_price
+		$money_down.text = "-$%s"%laptop_price
+		$AnimationPlayer2.play("money_down")
+		$money.text = "$%s"%$"/root/singleton".money
+		$"/root/SfxBlock".set_stream(AWESOME)
+		$"/root/SfxBlock".play()
+		$AudioStreamPlayer.set_stream(KACHING)
+		$AudioStreamPlayer.play()
+		$"/root/singleton".csgo = true
+		$laptop/Label.text = "NEW LAPTOP SOLD"
+		$laptop/Label.set_modulate(Color(0.35, 0.35, 0.35))
+		$laptop.set_disabled(true)
+		
+	if $"/root/singleton".money <= 0:
+		$AnimationPlayer.play("money_zero")
+	else:
+		$AnimationPlayer.play("money_shine")
+
+
+func _on_dev_note_pressed() -> void:
+	if $"/root/singleton".money < dev_note_price:
+		$"/root/SfxBlock".set_stream(NOT_ENOUGH_CASH)
+		$"/root/SfxBlock".play()
+	else:
+		$"/root/singleton".money -= dev_note_price
+		$money_down.text = "-$%s"%dev_note_price
+		$AnimationPlayer2.play("money_down")
+		$money.text = "$%s"%$"/root/singleton".money
+		$"/root/SfxBlock".set_stream(AWESOME)
+		$"/root/SfxBlock".play()
+		$AudioStreamPlayer.set_stream(KACHING)
+		$AudioStreamPlayer.play()
+		$"/root/singleton".dev_note = true
+		$dev_note/Label.text = "DEV NOTE SOLD"
+		$dev_note/Label.set_modulate(Color(0.35, 0.35, 0.35))
+		$dev_note.set_disabled(true)
 		
 	if $"/root/singleton".money <= 0:
 		$AnimationPlayer.play("money_zero")

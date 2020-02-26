@@ -16,13 +16,13 @@ outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=3]
 size = 80
 outline_size = 3
 outline_color = Color( 0, 0, 0, 0 )
 font_data = ExtResource( 1 )
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=4]
 animations = [ {
 "frames": [ ExtResource( 4 ), ExtResource( 3 ) ],
 "loop": true,
@@ -30,7 +30,7 @@ animations = [ {
 "speed": 2.0
 } ]
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -46,8 +46,7 @@ tracks/0/keys = {
 "values": [ Color( 0.294118, 0.752941, 0.227451, 1 ), Color( 0.396078, 0.992157, 0.290196, 1 ), Color( 0.294118, 0.752941, 0.227451, 1 ) ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "money_zero"
+[sub_resource type="Animation" id=6]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -63,8 +62,7 @@ tracks/0/keys = {
 "values": [ Color( 0.556863, 0.556863, 0.556863, 1 ), Color( 0.784314, 0.784314, 0.784314, 1 ), Color( 0.556863, 0.556863, 0.556863, 1 ) ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "money_down"
+[sub_resource type="Animation" id=7]
 length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("money_down:custom_colors/font_color")
@@ -132,7 +130,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button2" type="Button" parent="."]
+[node name="laptop" type="Button" parent="."]
 margin_left = 128.0
 margin_top = 320.0
 margin_right = 592.0
@@ -142,15 +140,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Button2"]
+[node name="Label" type="Label" parent="laptop"]
 margin_right = 416.0
 margin_bottom = 128.0
 custom_fonts/font = SubResource( 1 )
-text = "ITEM01"
+text = "NEW LAPTOP $5000"
 align = 1
 valign = 1
 
-[node name="Button3" type="Button" parent="."]
+[node name="dev_note" type="Button" parent="."]
 margin_left = 128.0
 margin_top = 560.0
 margin_right = 592.0
@@ -160,11 +158,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Button3"]
-margin_right = 416.0
+[node name="Label" type="Label" parent="dev_note"]
+margin_right = 464.0
 margin_bottom = 128.0
 custom_fonts/font = SubResource( 1 )
-text = "ITEM01"
+text = "dev's note $100,000"
 align = 1
 valign = 1
 
@@ -196,7 +194,7 @@ margin_left = 576.0
 margin_top = -64.0
 margin_right = 1104.0
 margin_bottom = 144.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.823529, 0.0980392, 0.0980392, 0 )
 text = "MONEY"
 align = 1
@@ -213,22 +211,24 @@ texture = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 992, 416 )
-frames = SubResource( 3 )
+frames = SubResource( 4 )
 animation = "idle"
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/money_shine = SubResource( 4 )
-anims/money_zero = SubResource( 5 )
+anims/money_shine = SubResource( 5 )
+anims/money_zero = SubResource( 6 )
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
-anims/money_down = SubResource( 6 )
+anims/money_down = SubResource( 7 )
 
 [node name="curtain" parent="." instance=ExtResource( 5 )]
 visible = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 [connection signal="pressed" from="teddy_bear" to="." method="_on_teddy_bear_pressed"]
+[connection signal="pressed" from="laptop" to="." method="_on_laptop_pressed"]
+[connection signal="pressed" from="dev_note" to="." method="_on_dev_note_pressed"]
 [connection signal="animation_finish" from="curtain" to="." method="_on_curtain_animation_finish"]

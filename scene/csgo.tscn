@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://prefab/dew_csgo.tscn" type="PackedScene" id=1]
+[ext_resource path="res://script/csgo.gd" type="Script" id=2]
+[ext_resource path="res://media/gun/revolver.png" type="Texture" id=3]
+[ext_resource path="res://media/gun/mp7.png" type="Texture" id=4]
+[ext_resource path="res://media/gun/awp.png" type="Texture" id=5]
+
+[node name="csgo" type="Node2D"]
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="dew_csgo" parent="." instance=ExtResource( 1 )]
+position = Vector2( 272, 512 )
+
+[node name="Control" type="Control" parent="."]
+margin_left = 688.0
+margin_top = 48.0
+margin_right = 728.0
+margin_bottom = 88.0
+
+[node name="revolver" type="Button" parent="Control"]
+margin_top = -32.0
+margin_right = 448.0
+margin_bottom = 164.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Control/revolver"]
+position = Vector2( 240, 96 )
+scale = Vector2( 0.350251, 0.350251 )
+texture = ExtResource( 3 )
+
+[node name="mp7" type="Button" parent="Control"]
+margin_top = 224.0
+margin_right = 448.0
+margin_bottom = 420.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Control/mp7"]
+position = Vector2( 240, 96 )
+scale = Vector2( 0.545067, 0.545067 )
+texture = ExtResource( 4 )
+
+[node name="awp" type="Button" parent="Control"]
+margin_left = -128.0
+margin_top = 496.0
+margin_right = 576.0
+margin_bottom = 692.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Control/awp"]
+position = Vector2( 352, 96 )
+scale = Vector2( 0.545067, 0.545067 )
+texture = ExtResource( 5 )

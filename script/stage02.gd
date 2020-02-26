@@ -4,7 +4,9 @@ const TEXT_ABOVE = preload("res://prefab/text_above.tscn")
 var state_walk01 = false
 var state_talk01 = false
 var state_play01 = false
+var state_talk_csgo01 = false
 
+# boolean for choosing to go to stages
 var shop = false
 var girlfriend = false
 var csgo = false
@@ -12,6 +14,8 @@ var baito = false
 
 var shingg01 = load("res://media/Sound/shingg01.wav")
 var dialog = ["Tadaimaa","Wait..","I live alone 5555","What should I do?"]
+var dialog_csgo = ["Potato laptop...","I can't play CSGO with this.","I need to buy a new laptop."]
+var dialog_csgo_play = ["Now I can play CSGO.","Oh look, there is one seat left.","I'm in!!"]
 var line : int = 0
 
 func _ready():
@@ -72,12 +76,33 @@ func _input(_event):
 		if line < dialog.size():
 			$"text_above".get_child(0).text = dialog[line]
 		elif $".".has_node("text_above"):
+			line = 0
 			state_talk01 = false
 			state_play01 = true
 			$"text_above".queue_free()
 			$choices.set_visible(true)
 			$choices/text_label/shop.set_monitoring(true)
-			
+	elif state_talk_csgo01 and (Input.is_key_pressed(KEY_SPACE) or Input.is_key_pressed(KEY_ENTER)):
+		if $"/root/singleton".csgo == false:
+			if line < dialog_csgo.size() -1:
+				line += 1
+				$"text_above".get_child(0).text = dialog_csgo[line]
+			elif $".".has_node("text_above"):
+				line = 0
+				$"text_above".queue_free()
+				state_talk_csgo01 = false
+				state_play01 = true
+		else:
+			if line < dialog_csgo.size() -1:
+				line += 1
+				$"text_above".get_child(0).text = dialog_csgo_play[line]
+			elif $".".has_node("text_above"):
+				line = 0
+				$"text_above".queue_free()
+				state_talk_csgo01 = false
+				state_play01 = true
+				get_tree().change_scene("res://scene/csgo.tscn")
+
 	if Input.is_action_just_pressed("ui_accept") and shop:
 		print("shop")
 		$dew/VisibilityNotifier2D.disconnect("screen_exited",self,"_on_VisibilityNotifier2D_screen_exited")
@@ -87,6 +112,19 @@ func _input(_event):
 		print("gf")
 	elif Input.is_action_just_pressed("ui_accept") and csgo:
 		print("CSGO!")
+		if $"/root/singleton".csgo == false:
+			var text_above = TEXT_ABOVE.instance()
+			text_above.set_position($dew.get_global_position() + Vector2(-100,-250))
+			$".".add_child(text_above)
+			$"text_above".get_child(0).text = dialog_csgo[line]
+		else:
+			var text_above = TEXT_ABOVE.instance()
+			text_above.set_position($dew.get_global_position() + Vector2(-100,-250))
+			$".".add_child(text_above)
+			$"text_above".get_child(0).text = dialog_csgo_play[line]
+		state_play01 = false
+		state_talk_csgo01 = true
+		csgo = false
 	elif Input.is_action_just_pressed("ui_accept") and baito:
 		print("baito")
 		$dew/VisibilityNotifier2D.disconnect("screen_exited",self,"_on_VisibilityNotifier2D_screen_exited")
