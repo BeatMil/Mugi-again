@@ -12,7 +12,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="sfxplayer" type="AudioStreamPlayer" parent="."]
 
 [node name="dew_csgo" parent="." instance=ExtResource( 1 )]
 position = Vector2( 272, 512 )
