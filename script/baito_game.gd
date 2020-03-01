@@ -57,7 +57,8 @@ func _ready():
 #	pass
 
 func _input(_event):
-	if Input.is_action_just_pressed("ui_accept") and on_point and !freak_out and !result and !put_down:
+	#and !put_down
+	if Input.is_action_just_pressed("ui_accept") and on_point and !freak_out and !result:
 		$dew_baito/put_down_timer.start()
 		$dew_baito/AnimationPlayer.play("put_down")
 #		$sfxblock.set_stream(collect01)
