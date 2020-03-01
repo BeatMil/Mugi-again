@@ -38,6 +38,7 @@ var MAIKA_DROP = preload("res://media/Sound/baito_game/maika_drop.wav")
 var MAIKA_IN_BOX = preload("res://media/Sound/baito_game/maika_in_box.wav")
 
 func _ready():
+	$fade.set_visible(true)
 	$AnimationPlayer2.play("fade_in")
 	$tutorial_pause.set_visible(true)
 	get_tree().set_pause(true)
@@ -57,8 +58,8 @@ func _ready():
 #	pass
 
 func _input(_event):
-	#and !put_down
-	if Input.is_action_just_pressed("ui_accept") and on_point and !freak_out and !result:
+
+	if Input.is_action_just_pressed("ui_accept") and on_point and !freak_out and !result and !put_down:
 		$dew_baito/put_down_timer.start()
 		$dew_baito/AnimationPlayer.play("put_down")
 #		$sfxblock.set_stream(collect01)
@@ -92,6 +93,8 @@ func _input(_event):
 			check_fig_and_play_sound(true)
 			get_node("animu_fig").disappear()
 	elif Input.is_key_pressed(KEY_ESCAPE) and !result:
+		$dew_baito/freak_out_timer.stop()
+		$dew_baito/put_down_timer.stop()
 		result = true
 		$border_check.set_monitoring(false)
 		$ColorRect/result_money.set_text("You got\n$%s"%score)
@@ -101,6 +104,7 @@ func _input(_event):
 		$AnimationPlayer2.play("money_shine")
 		$"/root/AudioBlock".set_stream(crab_rave)
 		$"/root/AudioBlock".play()
+		$dew_baito/AnimationPlayer.play("dance")
 	elif Input.is_key_pressed(KEY_ESCAPE) and result:
 		$AnimationPlayer.play("fade_out")
 	

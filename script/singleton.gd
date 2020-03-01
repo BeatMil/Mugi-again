@@ -10,3 +10,8 @@ var stage02 = false
 var teddy_bear = false
 var csgo = false
 var dev_note = false
+
+
+func playsfx(player,sfx):
+	player.set_stream(sfx)
+	player.play()

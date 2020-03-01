@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/dew-go-mid-now01.wav-1740d6f865c68acd90675cc3d8d4d608.sample"
+
+[deps]
+
+source_file="res://media/Sound/csgo/csgo/dew-go-mid-now01.wav"
+dest_files=[ "res://.import/dew-go-mid-now01.wav-1740d6f865c68acd90675cc3d8d4d608.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

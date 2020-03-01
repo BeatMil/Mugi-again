@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/dew-bill01.wav-cda9d0810536f3a5adbe914ad364c615.sample"
+
+[deps]
+
+source_file="res://media/Sound/csgo/csgo/dew-bill01.wav"
+dest_files=[ "res://.import/dew-bill01.wav-cda9d0810536f3a5adbe914ad364c615.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

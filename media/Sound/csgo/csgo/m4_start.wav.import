@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/m4_start.wav-8e6a6dc91658eb92818adee37a2a6b8d.sample"
+
+[deps]
+
+source_file="res://media/Sound/csgo/csgo/m4_start.wav"
+dest_files=[ "res://.import/m4_start.wav-8e6a6dc91658eb92818adee37a2a6b8d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

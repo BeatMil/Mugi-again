@@ -101,7 +101,9 @@ func _input(_event):
 				$"text_above".queue_free()
 				state_talk_csgo01 = false
 				state_play01 = true
-				get_tree().change_scene("res://scene/csgo.tscn")
+				$AnimationPlayer.play_backwards("fade_in")
+				$fade_timer.start()
+
 
 	if Input.is_action_just_pressed("ui_accept") and shop:
 		print("shop")
@@ -195,3 +197,5 @@ func _on_fade_timer_timeout() -> void:
 		get_tree().change_scene("res://scene/baito_game.tscn")
 	elif shop:
 		get_tree().change_scene("res://scene/shop.tscn")
+	elif csgo:
+		get_tree().change_scene("res://scene/csgo.tscn")

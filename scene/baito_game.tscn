@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://script/baito_game.gd" type="Script" id=1]
 [ext_resource path="res://media/dew/dew_baito.png" type="Texture" id=2]
@@ -26,7 +26,10 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=3]
-length = 0.001
+resource_name = "dance"
+length = 0.48
+loop = true
+step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -34,10 +37,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.24 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 2 ]
+"values": [ 0, 1 ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -52,14 +55,28 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
+"values": [ 2 ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
 "values": [ 1 ]
 }
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 64, 80 )
 
-[sub_resource type="Animation" id=6]
-resource_name = "fade_out"
+[sub_resource type="Animation" id=7]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("fade:color")
@@ -74,7 +91,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=8]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("fivehundred:self_modulate")
@@ -101,7 +118,7 @@ tracks/1/keys = {
 "values": [ Vector2( 600, 0 ), Vector2( 600, 160 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=9]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("hundred:self_modulate")
@@ -128,7 +145,7 @@ tracks/1/keys = {
 "values": [ Vector2( 600, 160 ), Vector2( 600, 48 ), Vector2( 600, 0 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=10]
 length = 1.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:rect_position")
@@ -143,8 +160,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, -768 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=10]
-resource_name = "fade_in"
+[sub_resource type="Animation" id=11]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("fade:color")
@@ -159,7 +175,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=12]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("fivehundred:self_modulate")
@@ -186,7 +202,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1024, 4.76837e-07 ), Vector2( 1024, 160 ) ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=13]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -202,7 +218,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 1 ), Color( 0.376471, 0.882353, 0.321569, 1 ), Color( 0, 0, 0, 1 ) ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=14]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("hundred:self_modulate")
@@ -229,7 +245,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1104, 160 ), Vector2( 1104, 48 ), Vector2( 1104, 0 ) ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=15]
 length = 1.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:rect_position")
@@ -244,13 +260,13 @@ tracks/0/keys = {
 "values": [ Vector2( 0, -768 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="DynamicFont" id=15]
+[sub_resource type="DynamicFont" id=16]
 size = 80
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
 
-[sub_resource type="RectangleShape2D" id=16]
+[sub_resource type="RectangleShape2D" id=17]
 extents = Vector2( 16, 80 )
 
 [node name="baito_game" type="Node2D"]
@@ -289,14 +305,15 @@ frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="dew_baito"]
 anims/carry = SubResource( 2 )
-anims/freak_out = SubResource( 3 )
-anims/put_down = SubResource( 4 )
+anims/dance = SubResource( 3 )
+anims/freak_out = SubResource( 4 )
+anims/put_down = SubResource( 5 )
 
 [node name="dew_area2d" type="Area2D" parent="dew_baito"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="dew_baito/dew_area2d"]
 position = Vector2( 16, 176 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="freak_out_timer" type="Timer" parent="dew_baito"]
 wait_time = 0.5
@@ -305,19 +322,19 @@ wait_time = 0.5
 wait_time = 0.3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/fade_out = SubResource( 6 )
-anims/money_down = SubResource( 7 )
-anims/money_up = SubResource( 8 )
-anims/result_down = SubResource( 9 )
+anims/fade_out = SubResource( 7 )
+anims/money_down = SubResource( 8 )
+anims/money_up = SubResource( 9 )
+anims/result_down = SubResource( 10 )
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
 pause_mode = 2
-anims/fade_in = SubResource( 10 )
-anims/fade_out = SubResource( 6 )
-anims/money_down = SubResource( 11 )
-anims/money_shine = SubResource( 12 )
-anims/money_up = SubResource( 13 )
-anims/result_down = SubResource( 14 )
+anims/fade_in = SubResource( 11 )
+anims/fade_out = SubResource( 7 )
+anims/money_down = SubResource( 12 )
+anims/money_shine = SubResource( 13 )
+anims/money_up = SubResource( 14 )
+anims/result_down = SubResource( 15 )
 
 [node name="sfxblock" type="AudioStreamPlayer" parent="."]
 volume_db = 10.0
@@ -376,7 +393,7 @@ margin_left = -121.0
 margin_top = -128.0
 margin_right = 121.0
 margin_bottom = -33.0
-custom_fonts/font = SubResource( 15 )
+custom_fonts/font = SubResource( 16 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "money"
 align = 1
@@ -386,10 +403,11 @@ __meta__ = {
 }
 
 [node name="fade" type="ColorRect" parent="."]
+visible = false
 margin_top = -4.349
 margin_right = 1360.0
 margin_bottom = 763.651
-color = Color( 0, 0, 0, 1 )
+color = Color( 0, 0, 0, 0 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
@@ -426,7 +444,7 @@ wait_time = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="border_check"]
 position = Vector2( -240, 560 )
-shape = SubResource( 16 )
+shape = SubResource( 17 )
 [connection signal="timeout" from="box_timer" to="." method="_on_box_timer_timeout"]
 [connection signal="area_entered" from="dew_baito/dew_area2d" to="." method="_on_dew_area2d_area_entered"]
 [connection signal="area_exited" from="dew_baito/dew_area2d" to="." method="_on_dew_area2d_area_exited"]
