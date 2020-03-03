@@ -10,6 +10,7 @@ var state_talk_csgo01 = false
 var shop = false
 var girlfriend = false
 var csgo = false
+var csgo2 = false # csgo helper
 var baito = false
 
 var shingg01 = load("res://media/Sound/shingg01.wav")
@@ -83,7 +84,7 @@ func _input(_event):
 			$choices.set_visible(true)
 			$choices/text_label/shop.set_monitoring(true)
 	elif state_talk_csgo01 and (Input.is_key_pressed(KEY_SPACE) or Input.is_key_pressed(KEY_ENTER)):
-		if $"/root/singleton".csgo == false:
+		if $"/root/singleton".csgo == false: # check if can play csgo or not
 			if line < dialog_csgo.size() -1:
 				line += 1
 				$"text_above".get_child(0).text = dialog_csgo[line]
@@ -127,6 +128,7 @@ func _input(_event):
 		state_play01 = false
 		state_talk_csgo01 = true
 		csgo = false
+		csgo2 = true
 	elif Input.is_action_just_pressed("ui_accept") and baito:
 		print("baito")
 		$dew/VisibilityNotifier2D.disconnect("screen_exited",self,"_on_VisibilityNotifier2D_screen_exited")
@@ -197,5 +199,5 @@ func _on_fade_timer_timeout() -> void:
 		get_tree().change_scene("res://scene/baito_game.tscn")
 	elif shop:
 		get_tree().change_scene("res://scene/shop.tscn")
-	elif csgo:
+	elif csgo2:
 		get_tree().change_scene("res://scene/csgo.tscn")

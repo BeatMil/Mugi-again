@@ -38,6 +38,7 @@ var MAIKA_DROP = preload("res://media/Sound/baito_game/maika_drop.wav")
 var MAIKA_IN_BOX = preload("res://media/Sound/baito_game/maika_in_box.wav")
 
 func _ready():
+	$dew_baito/AnimationPlayer.play("carry")
 	$fade.set_visible(true)
 	$AnimationPlayer2.play("fade_in")
 	$tutorial_pause.set_visible(true)
@@ -47,6 +48,7 @@ func _ready():
 	$box_timer.start()
 	score_text.text = "0"
 	$sfxblock.set_volume_db($"/root/singleton".volume)
+	$"/root/AudioBlock".set_volume_db($"/root/singleton".volume - 5)
 	$"/root/AudioBlock".set_stream(inside_UPRPRC)
 	$"/root/AudioBlock".play()
 	# print list of nodes

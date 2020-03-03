@@ -47,8 +47,6 @@ func _on_m4_button_down() -> void:
 	$Tween.interpolate_property($dew_csgo, "position",$dew_csgo.position,$pos1.position,
 	2,Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
 	$Tween.start()
-	print(int(M4_START.get_length()))
-	print(M4_START.get_length())
 	$curtain/AnimationPlayer.set_speed_scale(0.3)
 	$curtain/AnimationPlayer.play("fade_out")
 

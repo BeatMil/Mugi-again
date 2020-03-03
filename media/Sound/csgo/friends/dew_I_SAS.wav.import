@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/dew_I_SAS.wav-16f61e0fc798e73263eeb6a1b11fcd9c.sample"
+
+[deps]
+
+source_file="res://media/Sound/csgo/friends/dew_I_SAS.wav"
+dest_files=[ "res://.import/dew_I_SAS.wav-16f61e0fc798e73263eeb6a1b11fcd9c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

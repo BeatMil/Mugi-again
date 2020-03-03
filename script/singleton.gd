@@ -10,6 +10,7 @@ var stage02 = false
 var teddy_bear = false
 var csgo = false
 var dev_note = false
+var csgo_skip_m4 = false
 
 
 func playsfx(player,sfx):

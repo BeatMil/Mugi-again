@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://prefab/dew_csgo.tscn" type="PackedScene" id=1]
 [ext_resource path="res://prefab/bill.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://media/Font/Code Vein Fonts/Roboto-Regular.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://media/Sound/csgo/friends/bill-where_are_you01.wav" type="AudioStream" id=8]
 [ext_resource path="res://prefab/enemy_ct.tscn" type="PackedScene" id=9]
+[ext_resource path="res://prefab/curtain.tscn" type="PackedScene" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -148,8 +149,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="curtain" parent="CanvasLayer" instance=ExtResource( 10 )]
+visible = false
+
+[node name="skip" type="Label" parent="CanvasLayer"]
+margin_left = 1120.0
+margin_right = 1206.0
+margin_bottom = 14.0
+rect_scale = Vector2( 2.74651, 2.74651 )
+text = "SKIP (SPACE)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="bill" parent="." instance=ExtResource( 2 )]
-position = Vector2( 1536, 320 )
+position = Vector2( -192, 320 )
 scale = Vector2( 0.570313, 0.570313 )
 
 [node name="dew_csgo" parent="." instance=ExtResource( 1 )]
@@ -179,5 +193,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="event/event01"]
 shape = SubResource( 4 )
+[connection signal="animation_finish" from="CanvasLayer/curtain" to="." method="_on_curtain_animation_finish"]
+[connection signal="dead" from="dew_csgo" to="." method="_on_dew_csgo_dead"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="area_entered" from="event/event01" to="." method="_on_event01_area_entered"]

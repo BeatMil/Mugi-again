@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/dew_die01.wav-419d63014cee2c14e86da6a1c2dcd15c.sample"
+
+[deps]
+
+source_file="res://media/Sound/csgo/friends/dew_die01.wav"
+dest_files=[ "res://.import/dew_die01.wav-419d63014cee2c14e86da6a1c2dcd15c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

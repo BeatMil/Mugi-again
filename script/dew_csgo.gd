@@ -2,8 +2,11 @@ extends Sprite
 enum anum {
 	STOP,
 	MOVE,
-	ATTACK
+	ATTACK,
+	DIE
 }
+#signal
+signal dead
 
 #config
 var speed : int = 15
@@ -47,8 +50,23 @@ func attack():
 
 func _ready() -> void:
 	state = anum.STOP
+	$AnimationPlayer.play("idle")
 
 func _physics_process(delta: float) -> void:
-	if state != anum.STOP:
+	if state != anum.STOP and state != anum.DIE:
 		raycast_check() # if enemy is infront, 
 		move()
+
+
+func _on_Area2D_area_entered(area: Area2D) -> void:
+	if area.name == "hitscan":
+#		$Area2D.set_monitoring(false)
+#		$Area2D.set_deferred("monitoring",false)
+		$Area2D.disconnect("area_entered",self,"_on_Area2D_area_entered")
+		$AnimationPlayer.play("die")
+		state = anum.DIE
+
+
+func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
+	if anim_name == "die":
+		emit_signal("dead")
