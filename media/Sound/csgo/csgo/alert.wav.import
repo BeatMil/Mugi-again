@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/alert.wav-aa02c3e60b1a64ff336c9d79e232ab9a.sample"
+
+[deps]
+
+source_file="res://media/Sound/csgo/csgo/alert.wav"
+dest_files=[ "res://.import/alert.wav-aa02c3e60b1a64ff336c9d79e232ab9a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

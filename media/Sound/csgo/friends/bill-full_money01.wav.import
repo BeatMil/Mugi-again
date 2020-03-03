@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/bill-full_money01.wav-281b4f965f2ac674e9f273e0f1c541a6.sample"
+
+[deps]
+
+source_file="res://media/Sound/csgo/friends/bill-full_money01.wav"
+dest_files=[ "res://.import/bill-full_money01.wav-281b4f965f2ac674e9f273e0f1c541a6.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

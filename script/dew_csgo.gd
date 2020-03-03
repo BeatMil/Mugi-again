@@ -14,7 +14,8 @@ var direction : int = 1# 1 = facing right
 var velocity : Vector2
 var on_point : bool = false # shooting
 var state
-
+#cache
+const SG = preload("res://media/Sound/csgo/csgo/sg556_03.wav")
 func raycast_check():
 	if $RayCast2D.is_colliding():
 		if $RayCast2D.get_collider().is_in_group("enemy"):
@@ -43,6 +44,7 @@ func attack():
 		$AnimationPlayer.play("gun_jamed")
 	elif Input.is_action_just_pressed("ui_accept") and on_point:
 		if $RayCast2D.get_collider().is_in_group("enemy"):
+			$"/root/singleton".playsfx($AudioStreamPlayer,SG)
 			$timer_after_kill_speech.start()
 			$RayCast2D.get_collider().get_parent().get_node("Timer").stop()
 			$RayCast2D.get_collider().get_parent().get_node("AnimationPlayer").play("die")

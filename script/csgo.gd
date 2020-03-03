@@ -9,6 +9,7 @@ const M4_START = preload("res://media/Sound/csgo/csgo/m4_start.wav")
 const M4_GUN = preload("res://prefab/m4.tscn")
 const NO_AWP = preload("res://media/Sound/csgo/friends/dew-no_AWP01.wav")
 const IM_IN = preload("res://media/Sound/csgo/friends/dew-Im_in02.wav")
+const FULL_MONEY = preload("res://media/Sound/csgo/friends/bill-full_money01.wav")
 
 onready var gun_name = get_node("Control/gun_name")
 
@@ -20,7 +21,7 @@ func playsfx(player,sfx):
 func _ready() -> void:
 	$curtain.set_visible(true)
 	$curtain/AnimationPlayer.play("fade_in")
-	playsfx($"/root/SfxBlock",okay_lets_go)
+	playsfx($"/root/SfxBlock",FULL_MONEY)
 	playsfx($"/root/AudioBlock",MENU_GUN)
 	if $".".has_node("Control"):
 		$Control/revolver.grab_focus()

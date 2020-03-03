@@ -28,3 +28,5 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 		$hitscan/CollisionShape2D.set_disabled(true)
 	elif anim_name == "die":
 		queue_free()
+	elif anim_name == "hide":
+		$AnimationPlayer.play("shoot")

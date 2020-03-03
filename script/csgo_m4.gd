@@ -19,6 +19,7 @@ onready var root_ost = $"/root/AudioBlock"
 
 
 func _ready() -> void:
+	get_node("enemy_ct2/VisibilityNotifier2D").disconnect("screen_entered",get_node("enemy_ct2"),"_on_VisibilityNotifier2D_screen_entered")
 	$event/event_back_block.set_monitoring(false)
 	$CanvasLayer/skip.set_visible(false)
 	if $"/root/singleton".csgo_skip_m4 == true:
@@ -81,3 +82,34 @@ func _on_event_back_block_area_entered(area: Area2D) -> void:
 	area.get_parent().move_local_x(300)
 	if area.is_in_group("dew"):
 		$"/root/singleton".playsfx($sfx,UHH)
+
+
+func _on_event02_area_entered(area: Area2D) -> void:
+	if area.is_in_group("dew"):
+		$AnimationPlayer.play("dew_event01")
+		$event/event02.queue_free()
+
+
+func _on_event03_area_entered(area: Area2D) -> void:
+	if area.is_in_group("dew"):
+		$AnimationPlayer.play("event03")
+		$event/event03.queue_free()
+
+
+func _on_event01_5_area_entered(area: Area2D) -> void:
+	if area.is_in_group("dew"):
+		$AnimationPlayer.play("event01_5")
+		$event/event01_5.queue_free()
+
+
+func _on_event04_area_entered(area: Area2D) -> void:
+	if area.is_in_group("dew"):
+		get_node("enemy_ct2/AnimationPlayer").play("hide")
+		$event/event04.queue_free()
+
+
+func _on_event05_area_entered(area: Area2D) -> void:
+	if area.is_in_group("dew"):
+		$event/event_back_block.set_position($event/event05.get_position() + Vector2(-200,0))
+		$AnimationPlayer.play("event05")
+		$event/event05.queue_free()
