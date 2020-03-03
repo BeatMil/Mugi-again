@@ -7,6 +7,8 @@ const DEW_M4 = preload("res://media/Sound/csgo/friends/dew-M4.wav")
 const MENU_GUN = preload("res://media/Sound/csgo/csgo/csgo_choosing_gun.ogg")
 const M4_START = preload("res://media/Sound/csgo/csgo/m4_start.wav")
 const M4_GUN = preload("res://prefab/m4.tscn")
+const NO_AWP = preload("res://media/Sound/csgo/friends/dew-no_AWP01.wav")
+const IM_IN = preload("res://media/Sound/csgo/friends/dew-Im_in02.wav")
 
 onready var gun_name = get_node("Control/gun_name")
 
@@ -42,6 +44,7 @@ func _on_m4_button_down() -> void:
 	dew_m4.set_position(Vector2(300,-50))
 	$dew_csgo.add_child(dew_m4)
 	playsfx($"/root/SfxBlock",M4_START)
+	playsfx($sfxplayer,IM_IN)
 	$Control.set_visible(false)
 	#	tween.set_repeat(true)
 	$Tween.interpolate_property($dew_csgo, "position",$dew_csgo.position,$pos1.position,
@@ -57,3 +60,7 @@ func _on_m4_button_down() -> void:
 func _on_curtain_animation_finish(anim) -> void:
 	if anim == "fade_out":
 		get_tree().change_scene("res://scene/csgo_m4.tscn")
+
+
+func _on_awp_pressed() -> void:
+	playsfx($sfxplayer,NO_AWP)

@@ -10,13 +10,16 @@ var state
 
 #cache
 const HUNK = preload("res://media/Sound/csgo/csgo/hunk.ogg")
+const UHH = preload("res://media/Sound/csgo/friends/dew-auuhhu01.wav")
 onready var root = $"/root/singleton"
 onready var root_sfx = $"/root/SfxBlock"
 onready var root_ost = $"/root/AudioBlock"
 
 
 
+
 func _ready() -> void:
+	$event/event_back_block.set_monitoring(false)
 	$CanvasLayer/skip.set_visible(false)
 	if $"/root/singleton".csgo_skip_m4 == true:
 		$CanvasLayer/skip.set_visible(true)
@@ -30,17 +33,17 @@ func _ready() -> void:
 	$CanvasLayer/tutorial.set_visible(false)
 
 func _physics_process(delta: float) -> void:
-	if state == anum.TALK:
-		if Input.is_action_just_pressed("ui_accept"):
+	if state == anum.TALK: 
+		if Input.is_action_just_pressed("ui_accept"): # skip button
 			$CanvasLayer/skip.set_visible(false)
-			$AnimationPlayer.seek(5)
+			$AnimationPlayer.seek(30)
 			# first move
 			$CanvasLayer/tutorial.set_visible(true)
 			state = anum.PLAY
-			$dew_csgo.state = $dew_csgo.anum.MOVE
+#			$dew_csgo.state = $dew_csgo.anum.MOVE
+			$timer_skip.start()
 			$dew_csgo/Camera2D.current = true
 			
-	pass
 
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "intro":
@@ -49,6 +52,8 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 		state = anum.PLAY
 		$dew_csgo.state = $dew_csgo.anum.MOVE
 		$dew_csgo/Camera2D.current = true
+		$CanvasLayer/skip.set_visible(false)
+		$event/event_back_block.set_monitoring(true)
 
 
 func _on_event01_area_entered(area: Area2D) -> void:
@@ -66,3 +71,13 @@ func _on_dew_csgo_dead() -> void:
 func _on_curtain_animation_finish(anim) -> void:
 	if anim == "fade_out":
 		get_tree().change_scene("res://scene/csgo.tscn")
+
+
+func _on_timer_skip_timeout() -> void:
+	$dew_csgo.state = $dew_csgo.anum.MOVE
+
+
+func _on_event_back_block_area_entered(area: Area2D) -> void:
+	area.get_parent().move_local_x(300)
+	if area.is_in_group("dew"):
+		$"/root/singleton".playsfx($sfx,UHH)

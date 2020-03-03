@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/dew-no_AWP01.wav-019e37fb51d43af61c0c98a4b53cb73e.sample"
+
+[deps]
+
+source_file="res://media/Sound/csgo/friends/dew-no_AWP01.wav"
+dest_files=[ "res://.import/dew-no_AWP01.wav-019e37fb51d43af61c0c98a4b53cb73e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

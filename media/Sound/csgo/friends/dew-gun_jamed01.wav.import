@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/dew-gun_jamed01.wav-3579c4a15874c68bd6c9a6af6c46e2df.sample"
+
+[deps]
+
+source_file="res://media/Sound/csgo/friends/dew-gun_jamed01.wav"
+dest_files=[ "res://.import/dew-gun_jamed01.wav-3579c4a15874c68bd6c9a6af6c46e2df.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/m4a1_clipin.wav-2eabe19e9172d15c7b6e5a6c2d0aad5c.sample"
+
+[deps]
+
+source_file="res://media/Sound/csgo/csgo/m4a1_clipin.wav"
+dest_files=[ "res://.import/m4a1_clipin.wav-2eabe19e9172d15c7b6e5a6c2d0aad5c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

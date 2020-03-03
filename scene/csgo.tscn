@@ -88,4 +88,5 @@ position = Vector2( 2176, 512 )
 [node name="curtain" parent="." instance=ExtResource( 6 )]
 visible = false
 [connection signal="button_down" from="Control/m4" to="." method="_on_m4_button_down"]
+[connection signal="pressed" from="Control/awp" to="." method="_on_awp_pressed"]
 [connection signal="animation_finish" from="curtain" to="." method="_on_curtain_animation_finish"]

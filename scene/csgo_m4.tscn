@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://prefab/dew_csgo.tscn" type="PackedScene" id=1]
 [ext_resource path="res://prefab/bill.tscn" type="PackedScene" id=2]
@@ -109,6 +109,9 @@ tracks/3/keys = {
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 16, 96 )
 
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 10, 272 )
+
 [node name="csgo_m4" type="Node2D"]
 script = ExtResource( 3 )
 
@@ -193,7 +196,19 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="event/event01"]
 shape = SubResource( 4 )
+
+[node name="event_back_block" type="Area2D" parent="event"]
+position = Vector2( -1456, -112 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="event/event_back_block"]
+shape = SubResource( 5 )
+
+[node name="timer_skip" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
 [connection signal="animation_finish" from="CanvasLayer/curtain" to="." method="_on_curtain_animation_finish"]
 [connection signal="dead" from="dew_csgo" to="." method="_on_dew_csgo_dead"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="area_entered" from="event/event01" to="." method="_on_event01_area_entered"]
+[connection signal="area_entered" from="event/event_back_block" to="." method="_on_event_back_block_area_entered"]
+[connection signal="timeout" from="timer_skip" to="." method="_on_timer_skip_timeout"]

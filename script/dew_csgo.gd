@@ -19,8 +19,8 @@ func raycast_check():
 	if $RayCast2D.is_colliding():
 		if $RayCast2D.get_collider().is_in_group("enemy"):
 			on_point = true
-		else:
-			on_point = false
+	else:
+		on_point = false
 
 func move():
 	if Input.is_action_pressed("ui_down"):
@@ -39,7 +39,13 @@ func move():
 		move_local_x(speed * direction)
 
 func attack():
-	pass
+	if Input.is_action_just_pressed("ui_accept") and !on_point:
+		$AnimationPlayer.play("gun_jamed")
+	elif Input.is_action_just_pressed("ui_accept") and on_point:
+		if $RayCast2D.get_collider().is_in_group("enemy"):
+			$timer_after_kill_speech.start()
+			$RayCast2D.get_collider().get_parent().get_node("Timer").stop()
+			$RayCast2D.get_collider().get_parent().get_node("AnimationPlayer").play("die")
 		
 		
 	# up, down movement. I don't want those.
@@ -50,12 +56,17 @@ func attack():
 
 func _ready() -> void:
 	state = anum.STOP
+	$RayCast2D.set_collide_with_areas(true)
+	$RayCast2D.set_collide_with_bodies(false)
 	$AnimationPlayer.play("idle")
 
 func _physics_process(delta: float) -> void:
-	if state != anum.STOP and state != anum.DIE:
+	$label_state.text = str(anum.keys()[state])
+#	if state != anum.STOP and state != anum.DIE:
+	if state == anum.MOVE:
 		raycast_check() # if enemy is infront, 
 		move()
+		attack()
 
 
 func _on_Area2D_area_entered(area: Area2D) -> void:
@@ -70,3 +81,7 @@ func _on_Area2D_area_entered(area: Area2D) -> void:
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "die":
 		emit_signal("dead")
+
+
+func _on_timer_after_kill_speech_timeout() -> void:
+	$AnimationPlayer.play("kill01")

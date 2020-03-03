@@ -26,3 +26,5 @@ func _on_AnimationPlayer_animation_started(anim_name: String) -> void:
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "shoot":
 		$hitscan/CollisionShape2D.set_disabled(true)
+	elif anim_name == "die":
+		queue_free()
