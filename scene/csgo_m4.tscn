@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://prefab/dew_csgo.tscn" type="PackedScene" id=1]
 [ext_resource path="res://prefab/bill.tscn" type="PackedScene" id=2]
@@ -18,11 +18,20 @@
 [ext_resource path="res://media/Sound/csgo/friends/dew-go_b_now01.wav" type="AudioStream" id=16]
 [ext_resource path="res://media/Sound/csgo/friends/bill-noise01.wav" type="AudioStream" id=17]
 [ext_resource path="res://media/Sound/csgo/friends/bill-miss_my_shot01.wav" type="AudioStream" id=18]
-[ext_resource path="res://media/Sound/csgo/csgo/awp_02.wav" type="AudioStream" id=19]
+[ext_resource path="res://media/Sound/csgo/csgo/m4a1_clipin.wav" type="AudioStream" id=19]
+[ext_resource path="res://media/gun/awp.png" type="Texture" id=20]
+[ext_resource path="res://media/Sound/csgo/csgo/awp_distant.wav" type="AudioStream" id=21]
+[ext_resource path="res://media/Sound/csgo/friends/dew-no_AWP01.wav" type="AudioStream" id=22]
+[ext_resource path="res://media/dew/alex_csgo.png" type="Texture" id=23]
+[ext_resource path="res://media/Sound/csgo/friends/dew-dont-block-me01.wav" type="AudioStream" id=24]
+[ext_resource path="res://media/Sound/csgo/friends/alex-no01.wav" type="AudioStream" id=25]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
 font_data = ExtResource( 7 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 601.262, 85.8947 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "bill_event01"
@@ -63,7 +72,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=3]
 resource_name = "dew_event01"
 length = 1.4
 tracks/0/type = "value"
@@ -91,7 +100,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=4]
 resource_name = "event01_5"
 length = 1.5
 tracks/0/type = "value"
@@ -119,7 +128,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=5]
 resource_name = "event03"
 length = 0.5
 tracks/0/type = "value"
@@ -147,9 +156,9 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=6]
 resource_name = "event05"
-length = 6.0
+length = 7.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("bill:position")
 tracks/0/interp = 1
@@ -169,10 +178,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.9, 1.2, 2.3, 4, 4.5, 5.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0.9, 1.2, 2.3, 4, 5.7, 6.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 2.37841, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ), ExtResource( 16 ), ExtResource( 15 ), ExtResource( 19 ), ExtResource( 18 ), ExtResource( 17 ) ]
+"values": [ ExtResource( 4 ), ExtResource( 16 ), ExtResource( 15 ), ExtResource( 21 ), ExtResource( 18 ), ExtResource( 17 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("sfx:playing")
@@ -181,13 +190,145 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.9, 1.2, 2.3, 4, 4.5, 5.3 ),
+"times": PoolRealArray( 0.9, 1.2, 2.3, 4, 5.7, 6.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ true, true, true, true, true, true ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=7]
+resource_name = "event06"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("awp:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 8608, -256 ), Vector2( 8784, 544 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sfx:stream")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 19 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("sfx:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "event07"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("sfx:stream")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 24 ), ExtResource( 25 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sfx:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("alex_csgo:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 90.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("alex_csgo:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 10416, 448 ), Vector2( 10448, 592 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "event_awp"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("sfx:stream")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 22 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sfx:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("awp:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 8784, 544 ), Vector2( 8400, 816 ) ]
+}
+
+[sub_resource type="Animation" id=8]
 length = 4.5
 step = 0.5
 tracks/0/type = "value"
@@ -239,10 +380,10 @@ tracks/3/keys = {
 "values": [ true, true, true ]
 }
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 10, 272 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 16, 96 )
 
 [node name="csgo_m4" type="Node2D"]
@@ -303,8 +444,13 @@ position = Vector2( 4160, 560 )
 scale = Vector2( 2.48123, 2.48123 )
 texture = ExtResource( 14 )
 
+[node name="orange_box2" type="Sprite" parent="."]
+position = Vector2( 8560, 528 )
+scale = Vector2( 2.48123, 2.48123 )
+texture = ExtResource( 14 )
+
 [node name="bill" parent="." instance=ExtResource( 2 )]
-position = Vector2( 5120, 320 )
+position = Vector2( -192, 320 )
 scale = Vector2( 0.570313, 0.570313 )
 
 [node name="dew_csgo" parent="." instance=ExtResource( 1 )]
@@ -314,6 +460,14 @@ scale = Vector2( 0.46875, 0.46875 )
 [node name="Camera2D" type="Camera2D" parent="dew_csgo"]
 position = Vector2( 750.933, -273.067 )
 
+[node name="timer_dead" type="Timer" parent="dew_csgo"]
+wait_time = 3.0
+
+[node name="alex_csgo" type="Sprite" parent="."]
+position = Vector2( 10416, 448 )
+scale = Vector2( 0.8125, 0.8125 )
+texture = ExtResource( 23 )
+
 [node name="enemy_ct" parent="." instance=ExtResource( 9 )]
 position = Vector2( 4306.75, 487.25 )
 
@@ -321,16 +475,36 @@ position = Vector2( 4306.75, 487.25 )
 modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 7200, 496 )
 
+[node name="enemy_ct3" parent="." instance=ExtResource( 9 )]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 10832, 496 )
+
+[node name="awp" type="Sprite" parent="."]
+position = Vector2( 8608, -256 )
+scale = Vector2( 0.186274, 0.186274 )
+texture = ExtResource( 20 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Area2D" type="Area2D" parent="awp"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="awp/Area2D"]
+shape = SubResource( 11 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/bill_event01 = SubResource( 2 )
-anims/dew_event01 = SubResource( 6 )
-anims/event01_5 = SubResource( 8 )
-anims/event03 = SubResource( 7 )
-anims/event05 = SubResource( 9 )
-anims/intro = SubResource( 3 )
+anims/dew_event01 = SubResource( 3 )
+anims/event01_5 = SubResource( 4 )
+anims/event03 = SubResource( 5 )
+anims/event05 = SubResource( 6 )
+anims/event06 = SubResource( 7 )
+anims/event07 = SubResource( 13 )
+anims/event_awp = SubResource( 12 )
+anims/intro = SubResource( 8 )
 
 [node name="sfx" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 17 )
+stream = ExtResource( 8 )
 
 [node name="event" type="Node2D" parent="."]
 position = Vector2( 1424, 496 )
@@ -342,7 +516,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="event/event_back_block"]
-shape = SubResource( 5 )
+shape = SubResource( 9 )
 
 [node name="event01" type="Area2D" parent="event"]
 __meta__ = {
@@ -351,7 +525,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="event/event01"]
-shape = SubResource( 4 )
+shape = SubResource( 10 )
 
 [node name="event01_5" type="Area2D" parent="event"]
 position = Vector2( 896, 0 )
@@ -361,7 +535,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="event/event01_5"]
-shape = SubResource( 4 )
+shape = SubResource( 10 )
 
 [node name="event02" type="Area2D" parent="event"]
 position = Vector2( 1712, -16 )
@@ -372,7 +546,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="event/event02"]
 position = Vector2( 1408, 16 )
-shape = SubResource( 4 )
+shape = SubResource( 10 )
 
 [node name="event03" type="Area2D" parent="event"]
 position = Vector2( 2784, -16 )
@@ -383,7 +557,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="event/event03"]
 position = Vector2( 992, 16 )
-shape = SubResource( 4 )
+shape = SubResource( 10 )
 
 [node name="event04" type="Area2D" parent="event"]
 position = Vector2( 5008, 0 )
@@ -393,7 +567,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="event/event04"]
-shape = SubResource( 4 )
+shape = SubResource( 10 )
 
 [node name="event05" type="Area2D" parent="event"]
 position = Vector2( 6080, 0 )
@@ -403,13 +577,25 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="event/event05"]
-shape = SubResource( 4 )
+shape = SubResource( 10 )
+
+[node name="event07" type="Area2D" parent="event"]
+position = Vector2( 8688, 32 )
+__meta__ = {
+"_edit_group_": true,
+"_editor_description_": "Bill runs away"
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="event/event07"]
+shape = SubResource( 10 )
 
 [node name="timer_skip" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
 [connection signal="animation_finish" from="CanvasLayer/curtain" to="." method="_on_curtain_animation_finish"]
 [connection signal="dead" from="dew_csgo" to="." method="_on_dew_csgo_dead"]
+[connection signal="timeout" from="dew_csgo/timer_dead" to="." method="_on_timer_dead_timeout"]
+[connection signal="area_entered" from="awp/Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="area_entered" from="event/event_back_block" to="." method="_on_event_back_block_area_entered"]
 [connection signal="area_entered" from="event/event01" to="." method="_on_event01_area_entered"]
@@ -418,4 +604,5 @@ one_shot = true
 [connection signal="area_entered" from="event/event03" to="." method="_on_event03_area_entered"]
 [connection signal="area_entered" from="event/event04" to="." method="_on_event04_area_entered"]
 [connection signal="area_entered" from="event/event05" to="." method="_on_event05_area_entered"]
+[connection signal="area_entered" from="event/event07" to="." method="_on_event07_area_entered"]
 [connection signal="timeout" from="timer_skip" to="." method="_on_timer_skip_timeout"]

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/awp_distant.wav-7423ac412f7e59e744dfc9e2be305de7.sample"
+
+[deps]
+
+source_file="res://media/Sound/csgo/csgo/awp_distant.wav"
+dest_files=[ "res://.import/awp_distant.wav-7423ac412f7e59e744dfc9e2be305de7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

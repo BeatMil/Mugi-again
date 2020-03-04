@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/dew-toilet-toilet-toilet01.wav-feba84d3765f7d4abc183276be4ae4e9.sample"
+
+[deps]
+
+source_file="res://media/Sound/csgo/friends/dew-toilet-toilet-toilet01.wav"
+dest_files=[ "res://.import/dew-toilet-toilet-toilet01.wav-feba84d3765f7d4abc183276be4ae4e9.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

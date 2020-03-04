@@ -10,6 +10,7 @@ var state
 
 #cache
 const HUNK = preload("res://media/Sound/csgo/csgo/hunk.ogg")
+const ENCOUNTER = preload("res://media/Sound/csgo/csgo/Metal_Gear_Solid_OST_Encounter.ogg")
 const UHH = preload("res://media/Sound/csgo/friends/dew-auuhhu01.wav")
 onready var root = $"/root/singleton"
 onready var root_sfx = $"/root/SfxBlock"
@@ -20,6 +21,7 @@ onready var root_ost = $"/root/AudioBlock"
 
 func _ready() -> void:
 	get_node("enemy_ct2/VisibilityNotifier2D").disconnect("screen_entered",get_node("enemy_ct2"),"_on_VisibilityNotifier2D_screen_entered")
+	get_node("enemy_ct3/VisibilityNotifier2D").disconnect("screen_entered",get_node("enemy_ct3"),"_on_VisibilityNotifier2D_screen_entered")
 	$event/event_back_block.set_monitoring(false)
 	$CanvasLayer/skip.set_visible(false)
 	if $"/root/singleton".csgo_skip_m4 == true:
@@ -28,7 +30,7 @@ func _ready() -> void:
 		$"/root/singleton".csgo_skip_m4 = true
 	$CanvasLayer/curtain.set_visible(true)
 	state = anum.TALK
-	root.playsfx(root_ost,HUNK)
+	root.playsfx(root_ost,ENCOUNTER)
 	$CanvasLayer/curtain/AnimationPlayer.play("fade_in")
 	$AnimationPlayer.play("intro")
 	$CanvasLayer/tutorial.set_visible(false)
@@ -55,6 +57,8 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 		$dew_csgo/Camera2D.current = true
 		$CanvasLayer/skip.set_visible(false)
 		$event/event_back_block.set_monitoring(true)
+	elif anim_name == "event05":
+		$AnimationPlayer.play("event06")
 
 
 func _on_event01_area_entered(area: Area2D) -> void:
@@ -113,3 +117,17 @@ func _on_event05_area_entered(area: Area2D) -> void:
 		$event/event_back_block.set_position($event/event05.get_position() + Vector2(-200,0))
 		$AnimationPlayer.play("event05")
 		$event/event05.queue_free()
+
+
+func _on_Area2D_area_entered(area: Area2D) -> void:
+	if area.is_in_group("dew"):
+		$AnimationPlayer.play("event_awp")
+
+
+func _on_event07_area_entered(area: Area2D) -> void:
+	$enemy_ct3/AnimationPlayer.play("hide")
+	$event/event07.queue_free()
+
+
+func _on_timer_dead_timeout() -> void:
+	get_tree().change_scene("res://scene/csgo.tscn")

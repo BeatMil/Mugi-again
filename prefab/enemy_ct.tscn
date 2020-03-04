@@ -9,7 +9,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 128, 256 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=2]
 resource_name = "die"
 length = 0.4
 tracks/0/type = "value"
@@ -49,7 +49,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=3]
 resource_name = "hide"
 length = 0.5
 tracks/0/type = "value"
@@ -89,8 +89,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "idle"
+[sub_resource type="Animation" id=4]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -105,8 +104,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "shoot"
+[sub_resource type="Animation" id=5]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -145,7 +143,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="RayShape2D" id=4]
+[sub_resource type="RayShape2D" id=6]
 length = 2528.0
 
 [node name="enemy_ct" type="Sprite"]
@@ -166,10 +164,10 @@ shape = SubResource( 1 )
 stream = ExtResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/die = SubResource( 5 )
-anims/hide = SubResource( 6 )
-anims/idle = SubResource( 2 )
-anims/shoot = SubResource( 3 )
+anims/die = SubResource( 2 )
+anims/hide = SubResource( 3 )
+anims/idle = SubResource( 4 )
+anims/shoot = SubResource( 5 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
@@ -183,7 +181,7 @@ wait_time = 0.1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitscan"]
 position = Vector2( -32, 0 )
 rotation = 1.5708
-shape = SubResource( 4 )
+shape = SubResource( 6 )
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
