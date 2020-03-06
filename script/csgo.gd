@@ -24,7 +24,7 @@ func _ready() -> void:
 	playsfx($"/root/SfxBlock",FULL_MONEY)
 	playsfx($"/root/AudioBlock",MENU_GUN)
 	if $".".has_node("Control"):
-		$Control/revolver.grab_focus()
+		$Control/m4.grab_focus()
 #		print($Control/revolver.has_focus())
 
 func _input(event: InputEvent) -> void:

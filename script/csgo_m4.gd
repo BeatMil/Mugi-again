@@ -12,6 +12,7 @@ var clear : bool = false
 const HUNK = preload("res://media/Sound/csgo/csgo/hunk.ogg")
 const ENCOUNTER = preload("res://media/Sound/csgo/csgo/Metal_Gear_Solid_OST_Encounter.ogg")
 const UHH = preload("res://media/Sound/csgo/friends/dew-auuhhu01.wav")
+const KICKED = preload("res://media/Sound/csgo/csgo/kicked.wav")
 onready var root = $"/root/singleton"
 onready var root_sfx = $"/root/SfxBlock"
 onready var root_ost = $"/root/AudioBlock"
@@ -65,6 +66,7 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 		$"/root/singleton".csgo_clear = true
 		$CanvasLayer/kicked.set_visible(true)
 		$CanvasLayer/kicked/Timer.start()
+		$"/root/singleton".playsfx($"/root/AudioBlock",KICKED)
 
 
 func _on_event01_area_entered(area: Area2D) -> void:
