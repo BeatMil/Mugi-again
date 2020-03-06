@@ -2,6 +2,7 @@ extends Sprite
 
 
 func _ready() -> void:
+	$sfx.set_volume_db($"/root/singleton".volume)
 	$hitscan/CollisionShape2D.set_disabled(true)
 	$AnimationPlayer.play("idle")
 	

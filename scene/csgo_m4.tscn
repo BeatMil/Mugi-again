@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://prefab/dew_csgo.tscn" type="PackedScene" id=1]
 [ext_resource path="res://prefab/bill.tscn" type="PackedScene" id=2]
@@ -25,16 +25,16 @@
 [ext_resource path="res://media/dew/alex_csgo.png" type="Texture" id=23]
 [ext_resource path="res://media/Sound/csgo/friends/dew-dont-block-me01.wav" type="AudioStream" id=24]
 [ext_resource path="res://media/Sound/csgo/friends/alex-no01.wav" type="AudioStream" id=25]
+[ext_resource path="res://media/csgo/kicked.png" type="Texture" id=26]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
 font_data = ExtResource( 7 )
 
-[sub_resource type="RectangleShape2D" id=11]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 601.262, 85.8947 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "bill_event01"
+[sub_resource type="Animation" id=3]
 tracks/0/type = "value"
 tracks/0/path = NodePath("bill:position")
 tracks/0/interp = 1
@@ -72,8 +72,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "dew_event01"
+[sub_resource type="Animation" id=4]
 length = 1.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("sfx:stream")
@@ -100,8 +99,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "event01_5"
+[sub_resource type="Animation" id=5]
 length = 1.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("sfx:stream")
@@ -128,8 +126,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "event03"
+[sub_resource type="Animation" id=6]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("sfx:stream")
@@ -156,8 +153,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "event05"
+[sub_resource type="Animation" id=7]
 length = 7.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("bill:position")
@@ -196,8 +192,7 @@ tracks/2/keys = {
 "values": [ true, true, true, true, true, true ]
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "event06"
+[sub_resource type="Animation" id=8]
 length = 1.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("awp:position")
@@ -236,7 +231,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=9]
 resource_name = "event07"
 length = 5.0
 tracks/0/type = "value"
@@ -288,7 +283,7 @@ tracks/3/keys = {
 "values": [ Vector2( 10416, 448 ), Vector2( 10448, 592 ) ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=10]
 resource_name = "event_awp"
 length = 1.5
 tracks/0/type = "value"
@@ -328,7 +323,7 @@ tracks/2/keys = {
 "values": [ Vector2( 8784, 544 ), Vector2( 8400, 816 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=11]
 length = 4.5
 step = 0.5
 tracks/0/type = "value"
@@ -380,16 +375,25 @@ tracks/3/keys = {
 "values": [ true, true, true ]
 }
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 10, 272 )
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 16, 96 )
 
 [node name="csgo_m4" type="Node2D"]
 script = ExtResource( 3 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="kicked" type="Sprite" parent="CanvasLayer"]
+visible = false
+position = Vector2( 680, 380 )
+scale = Vector2( 1.0625, 1.07778 )
+texture = ExtResource( 26 )
+
+[node name="Timer" type="Timer" parent="CanvasLayer/kicked"]
+wait_time = 1.5
 
 [node name="tutorial" type="Control" parent="CanvasLayer"]
 margin_right = 40.0
@@ -450,7 +454,7 @@ scale = Vector2( 2.48123, 2.48123 )
 texture = ExtResource( 14 )
 
 [node name="bill" parent="." instance=ExtResource( 2 )]
-position = Vector2( -192, 320 )
+position = Vector2( 1536, 320 )
 scale = Vector2( 0.570313, 0.570313 )
 
 [node name="dew_csgo" parent="." instance=ExtResource( 1 )]
@@ -464,7 +468,7 @@ position = Vector2( 750.933, -273.067 )
 wait_time = 3.0
 
 [node name="alex_csgo" type="Sprite" parent="."]
-position = Vector2( 10416, 448 )
+position = Vector2( 10624, 464 )
 scale = Vector2( 0.8125, 0.8125 )
 texture = ExtResource( 23 )
 
@@ -490,21 +494,21 @@ __meta__ = {
 [node name="Area2D" type="Area2D" parent="awp"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="awp/Area2D"]
-shape = SubResource( 11 )
+shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/bill_event01 = SubResource( 2 )
-anims/dew_event01 = SubResource( 3 )
-anims/event01_5 = SubResource( 4 )
-anims/event03 = SubResource( 5 )
-anims/event05 = SubResource( 6 )
-anims/event06 = SubResource( 7 )
-anims/event07 = SubResource( 13 )
-anims/event_awp = SubResource( 12 )
-anims/intro = SubResource( 8 )
+anims/bill_event01 = SubResource( 3 )
+anims/dew_event01 = SubResource( 4 )
+anims/event01_5 = SubResource( 5 )
+anims/event03 = SubResource( 6 )
+anims/event05 = SubResource( 7 )
+anims/event06 = SubResource( 8 )
+anims/event07 = SubResource( 9 )
+anims/event_awp = SubResource( 10 )
+anims/intro = SubResource( 11 )
 
 [node name="sfx" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 8 )
+stream = ExtResource( 24 )
 
 [node name="event" type="Node2D" parent="."]
 position = Vector2( 1424, 496 )
@@ -516,7 +520,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="event/event_back_block"]
-shape = SubResource( 9 )
+shape = SubResource( 12 )
 
 [node name="event01" type="Area2D" parent="event"]
 __meta__ = {
@@ -525,7 +529,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="event/event01"]
-shape = SubResource( 10 )
+shape = SubResource( 13 )
 
 [node name="event01_5" type="Area2D" parent="event"]
 position = Vector2( 896, 0 )
@@ -535,7 +539,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="event/event01_5"]
-shape = SubResource( 10 )
+shape = SubResource( 13 )
 
 [node name="event02" type="Area2D" parent="event"]
 position = Vector2( 1712, -16 )
@@ -546,7 +550,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="event/event02"]
 position = Vector2( 1408, 16 )
-shape = SubResource( 10 )
+shape = SubResource( 13 )
 
 [node name="event03" type="Area2D" parent="event"]
 position = Vector2( 2784, -16 )
@@ -557,7 +561,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="event/event03"]
 position = Vector2( 992, 16 )
-shape = SubResource( 10 )
+shape = SubResource( 13 )
 
 [node name="event04" type="Area2D" parent="event"]
 position = Vector2( 5008, 0 )
@@ -567,7 +571,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="event/event04"]
-shape = SubResource( 10 )
+shape = SubResource( 13 )
 
 [node name="event05" type="Area2D" parent="event"]
 position = Vector2( 6080, 0 )
@@ -577,7 +581,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="event/event05"]
-shape = SubResource( 10 )
+shape = SubResource( 13 )
 
 [node name="event07" type="Area2D" parent="event"]
 position = Vector2( 8688, 32 )
@@ -587,11 +591,12 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="event/event07"]
-shape = SubResource( 10 )
+shape = SubResource( 13 )
 
 [node name="timer_skip" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+[connection signal="timeout" from="CanvasLayer/kicked/Timer" to="." method="_on_Timer_timeout"]
 [connection signal="animation_finish" from="CanvasLayer/curtain" to="." method="_on_curtain_animation_finish"]
 [connection signal="dead" from="dew_csgo" to="." method="_on_dew_csgo_dead"]
 [connection signal="timeout" from="dew_csgo/timer_dead" to="." method="_on_timer_dead_timeout"]

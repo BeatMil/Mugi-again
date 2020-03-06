@@ -5,7 +5,7 @@ enum anum {
 	PLAY
 }
 var state
-
+var clear : bool = false
 
 
 #cache
@@ -22,6 +22,7 @@ onready var root_ost = $"/root/AudioBlock"
 func _ready() -> void:
 	get_node("enemy_ct2/VisibilityNotifier2D").disconnect("screen_entered",get_node("enemy_ct2"),"_on_VisibilityNotifier2D_screen_entered")
 	get_node("enemy_ct3/VisibilityNotifier2D").disconnect("screen_entered",get_node("enemy_ct3"),"_on_VisibilityNotifier2D_screen_entered")
+	$CanvasLayer/kicked.set_visible(false)
 	$event/event_back_block.set_monitoring(false)
 	$CanvasLayer/skip.set_visible(false)
 	if $"/root/singleton".csgo_skip_m4 == true:
@@ -59,6 +60,11 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 		$event/event_back_block.set_monitoring(true)
 	elif anim_name == "event05":
 		$AnimationPlayer.play("event06")
+	elif anim_name == "event07":
+		clear = true
+		$"/root/singleton".csgo_clear = true
+		$CanvasLayer/kicked.set_visible(true)
+		$CanvasLayer/kicked/Timer.start()
 
 
 func _on_event01_area_entered(area: Area2D) -> void:
@@ -75,7 +81,11 @@ func _on_dew_csgo_dead() -> void:
 
 func _on_curtain_animation_finish(anim) -> void:
 	if anim == "fade_out":
-		get_tree().change_scene("res://scene/csgo.tscn")
+		if clear:
+			get_tree().change_scene("res://scene/stage02.tscn")
+		else:
+			get_tree().change_scene("res://scene/csgo.tscn")
+
 
 
 func _on_timer_skip_timeout() -> void:
@@ -131,3 +141,7 @@ func _on_event07_area_entered(area: Area2D) -> void:
 
 func _on_timer_dead_timeout() -> void:
 	get_tree().change_scene("res://scene/csgo.tscn")
+
+
+func _on_Timer_timeout() -> void:
+	$CanvasLayer/curtain/AnimationPlayer.play("fade_out")

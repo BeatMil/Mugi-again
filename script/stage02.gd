@@ -20,6 +20,8 @@ var dialog_csgo_play = ["Now I can play CSGO.","Oh look, there is one seat left.
 var line : int = 0
 
 func _ready():
+	if $"/root/singleton".csgo_clear:
+		$choices/text_label3.queue_free()
 	$ColorRect.set_visible(true)
 	$AnimationPlayer.play("fade_in")
 	if get_node("/root/singleton").stage02 == false:

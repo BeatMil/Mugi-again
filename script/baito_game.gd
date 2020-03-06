@@ -107,7 +107,7 @@ func _input(_event):
 		$"/root/AudioBlock".set_stream(crab_rave)
 		$"/root/AudioBlock".play()
 		$dew_baito/AnimationPlayer.play("dance")
-	elif Input.is_key_pressed(KEY_ESCAPE) and result:
+	elif Input.is_key_pressed(KEY_ESCAPE) or Input.is_action_just_pressed("ui_accept") and result:
 		$AnimationPlayer.play("fade_out")
 	
 func check_fig_and_play_sound(drop : bool):

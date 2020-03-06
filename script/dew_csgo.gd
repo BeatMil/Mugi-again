@@ -73,6 +73,7 @@ func _ready() -> void:
 	$AnimationPlayer.play("idle")
 
 func _physics_process(delta: float) -> void:
+	$AudioStreamPlayer.set_volume_db($"/root/singleton".volume)
 	$label_state.text = str(anum.keys()[state])
 #	if state != anum.STOP and state != anum.DIE:
 	if state == anum.MOVE:

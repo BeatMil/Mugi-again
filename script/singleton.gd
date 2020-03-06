@@ -3,12 +3,13 @@ extends Node
 #player status
 var current_hp = 3
 var karate_been_to = false
-var money : int = 1000000
+var money : int = 100
 var volume = 0
 #story progress
 var stage02 = false
 var teddy_bear = false
 var csgo = false
+var csgo_clear = false
 var dev_note = false
 var csgo_skip_m4 = false
 
