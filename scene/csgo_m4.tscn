@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://prefab/dew_csgo.tscn" type="PackedScene" id=1]
 [ext_resource path="res://prefab/bill.tscn" type="PackedScene" id=2]
@@ -28,6 +28,10 @@
 [ext_resource path="res://media/csgo/kicked.png" type="Texture" id=26]
 [ext_resource path="res://media/csgo/Screenshot (60).png" type="Texture" id=27]
 [ext_resource path="res://media/csgo/Screenshot (63).png" type="Texture" id=28]
+[ext_resource path="res://media/gun/M4.png" type="Texture" id=29]
+[ext_resource path="res://media/gun/mp7.png" type="Texture" id=30]
+[ext_resource path="res://media/gun/p90.png" type="Texture" id=31]
+[ext_resource path="res://media/csgo/scene_front.png" type="Texture" id=32]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -447,6 +451,9 @@ __meta__ = {
 
 [node name="background" type="Node2D" parent="."]
 modulate = Color( 0.529412, 0.529412, 0.529412, 1 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Screenshot (60)" type="Sprite" parent="background"]
 position = Vector2( 2400, 320 )
@@ -472,6 +479,11 @@ texture = ExtResource( 14 )
 position = Vector2( 1536, 320 )
 scale = Vector2( 0.570313, 0.570313 )
 
+[node name="mp7" type="Sprite" parent="bill"]
+position = Vector2( 168.329, -56.1094 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 30 )
+
 [node name="dew_csgo" parent="." instance=ExtResource( 1 )]
 position = Vector2( -192, 512 )
 scale = Vector2( 0.46875, 0.46875 )
@@ -482,10 +494,20 @@ position = Vector2( 750.933, -273.067 )
 [node name="timer_dead" type="Timer" parent="dew_csgo"]
 wait_time = 3.0
 
+[node name="M4" type="Sprite" parent="dew_csgo"]
+position = Vector2( 307.2, -102.4 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 29 )
+
 [node name="alex_csgo" type="Sprite" parent="."]
 position = Vector2( 10624, 464 )
 scale = Vector2( 0.8125, 0.8125 )
 texture = ExtResource( 23 )
+
+[node name="p90" type="Sprite" parent="alex_csgo"]
+position = Vector2( 98.4648, 0.00012207 )
+scale = Vector2( 0.24359, 0.24359 )
+texture = ExtResource( 31 )
 
 [node name="enemy_ct" parent="." instance=ExtResource( 9 )]
 position = Vector2( 4306.75, 487.25 )
@@ -611,6 +633,11 @@ shape = SubResource( 13 )
 [node name="timer_skip" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
+[node name="scene_front" type="Sprite" parent="."]
+position = Vector2( 64, 320 )
+scale = Vector2( 0.946512, 0.945813 )
+texture = ExtResource( 32 )
 [connection signal="timeout" from="CanvasLayer/kicked/Timer" to="." method="_on_Timer_timeout"]
 [connection signal="animation_finish" from="CanvasLayer/curtain" to="." method="_on_curtain_animation_finish"]
 [connection signal="dead" from="dew_csgo" to="." method="_on_dew_csgo_dead"]

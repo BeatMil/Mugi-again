@@ -29,6 +29,15 @@ func raycast_check():
 		on_point = false
 
 func move():
+#	if Input.is_action_pressed("ui_right") and Input.is_action_pressed("ui_down"):
+#		$Area2D/CollisionShape2D.set_scale(Vector2(0.5,0.5))
+#		$Area2D/CollisionShape2D.set_position(Vector2(0,100))
+#		$AnimationPlayer.play("crouch")
+#		set_flip_h(false)
+#		direction = 1
+#		move_local_x((speed - 10) * direction)
+
+# Crouching and walk make it that other animation won't play so I can't make it happen
 	if Input.is_action_pressed("ui_down"):
 		$Area2D/CollisionShape2D.set_scale(Vector2(0.5,0.5))
 		$Area2D/CollisionShape2D.set_position(Vector2(0,100))
@@ -49,7 +58,7 @@ func move():
 func attack():
 	if Input.is_action_just_pressed("ui_accept") and !on_point:
 		$AnimationPlayer.play("gun_jamed")
-	elif Input.is_action_just_pressed("ui_accept") and on_point:
+	elif Input.is_action_just_pressed("ui_accept") and on_point and !Input.is_action_pressed("ui_down"):
 		if $RayCast2D.get_collider().is_in_group("enemy") and enemy_ct3:
 			$"../AnimationPlayer".play("event07")
 			$"/root/singleton".playsfx($AudioStreamPlayer,SG)

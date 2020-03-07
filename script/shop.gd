@@ -8,8 +8,8 @@ var AWESOME = preload("res://media/Sound/merchant/merchat_awesome_choice.wav")
 var KACHING = preload("res://media/Sound/kaching.wav")
 
 #config
-var teddy_bear_price = 2000
-var laptop_price = 5000
+var teddy_bear_price = 1000
+var laptop_price = 3000
 var dev_note_price = 100000
 
 func _ready() -> void:
