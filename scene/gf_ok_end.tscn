@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://prefab/dialog02.tscn" type="PackedScene" id=1]
+
+[node name="gf_ok_end" type="Node2D"]
+
+[node name="textPolygon" parent="." instance=ExtResource( 1 )]
+dialogs = [ "kyou wa nanno hi ga wakaru?", "wakaru nara puresento wa doko nano???", "saitei!!!", "*gf left the chat*" ]

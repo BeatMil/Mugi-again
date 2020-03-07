@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/firefly.ogg-b726ac476077b75562f9e5e0ccc5b48b.oggstr"
+
+[deps]
+
+source_file="res://media/Sound/credit/firefly.ogg"
+dest_files=[ "res://.import/firefly.ogg-b726ac476077b75562f9e5e0ccc5b48b.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

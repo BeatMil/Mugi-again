@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://prefab/dialog02.tscn" type="PackedScene" id=1]
+
+[node name="gf_bad_end" type="Node2D"]
+
+[node name="textPolygon" parent="." instance=ExtResource( 1 )]
+polygon = PoolVector2Array( 128, 512, 128, 640, 1152, 640, 1152, 512, 1017.78, 512 )
+dialogs = [ "Watashi no koto wo kamatte yori ge-muyaritai no ne", "jya koko de wakare no yo!", "*gf left the chat*" ]

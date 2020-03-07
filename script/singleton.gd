@@ -9,10 +9,11 @@ var volume = 0
 var stage02 = false
 var teddy_bear = false
 var csgo = false
-var csgo_clear = false
 var dev_note = false
 var csgo_skip_m4 = false
-
+#story choices
+var csgo_clear = false
+var gf_clear = false
 	
 func _process(delta: float) -> void:
 	for i in get_tree().current_scene.get_children():
