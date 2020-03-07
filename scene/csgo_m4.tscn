@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://prefab/dew_csgo.tscn" type="PackedScene" id=1]
 [ext_resource path="res://prefab/bill.tscn" type="PackedScene" id=2]
@@ -26,6 +26,8 @@
 [ext_resource path="res://media/Sound/csgo/friends/dew-dont-block-me01.wav" type="AudioStream" id=24]
 [ext_resource path="res://media/Sound/csgo/friends/alex-no01.wav" type="AudioStream" id=25]
 [ext_resource path="res://media/csgo/kicked.png" type="Texture" id=26]
+[ext_resource path="res://media/csgo/Screenshot (60).png" type="Texture" id=27]
+[ext_resource path="res://media/csgo/Screenshot (63).png" type="Texture" id=28]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -442,6 +444,19 @@ text = "SKIP (SPACE)"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="background" type="Node2D" parent="."]
+modulate = Color( 0.529412, 0.529412, 0.529412, 1 )
+
+[node name="Screenshot (60)" type="Sprite" parent="background"]
+position = Vector2( 2400, 320 )
+scale = Vector2( 3.8, 1 )
+texture = ExtResource( 27 )
+
+[node name="Screenshot (63)" type="Sprite" parent="background"]
+position = Vector2( 8112, 320 )
+scale = Vector2( 5.125, 1 )
+texture = ExtResource( 28 )
 
 [node name="orange_box" type="Sprite" parent="."]
 position = Vector2( 4160, 560 )

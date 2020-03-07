@@ -32,9 +32,11 @@ func move():
 	if Input.is_action_pressed("ui_down"):
 		$Area2D/CollisionShape2D.set_scale(Vector2(0.5,0.5))
 		$Area2D/CollisionShape2D.set_position(Vector2(0,100))
+		$AnimationPlayer.play("crouch")
 	elif Input.is_action_just_released("ui_down"):
 		$Area2D/CollisionShape2D.set_scale(Vector2(1,1))
 		$Area2D/CollisionShape2D.set_position(Vector2(0,0))
+		$AnimationPlayer.play("idle")
 	elif Input.is_action_pressed("ui_right"):
 		set_flip_h(false)
 		direction = 1
