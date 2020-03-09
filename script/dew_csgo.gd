@@ -9,7 +9,7 @@ enum anum {
 signal dead
 
 #config
-var speed : int = 15
+var speed : int = 10
 var direction : int = 1# 1 = facing right
 var velocity : Vector2
 

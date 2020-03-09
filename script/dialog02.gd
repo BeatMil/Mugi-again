@@ -37,3 +37,4 @@ func _on_Timer_timeout(): # Make text slowly appear (typing appear)
 	text.visible_characters += 1
 	if text.get_visible_characters() == dialogs[line].length():
 		$Timer.stop()
+

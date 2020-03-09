@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/dew-I_here.wav-97ee42626806ba8b3ea2fa9ca43cd8ea.sample"
+
+[deps]
+
+source_file="res://media/Sound/csgo/friends/dew-I_here.wav"
+dest_files=[ "res://.import/dew-I_here.wav-97ee42626806ba8b3ea2fa9ca43cd8ea.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

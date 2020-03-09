@@ -10,10 +10,11 @@ var state_talk_csgo01 = false
 var shop = false
 var girlfriend = false
 var csgo = false
-var csgo2 = false # csgo helper
+var csgo2 = false # csgo helper If dew bought laptop then he can play csgo
 var baito = false
 
 var shingg01 = load("res://media/Sound/shingg01.wav")
+const I_HERE = preload("res://media/Sound/csgo/friends/dew-I_here.wav")
 var dialog = ["Tadaimaa","Wait..","I live alone 5555","What should I do?"]
 var dialog_csgo = ["Potato laptop...","I can't play CSGO with this.","I need to buy a new laptop."]
 var dialog_csgo_play = ["Now I can play CSGO.","Oh look, there is one seat left.","I'm in!!"]
@@ -22,9 +23,20 @@ var line : int = 0
 func _ready():
 	if $"/root/singleton".csgo_clear:
 		$choices/text_label3.queue_free()
+	if $"/root/singleton".gf_clear:
+		$choices/text_label2.queue_free()
 	$ColorRect.set_visible(true)
 	$AnimationPlayer.play("fade_in")
-	if get_node("/root/singleton").stage02 == false:
+	if $"/root/singleton".csgo_clear and $"/root/singleton".gf_clear:
+		$dew/VisibilityNotifier2D.disconnect("screen_exited",self,"_on_VisibilityNotifier2D_screen_exited")
+		$dew.position = $pos1.position - Vector2(200,0)
+		$dew.set_z_index(6)
+		$dew/AnimationPlayer.play("sad")
+		$"/root/singleton".playsfx($"/root/SfxBlock",I_HERE)
+		state_play01 = false
+		$AnimationPlayer.play_backwards("fade_in")
+		$fade_timer.start()
+	elif get_node("/root/singleton").stage02 == false:
 		var tween = get_node("Tween")
 	#	tween.set_repeat(true)
 		tween.interpolate_property($dew, "position",$dew.position,$pos1.position,
@@ -114,6 +126,9 @@ func _input(_event):
 		$fade_timer.start()
 		$AnimationPlayer.play_backwards("fade_in")
 	elif Input.is_action_just_pressed("ui_accept") and girlfriend:
+		$dew/VisibilityNotifier2D.disconnect("screen_exited",self,"_on_VisibilityNotifier2D_screen_exited")
+		$fade_timer.start()
+		$AnimationPlayer.play_backwards("fade_in")
 		print("gf")
 	elif Input.is_action_just_pressed("ui_accept") and csgo:
 		print("CSGO!")
@@ -201,5 +216,15 @@ func _on_fade_timer_timeout() -> void:
 		get_tree().change_scene("res://scene/baito_game.tscn")
 	elif shop:
 		get_tree().change_scene("res://scene/shop.tscn")
+	elif girlfriend:
+		if !$"/root/singleton".csgo_clear and !$"/root/singleton".teddy_bear:
+			get_tree().change_scene("res://scene/gf_ok_end.tscn")
+		elif $"/root/singleton".csgo_clear and !$"/root/singleton".teddy_bear:
+			get_tree().change_scene("res://scene/gf_bad_end.tscn")
+	elif $"/root/singleton".gf_clear and $"/root/singleton".csgo_clear:
+		get_tree().change_scene("res://scene/credit.tscn")
 	elif csgo2:
-		get_tree().change_scene("res://scene/csgo.tscn")
+		if $"/root/singleton".gf_clear:
+			get_tree().change_scene("res://scene/csgo_end.tscn")
+		else:
+			get_tree().change_scene("res://scene/csgo.tscn")

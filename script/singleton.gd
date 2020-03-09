@@ -3,7 +3,7 @@ extends Node
 #player status
 var current_hp = 3
 var karate_been_to = false
-var money : int = 0
+var money : int = 3000
 var volume = 0
 #story progress
 var stage02 = false
@@ -19,7 +19,6 @@ func _process(delta: float) -> void:
 	for i in get_tree().current_scene.get_children():
 		if i is AudioStreamPlayer:
 			i.set_volume_db(volume)
-			
 
 func playsfx(player,sfx):
 	player.set_stream(sfx)

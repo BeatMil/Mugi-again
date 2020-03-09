@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://media/Font/Code Vein Fonts/Roboto-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://script/credit.gd" type="Script" id=2]
@@ -14,17 +14,20 @@
 [ext_resource path="res://media/animu_goods/senko.png" type="Texture" id=12]
 [ext_resource path="res://media/animu_goods/shiro.png" type="Texture" id=13]
 [ext_resource path="res://media/Sound/credit/credit_faces.png" type="Texture" id=14]
+[ext_resource path="res://media/dew/dew_sad.png" type="Texture" id=15]
 [ext_resource path="res://media/dew/dew_csgo.png" type="Texture" id=16]
 [ext_resource path="res://media/dew/alex_csgo.png" type="Texture" id=17]
 [ext_resource path="res://media/dew/bill_csgo.png" type="Texture" id=18]
 [ext_resource path="res://media/dew/dew01.png" type="Texture" id=19]
 [ext_resource path="res://media/dew/dew_baito.png" type="Texture" id=20]
+[ext_resource path="res://media/dew/dew_buff.png" type="Texture" id=21]
+[ext_resource path="res://script/uppu.gd" type="Script" id=22]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
 font_data = ExtResource( 1 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "stay_fade_in"
 length = 0.4
 tracks/0/type = "value"
@@ -40,8 +43,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "uppu_fade_in"
+[sub_resource type="Animation" id=3]
 length = 1.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("uppu:modulate")
@@ -66,6 +68,12 @@ color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="dew_sad" type="Sprite" parent="."]
+position = Vector2( 192, 496 )
+texture = ExtResource( 15 )
+script = ExtResource( 22 )
+speed = 2
 
 [node name="uppu" parent="." instance=ExtResource( 3 )]
 speed = 2
@@ -327,7 +335,7 @@ position = Vector2( 768, 13232 )
 texture = ExtResource( 12 )
 
 [node name="dew_csgo" type="Sprite" parent="uppu"]
-position = Vector2( 944, 16416 )
+position = Vector2( 944, 16624 )
 scale = Vector2( 0.625, 0.625 )
 texture = ExtResource( 16 )
 
@@ -341,7 +349,7 @@ position = Vector2( 432, 16608 )
 texture = ExtResource( 17 )
 
 [node name="bill_csgo" type="Sprite" parent="uppu"]
-position = Vector2( 528, 16064 )
+position = Vector2( 720, 16080 )
 texture = ExtResource( 18 )
 
 [node name="dew01" type="Sprite" parent="uppu"]
@@ -368,6 +376,10 @@ texture = ExtResource( 14 )
 [node name="orange_box" type="Sprite" parent="uppu"]
 position = Vector2( 944, 10768 )
 texture = ExtResource( 4 )
+
+[node name="dew_buff" type="Sprite" parent="."]
+position = Vector2( 736, 16032 )
+texture = ExtResource( 21 )
 
 [node name="stay" type="Node2D" parent="."]
 position = Vector2( 496, 352 )
@@ -398,8 +410,8 @@ wait_time = 1.6
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/stay_fade_in = SubResource( 3 )
-anims/uppu_fade_in = SubResource( 2 )
+anims/stay_fade_in = SubResource( 2 )
+anims/uppu_fade_in = SubResource( 3 )
 [connection signal="timeout" from="timer_start" to="." method="_on_timer_start_timeout"]
 [connection signal="timeout" from="timer_end" to="." method="_on_timer_end_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

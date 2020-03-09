@@ -1,8 +1,16 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://prefab/dialog02.tscn" type="PackedScene" id=1]
+[ext_resource path="res://prefab/curtain.tscn" type="PackedScene" id=2]
+[ext_resource path="res://script/gf_bad_end.gd" type="Script" id=3]
 
 [node name="gf_good_end" type="Node2D"]
+script = ExtResource( 3 )
 
 [node name="textPolygon" parent="." instance=ExtResource( 1 )]
 dialogs = [ "kyou wa nanno hi ga wakaru??", "puresento wa??", "....", "kore hoshikunai", "saitei!!", "*gf left the chat*" ]
+
+[node name="curtain" parent="." instance=ExtResource( 2 )]
+
+[node name="Timer" type="Timer" parent="."]
+[connection signal="tree_exited" from="textPolygon" to="textPolygon" method="_on_textPolygon_tree_exited"]

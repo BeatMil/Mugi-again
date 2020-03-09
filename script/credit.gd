@@ -11,6 +11,7 @@ func _ready() -> void:
 
 func _on_Timer_timeout() -> void:
 	$uppu.go_up = true
+	$dew_sad.go_up = true
 
 
 func _on_timer_start_timeout() -> void:

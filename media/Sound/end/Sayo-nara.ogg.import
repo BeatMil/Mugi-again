@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Sayo-nara.ogg-cdeb34f376955c6e4ea7e74df8497fb0.oggstr"
+
+[deps]
+
+source_file="res://media/Sound/end/Sayo-nara.ogg"
+dest_files=[ "res://.import/Sayo-nara.ogg-cdeb34f376955c6e4ea7e74df8497fb0.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
