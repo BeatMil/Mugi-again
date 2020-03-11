@@ -8,7 +8,7 @@ var volume = 0
 #story progress
 var stage02 = false
 var teddy_bear = false
-var csgo = false
+var csgo = true			#laptop
 var dev_note = false
 var csgo_skip_m4 = false
 #story choices
