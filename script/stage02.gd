@@ -23,8 +23,10 @@ var line : int = 0
 func _ready():
 	if $"/root/singleton".csgo_clear:
 		$choices/text_label3.queue_free()
+		$choices/text_label.queue_free()
 	if $"/root/singleton".gf_clear:
 		$choices/text_label2.queue_free()
+		$choices/text_label.queue_free()
 	$ColorRect.set_visible(true)
 	$AnimationPlayer.play("fade_in")
 	if $"/root/singleton".csgo_clear and $"/root/singleton".gf_clear:
@@ -86,7 +88,10 @@ func walk():
 
 func _input(_event):
 	# read dialog
-	if state_talk01 and (Input.is_key_pressed(KEY_SPACE) or Input.is_key_pressed(KEY_ENTER)):
+	
+#	if state_talk01 and (Input.is_key_pressed(KEY_SPACE) or Input.is_key_pressed(KEY_ENTER)):
+	# I don't know why I put 2 Input() in there but they were there
+	if state_talk01 and (Input.is_key_pressed(KEY_SPACE)):
 		line += 1
 		if line < dialog.size():
 			$"text_above".get_child(0).text = dialog[line]
@@ -97,7 +102,9 @@ func _input(_event):
 			$"text_above".queue_free()
 			$choices.set_visible(true)
 			$choices/text_label/shop.set_monitoring(true)
-	elif state_talk_csgo01 and (Input.is_key_pressed(KEY_SPACE) or Input.is_key_pressed(KEY_ENTER)):
+#	elif state_talk_csgo01 and (Input.is_key_pressed(KEY_SPACE) or Input.is_key_pressed(KEY_ENTER)):
+	# This one too I don't know 2 Input are there.
+	elif state_talk_csgo01 and (Input.is_key_pressed(KEY_SPACE)):
 		if $"/root/singleton".csgo == false: # check if can play csgo or not
 			if line < dialog_csgo.size() -1:
 				line += 1
