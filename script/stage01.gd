@@ -84,14 +84,11 @@ func _input(event):
 
 
 func _on_VisibilityNotifier2D_screen_exited():
-	print($dew.position)
 	if $dew.position.x < 0:
 		play01 = false
 		$AnimationPlayer2.play("fade_out")
 		karate = true
-		print("go to karate club")
 	elif $dew.position.x > 0:
 		play01 = false
 		$AnimationPlayer2.play("fade_out")
 		go_home = true
-		print("go home")
