@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://prefab/Particles2D_fish01.tscn" type="PackedScene" id=1]
+[ext_resource path="res://script/test_particle.gd" type="Script" id=2]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Particles2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 128, 128 )
+amount = 100
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

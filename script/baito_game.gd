@@ -38,6 +38,7 @@ var MAIKA_DROP = preload("res://media/Sound/baito_game/maika_drop.wav")
 var MAIKA_IN_BOX = preload("res://media/Sound/baito_game/maika_in_box.wav")
 
 func _ready():
+	$Particles2D.set_emitting(false)
 	$dew_baito/AnimationPlayer.play("carry")
 	$fade.set_visible(true)
 	$AnimationPlayer2.play("fade_in")
@@ -68,6 +69,7 @@ func _input(_event):
 #		$sfxblock.play()
 		add_money(100)
 		$AnimationPlayer.play("money_up")
+		$Particles2D.set_emitting(true)
 		put_down = true
 		#destroying fig node
 #		get_node("@box@2").queue_free()  #new name for the newly spawn same name node
@@ -214,6 +216,7 @@ func _on_put_down_timer_timeout():
 	put_down = false
 	fig_spawn($fig_spawner.position,Vector2(0.5,0.5),-90)
 	$dew_baito/AnimationPlayer.play("carry")
+	$Particles2D.set_emitting(false)
 	$dew_baito/put_down_timer.stop()
 
 

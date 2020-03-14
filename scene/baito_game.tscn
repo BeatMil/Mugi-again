@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://script/baito_game.gd" type="Script" id=1]
 [ext_resource path="res://media/dew/dew_baito.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://media/Font/Code Vein Fonts/Roboto-Bold.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://script/tutorial_pause.gd" type="Script" id=5]
 [ext_resource path="res://media/dew/dew_buff.png" type="Texture" id=6]
+[ext_resource path="res://prefab/Particles2D_fish01.tscn" type="PackedScene" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -541,6 +542,11 @@ wait_time = 0.1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="border_check"]
 position = Vector2( -240, 560 )
 shape = SubResource( 17 )
+
+[node name="Particles2D" parent="." instance=ExtResource( 7 )]
+position = Vector2( 336, 544 )
+scale = Vector2( 2, 2 )
+z_index = -3
 [connection signal="timeout" from="box_timer" to="." method="_on_box_timer_timeout"]
 [connection signal="area_entered" from="dew_baito/dew_area2d" to="." method="_on_dew_area2d_area_entered"]
 [connection signal="area_exited" from="dew_baito/dew_area2d" to="." method="_on_dew_area2d_area_exited"]
