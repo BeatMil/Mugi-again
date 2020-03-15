@@ -3,6 +3,7 @@ extends Node2D
 var animu_goods = ["kazuma","megumin","aqua"]
 
 const FIG = preload("res://prefab/animu_fig.tscn")
+const PARTICLE = preload("res://prefab/Particles2D_fish01.tscn")
 
 var time_waits = [0.4,0.8,1.2,1.6]
 const BOX = preload("res://prefab/box.tscn")
@@ -38,7 +39,8 @@ var MAIKA_DROP = preload("res://media/Sound/baito_game/maika_drop.wav")
 var MAIKA_IN_BOX = preload("res://media/Sound/baito_game/maika_in_box.wav")
 
 func _ready():
-	$Particles2D.set_emitting(false)
+	$firework/Particles2D3.set_emitting(false)
+	$firework/Particles2D4.set_emitting(false)
 	$dew_baito/AnimationPlayer.play("carry")
 	$fade.set_visible(true)
 	$AnimationPlayer2.play("fade_in")
@@ -69,7 +71,6 @@ func _input(_event):
 #		$sfxblock.play()
 		add_money(100)
 		$AnimationPlayer.play("money_up")
-		$Particles2D.set_emitting(true)
 		put_down = true
 		#destroying fig node
 #		get_node("@box@2").queue_free()  #new name for the newly spawn same name node
@@ -85,6 +86,14 @@ func _input(_event):
 			animu.set_z_index(-1)
 			on_box.get_parent().add_child(animu)
 			animu.beat_set_texture(texture)
+			#also instance particle effect there too
+			var particle = PARTICLE.instance()
+			particle.set_position($particle_pos.get_position())
+			particle.set_scale(Vector2(2,2))
+			particle.set_z_index(-5)
+			$".".add_child(particle)
+#			on_box.get_parent().add_child(particle)
+			
 	elif Input.is_action_just_pressed("ui_accept") and !on_point and !freak_out and !result and !put_down:
 		add_money(-100)
 		$AnimationPlayer.play("money_down")
@@ -109,6 +118,8 @@ func _input(_event):
 		$"/root/AudioBlock".set_stream(crab_rave)
 		$"/root/AudioBlock".play()
 		$dew_baito/AnimationPlayer.play("dance")
+		$firework/Particles2D3.set_emitting(true)
+		$firework/Particles2D4.set_emitting(true)
 	elif Input.is_key_pressed(KEY_ESCAPE) or Input.is_action_just_pressed("ui_accept") and result:
 		$AnimationPlayer.play("fade_out")
 	
@@ -216,7 +227,6 @@ func _on_put_down_timer_timeout():
 	put_down = false
 	fig_spawn($fig_spawner.position,Vector2(0.5,0.5),-90)
 	$dew_baito/AnimationPlayer.play("carry")
-	$Particles2D.set_emitting(false)
 	$dew_baito/put_down_timer.stop()
 
 
