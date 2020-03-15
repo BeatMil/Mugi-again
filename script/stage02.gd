@@ -224,7 +224,7 @@ func _on_fade_timer_timeout() -> void:
 	elif shop:
 		get_tree().change_scene("res://scene/shop.tscn")
 	elif girlfriend:
-		if !$"/root/singleton".csgo_clear and !$"/root/singleton".teddy_bear:
+		if !$"/root/singleton".csgo_clear and $"/root/singleton".teddy_bear:
 			get_tree().change_scene("res://scene/gf_ok_end.tscn")
 		elif $"/root/singleton".csgo_clear and !$"/root/singleton".teddy_bear:
 			get_tree().change_scene("res://scene/gf_bad_end.tscn")
