@@ -363,13 +363,13 @@ outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
 
-[sub_resource type="Gradient" id=20]
+[sub_resource type="Gradient" id=17]
 colors = PoolColorArray( 0.785426, 0.550911, 0.865234, 1, 0.881756, 0.888672, 0.784531, 1 )
 
-[sub_resource type="GradientTexture" id=21]
-gradient = SubResource( 20 )
+[sub_resource type="GradientTexture" id=18]
+gradient = SubResource( 17 )
 
-[sub_resource type="ParticlesMaterial" id=18]
+[sub_resource type="ParticlesMaterial" id=19]
 flag_disable_z = true
 direction = Vector3( 42, -50, 0 )
 spread = 20.0
@@ -378,15 +378,15 @@ initial_velocity = 300.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 4.0
-color_ramp = SubResource( 21 )
+color_ramp = SubResource( 18 )
 
-[sub_resource type="Gradient" id=22]
+[sub_resource type="Gradient" id=20]
 colors = PoolColorArray( 0.88036, 0.886719, 0.0727386, 1, 0.147018, 0.800781, 0.708846, 1 )
 
-[sub_resource type="GradientTexture" id=23]
-gradient = SubResource( 22 )
+[sub_resource type="GradientTexture" id=21]
+gradient = SubResource( 20 )
 
-[sub_resource type="ParticlesMaterial" id=19]
+[sub_resource type="ParticlesMaterial" id=22]
 flag_disable_z = true
 direction = Vector3( -42, -50, 0 )
 spread = 20.0
@@ -395,9 +395,9 @@ initial_velocity = 300.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 4.0
-color_ramp = SubResource( 23 )
+color_ramp = SubResource( 21 )
 
-[sub_resource type="RectangleShape2D" id=17]
+[sub_resource type="RectangleShape2D" id=23]
 extents = Vector2( 16, 80 )
 
 [node name="baito_game" type="Node2D"]
@@ -539,14 +539,14 @@ position = Vector2( 0, 768 )
 scale = Vector2( 2, 2 )
 amount = 100
 lifetime = 4.0
-process_material = SubResource( 18 )
+process_material = SubResource( 19 )
 
 [node name="Particles2D4" type="Particles2D" parent="firework"]
 position = Vector2( 1360, 768 )
 scale = Vector2( 2, 2 )
 amount = 100
 lifetime = 4.0
-process_material = SubResource( 19 )
+process_material = SubResource( 22 )
 
 [node name="fade" type="ColorRect" parent="."]
 visible = false
@@ -590,7 +590,7 @@ wait_time = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="border_check"]
 position = Vector2( -240, 560 )
-shape = SubResource( 17 )
+shape = SubResource( 23 )
 
 [node name="particle_pos" type="Position2D" parent="."]
 position = Vector2( 336, 544 )

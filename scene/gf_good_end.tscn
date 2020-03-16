@@ -13,4 +13,5 @@ dialogs = [ "kyou wa nanno hi ga wakaru??", "puresento wa??", "....", "kore hosh
 [node name="curtain" parent="." instance=ExtResource( 2 )]
 
 [node name="Timer" type="Timer" parent="."]
-[connection signal="tree_exited" from="textPolygon" to="textPolygon" method="_on_textPolygon_tree_exited"]
+[connection signal="tree_exited" from="textPolygon" to="." method="_on_textPolygon_tree_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

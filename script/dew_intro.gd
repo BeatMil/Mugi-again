@@ -1,13 +1,13 @@
 extends Control
 
 var menu_confirm = "res://media/Sound/menu_confirm.wav"
-
+const CODE_VEIN_START = preload("res://media/Sound/Code_Vein_Main_Menu.ogg")
 func _ready():
 #	$Button.grab_click_focus()
 	$AnimationPlayer.play("text_big_small")
 	$AnimationPlayer2.play("dew_logo")
 	$AnimationPlayer3.play("flash_white")
-	$"/root/AudioBlock".play()
+	$"/root/singleton".playsfx($"/root/AudioBlock",CODE_VEIN_START)
 	$dew_intro_menu.set_modulate(Color(0,0,0))
 #	print(singleton.player_name)
 #	print($"/root".name)

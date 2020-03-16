@@ -224,10 +224,19 @@ func _on_fade_timer_timeout() -> void:
 	elif shop:
 		get_tree().change_scene("res://scene/shop.tscn")
 	elif girlfriend:
-		if !$"/root/singleton".csgo_clear and $"/root/singleton".teddy_bear:
-			get_tree().change_scene("res://scene/gf_ok_end.tscn")
-		elif $"/root/singleton".csgo_clear and !$"/root/singleton".teddy_bear:
+		if $"/root/singleton".csgo == false: # automatic buy laptop because shop will be gone
+			$"/root/singleton".csgo = true
+			
+		if !$"/root/singleton".csgo_clear and $"/root/singleton".teddy_bear:		# gf_good_end
+			get_tree().change_scene("res://scene/gf_good_end.tscn")
+		elif $"/root/singleton".csgo_clear and !$"/root/singleton".teddy_bear:		# gf_bad_end
 			get_tree().change_scene("res://scene/gf_bad_end.tscn")
+		elif $"/root/singleton".csgo_clear and $"/root/singleton".teddy_bear:		# gf_bad_end(2)
+			get_tree().change_scene("res://scene/gf_bad_end.tscn")
+		elif !$"/root/singleton".csgo_clear and !$"/root/singleton".teddy_bear:		# gf_ok_end
+			get_tree().change_scene("res://scene/gf_ok_end.tscn")
+			
+		
 	elif $"/root/singleton".gf_clear and $"/root/singleton".csgo_clear:
 		get_tree().change_scene("res://scene/credit.tscn")
 	elif csgo2:

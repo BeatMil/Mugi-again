@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://prefab/dialog02.tscn" type="PackedScene" id=1]
 [ext_resource path="res://prefab/curtain.tscn" type="PackedScene" id=2]
 [ext_resource path="res://script/gf_bad_end.gd" type="Script" id=3]
+[ext_resource path="res://media/ENDINGS/senko-ending01.png" type="Texture" id=4]
 
 [node name="gf_bad_end" type="Node2D"]
 script = ExtResource( 3 )
@@ -11,10 +12,16 @@ script = ExtResource( 3 )
 polygon = PoolVector2Array( 128, 512, 128, 640, 1152, 640, 1152, 512, 1017.78, 512 )
 dialogs = [ "私の事をかまってよりゲームやりたいのね", "じゃあ ここで別れのよ！", "*gf left the chat*" ]
 
-[node name="curtain" parent="." instance=ExtResource( 2 )]
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 1105, 401 )
+scale = Vector2( 1.44647, 1.44648 )
+texture = ExtResource( 4 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.4
 one_shot = true
+
+[node name="curtain" parent="." instance=ExtResource( 2 )]
+visible = false
 [connection signal="tree_exited" from="textPolygon" to="." method="_on_textPolygon_tree_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

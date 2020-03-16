@@ -8,6 +8,9 @@ func _ready() -> void:
 	$uppu.set_modulate(Color(1, 1, 1, 0))
 	$"/root/singleton".playsfx($"/root/AudioBlock",FIREFLY)
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept"):
+		get_tree().change_scene("res://scene/prestart.tscn")
 
 func _on_Timer_timeout() -> void:
 	$uppu.go_up = true
