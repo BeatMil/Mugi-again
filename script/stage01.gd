@@ -15,6 +15,10 @@ var go_home = false
 var go_home02 = false
 
 func _ready():
+	$"/root/singleton".csgo == false
+	$"/root/singleton".gf_clear == false
+	$"/root/singleton".teddy_bear == false
+	$"/root/singleton".csgo_clear == false
 	$signs.visible = false
 	$AnimationPlayer2.play("fade_in")
 	

@@ -1,9 +1,37 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://prefab/dialog02.tscn" type="PackedScene" id=1]
 [ext_resource path="res://prefab/curtain.tscn" type="PackedScene" id=2]
 [ext_resource path="res://script/gf_ok_end.gd" type="Script" id=3]
 [ext_resource path="res://media/ENDINGS/78868938_p0_master1200.png" type="Texture" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "fade_away"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1090.13, 388.7 ), Vector2( 1648, 388.7 ) ]
+}
 
 [node name="gf_ok_end" type="Node2D"]
 script = ExtResource( 3 )
@@ -22,5 +50,8 @@ visible = false
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.4
 one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/fade_away = SubResource( 1 )
 [connection signal="tree_exited" from="textPolygon" to="." method="_on_textPolygon_tree_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

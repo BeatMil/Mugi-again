@@ -23,9 +23,11 @@ var line : int = 0
 func _ready():
 	if $"/root/singleton".csgo_clear:
 		$choices/text_label3.queue_free()
+		$choices/text_label4.queue_free()
 		$choices/text_label.queue_free()
 	if $"/root/singleton".gf_clear:
 		$choices/text_label2.queue_free()
+		$choices/text_label4.queue_free()
 		$choices/text_label.queue_free()
 	$ColorRect.set_visible(true)
 	$AnimationPlayer.play("fade_in")
