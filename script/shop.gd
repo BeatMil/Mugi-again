@@ -65,6 +65,7 @@ func _on_teddy_bear_pressed() -> void:
 		$AudioStreamPlayer.play()
 		$teddy_bear/Label.text = "TEDDY BEAR SOLD"
 		$teddy_bear/Label.set_modulate(Color(0.35, 0.35, 0.35))
+		$teddy_bear/teddy_bear.set_modulate(Color(0.35, 0.35, 0.35))
 		$teddy_bear.set_disabled(true)
 		$"/root/singleton".teddy_bear = true
 		
@@ -90,6 +91,7 @@ func _on_laptop_pressed() -> void:
 		$"/root/singleton".csgo = true
 		$laptop/Label.text = "NEW LAPTOP SOLD"
 		$laptop/Label.set_modulate(Color(0.35, 0.35, 0.35))
+		$laptop/laptop.set_modulate(Color(0.35, 0.35, 0.35))
 		$laptop.set_disabled(true)
 		
 	if $"/root/singleton".money <= 0:
