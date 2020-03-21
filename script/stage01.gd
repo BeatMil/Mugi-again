@@ -15,14 +15,16 @@ var go_home = false
 var go_home02 = false
 
 func _ready():
-	$"/root/singleton".csgo == false
-	$"/root/singleton".gf_clear == false
-	$"/root/singleton".teddy_bear == false
-	$"/root/singleton".csgo_clear == false
+	print_debug()
+	$"/root/singleton".gf_clear = false
+	$"/root/singleton".csgo_clear = false
+	$"/root/singleton".csgo = false
+	$"/root/singleton".teddy_bear = false
 	$signs.visible = false
 	$AnimationPlayer2.play("fade_in")
 	
 func _physics_process(_delta):
+
 	if $dew.global_position.x != $pos1.global_position.x and switch:
 		$dew.move_local_x(4)
 		$dew/AnimationPlayer.play("walk")
