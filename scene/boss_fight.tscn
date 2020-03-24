@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://prefab/yggdrasil.tscn" type="PackedScene" id=1]
+[ext_resource path="res://script/boss_fight.gd" type="Script" id=2]
+
+[node name="boss_fight" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="yggdrasil" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1072, 480 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

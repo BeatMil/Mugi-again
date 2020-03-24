@@ -6,7 +6,7 @@
 [ext_resource path="res://media/ENDINGS/senko_good_end.png" type="Texture" id=4]
 [ext_resource path="res://media/ENDINGS/teddy_bear.png" type="Texture" id=5]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "bear_move_in"
 length = 0.3
 tracks/0/type = "value"
@@ -22,7 +22,7 @@ tracks/0/keys = {
 "values": [ Vector2( -304, 320 ), Vector2( 272, 320 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "event_move_in"
 length = 5.0
 tracks/0/type = "value"
@@ -50,8 +50,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1152, 416 ), Vector2( 864, 416 ) ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "senko_move_in"
+[sub_resource type="Animation" id=3]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("senko_good_end:position")
@@ -66,8 +65,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1584, 416 ), Vector2( 1152, 416 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "senko_shake"
+[sub_resource type="Animation" id=4]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("senko_good_end:position")
@@ -103,10 +101,10 @@ visible = false
 [node name="Timer" type="Timer" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/bear_move_in = SubResource( 2 )
-anims/event_move_in = SubResource( 4 )
-anims/senko_move_in = SubResource( 1 )
-anims/senko_shake = SubResource( 3 )
+anims/bear_move_in = SubResource( 1 )
+anims/event_move_in = SubResource( 2 )
+anims/senko_move_in = SubResource( 3 )
+anims/senko_shake = SubResource( 4 )
 __meta__ = {
 "_editor_description_": "yayyy"
 }
