@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Sudden_Death.ogg-e7a75f3a96050ce18953373eff829a1c.oggstr"
+
+[deps]
+
+source_file="res://media/boss_fight/Sudden_Death.ogg"
+dest_files=[ "res://.import/Sudden_Death.ogg-e7a75f3a96050ce18953373eff829a1c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -16,3 +16,8 @@ func _on_Timer_timeout() -> void:
 		i += 1
 	else:
 		i = 0
+
+
+func _on_death_border_area_entered(area: Area2D) -> void:
+	if area.is_in_group("dew"):
+		print("RESTART THE GAME!")

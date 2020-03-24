@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://prefab/yggdrasil.tscn" type="PackedScene" id=1]
 [ext_resource path="res://script/boss_fight.gd" type="Script" id=2]
 [ext_resource path="res://prefab/dew_boss.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 496 )
 
 [node name="boss_fight" type="Node2D"]
 script = ExtResource( 2 )
@@ -17,4 +20,20 @@ scale = Vector2( 0.7, 0.7 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+margin_left = 128.0
+margin_top = 32.0
+margin_right = 1200.0
+margin_bottom = 70.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="death_border" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="death_border"]
+position = Vector2( -144, 352 )
+shape = SubResource( 1 )
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="area_entered" from="death_border" to="." method="_on_death_border_area_entered"]

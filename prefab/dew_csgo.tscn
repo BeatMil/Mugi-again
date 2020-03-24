@@ -8,7 +8,7 @@
 [ext_resource path="res://media/Sound/csgo/csgo/m4a1_clipin.wav" type="AudioStream" id=6]
 [ext_resource path="res://media/Sound/csgo/friends/dew-kak01.wav" type="AudioStream" id=7]
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=1]
 resource_name = "crouch"
 length = 0.001
 tracks/0/type = "value"
@@ -36,8 +36,7 @@ tracks/1/keys = {
 "values": [ 2 ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "die"
+[sub_resource type="Animation" id=2]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -100,8 +99,7 @@ tracks/4/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "gun_jamed"
+[sub_resource type="Animation" id=3]
 length = 1.7
 tracks/0/type = "value"
 tracks/0/path = NodePath("AudioStreamPlayer:stream")
@@ -128,8 +126,7 @@ tracks/1/keys = {
 "values": [ true, true ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "idle"
+[sub_resource type="Animation" id=4]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -156,8 +153,7 @@ tracks/1/keys = {
 "values": [ 2 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "kill01"
+[sub_resource type="Animation" id=5]
 length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("AudioStreamPlayer:stream")
@@ -184,27 +180,28 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 160, 208 )
 
 [node name="dew_csgo" type="Sprite"]
 texture = ExtResource( 1 )
 hframes = 2
+frame = 1
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/crouch = SubResource( 6 )
-anims/die = SubResource( 1 )
-anims/gun_jamed = SubResource( 2 )
-anims/idle = SubResource( 3 )
-anims/kill01 = SubResource( 4 )
+anims/crouch = SubResource( 1 )
+anims/die = SubResource( 2 )
+anims/gun_jamed = SubResource( 3 )
+anims/idle = SubResource( 4 )
+anims/kill01 = SubResource( 5 )
 
 [node name="Area2D" type="Area2D" parent="." groups=[
 "dew",
 ]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2( 176, 0 )
