@@ -1,6 +1,7 @@
 extends Node2D
 #const SAYONARA = preload("res://media/Sound/end/Sayo-nara.ogg")
 const PLAY_WITH_ME = preload("res://media/Sound/end/Play_With_Me.ogg")
+onready var good_transition = preload("res://scene/gf_good_end_transition.tscn")
 
 var space : int = 0 # count space then change sprite texture
 func _ready() -> void:
@@ -19,7 +20,7 @@ func _input(event: InputEvent) -> void:
 		elif space == 3:
 			$AnimationPlayer.play("senko_shake")
 		elif space == 5:
-			$AnimationPlayer.play("event_move_in")
+			get_tree().change_scene("res://scene/gf_good_end_transition.tscn")
 		
 
 func _on_textPolygon_tree_exited() -> void:

@@ -1,13 +1,19 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://prefab/yggdrasil.tscn" type="PackedScene" id=1]
 [ext_resource path="res://script/boss_fight.gd" type="Script" id=2]
+[ext_resource path="res://prefab/dew_boss.tscn" type="PackedScene" id=3]
 
 [node name="boss_fight" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="yggdrasil" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1072, 480 )
+position = Vector2( 1008, 416 )
+scale = Vector2( 1.2, 1.2 )
+
+[node name="dew_boss" parent="." instance=ExtResource( 3 )]
+position = Vector2( 144, 608 )
+scale = Vector2( 0.7, 0.7 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5

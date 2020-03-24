@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://prefab/yggdrasil.tscn" type="PackedScene" id=1]
+[ext_resource path="res://prefab/dialog02.tscn" type="PackedScene" id=2]
+[ext_resource path="res://script/boss_fight_transtition.gd" type="Script" id=3]
+[ext_resource path="res://prefab/dew.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Animation" id=2]
+resource_name = "dew_move_in"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("dew:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -96, 608 ), Vector2( 144, 608 ) ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "move_to_boss_position"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("yggdrasil:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 720, 720 ), Vector2( 1008, 416 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("yggdrasil:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 2, 2 ), Vector2( 1.2, 1.2 ) ]
+}
+
+[node name="boss_fight_transtition" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="yggdrasil" parent="." instance=ExtResource( 1 )]
+position = Vector2( 720, 720 )
+scale = Vector2( 2, 2 )
+
+[node name="dew" parent="." instance=ExtResource( 4 )]
+position = Vector2( -96, 608 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="textPolygon" parent="." instance=ExtResource( 2 )]
+dialogs = [ "Ha!", "You think you gonna get good end that easily?", "You gonna have to get pass me first!", "My name is Mugi!", "and I'm here to stop you!!" ]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/dew_move_in = SubResource( 2 )
+anims/move_to_boss_position = SubResource( 1 )
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
