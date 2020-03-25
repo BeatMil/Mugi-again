@@ -20,6 +20,9 @@ value = 100.0
 texture_under = ExtResource( 2 )
 texture_over = ExtResource( 3 )
 texture_progress = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="HealthNum" type="Label" parent="."]
 margin_left = 74.0247

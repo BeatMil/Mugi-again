@@ -1,11 +1,30 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://prefab/yggdrasil.tscn" type="PackedScene" id=1]
 [ext_resource path="res://script/boss_fight.gd" type="Script" id=2]
 [ext_resource path="res://prefab/dew_boss.tscn" type="PackedScene" id=3]
+[ext_resource path="res://media/healthBar/healthbar_border.png" type="Texture" id=4]
+[ext_resource path="res://media/healthBar/healthbar_under.png" type="Texture" id=5]
+[ext_resource path="res://media/healthBar/healthbar_over.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 496 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "intro_health_increase"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("boss_healthbar:value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 100.0 ]
+}
 
 [node name="boss_fight" type="Node2D"]
 script = ExtResource( 2 )
@@ -18,16 +37,19 @@ scale = Vector2( 1.2, 1.2 )
 position = Vector2( 144, 608 )
 scale = Vector2( 0.7, 0.7 )
 
+[node name="boss_health_timer" type="Timer" parent="."]
+wait_time = 0.05
+__meta__ = {
+"_editor_description_": "use for making health increase
+at the start of the game"
+}
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
-
-[node name="ProgressBar" type="ProgressBar" parent="."]
-margin_left = 128.0
-margin_top = 32.0
-margin_right = 1200.0
-margin_bottom = 70.0
 __meta__ = {
-"_edit_use_anchors_": false
+"_editor_description_": "Timer for random boss pose.
+Boss keeps changing pose
+# not needed"
 }
 
 [node name="death_border" type="Area2D" parent="."]
@@ -35,5 +57,23 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="death_border"]
 position = Vector2( -144, 352 )
 shape = SubResource( 1 )
+
+[node name="boss_healthbar" type="TextureProgress" parent="."]
+margin_left = 112.0
+margin_top = 16.0
+margin_right = 727.0
+margin_bottom = 147.0
+rect_scale = Vector2( 1.85225, 0.272458 )
+texture_under = ExtResource( 5 )
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 6 )
+tint_progress = Color( 0.00392157, 0.752941, 0.67451, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/intro_health_increase = SubResource( 2 )
+[connection signal="timeout" from="boss_health_timer" to="." method="_on_boss_health_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="area_entered" from="death_border" to="." method="_on_death_border_area_entered"]
