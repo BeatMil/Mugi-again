@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/dew-hurt02.wav-85abf99d8c812385ec768aa5332f201e.sample"
+
+[deps]
+
+source_file="res://media/boss_fight/dew-hurt02.wav"
+dest_files=[ "res://.import/dew-hurt02.wav-85abf99d8c812385ec768aa5332f201e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

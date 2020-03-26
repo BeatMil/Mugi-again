@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://prefab/yggdrasil.tscn" type="PackedScene" id=1]
 [ext_resource path="res://script/boss_fight.gd" type="Script" id=2]
@@ -6,12 +6,17 @@
 [ext_resource path="res://media/healthBar/healthbar_border.png" type="Texture" id=4]
 [ext_resource path="res://media/healthBar/healthbar_under.png" type="Texture" id=5]
 [ext_resource path="res://media/healthBar/healthbar_over.png" type="Texture" id=6]
+[ext_resource path="res://script/boss_healthbar.gd" type="Script" id=7]
+[ext_resource path="res://media/boss_fight/health_increase.wav" type="AudioStream" id=8]
+[ext_resource path="res://prefab/lava_floor.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 256 )
+
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 32, 496 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "intro_health_increase"
+[sub_resource type="Animation" id=3]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("boss_healthbar:value")
@@ -25,6 +30,46 @@ tracks/0/keys = {
 "update": 0,
 "values": [ 0.0, 100.0 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("yggdrasil/AudioStreamPlayer:stream")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8, 1.2, 1.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 8 ), ExtResource( 8 ), ExtResource( 8 ), ExtResource( 8 ), ExtResource( 8 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("yggdrasil/AudioStreamPlayer:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8, 1.2, 1.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, true, true, true, true ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "camera_shake"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 672, 384 ), Vector2( 672, 405 ), Vector2( 672, 384 ), Vector2( 672, 405 ), Vector2( 672, 384 ), Vector2( 672, 405 ), Vector2( 672, 384 ) ]
+}
 
 [node name="boss_fight" type="Node2D"]
 script = ExtResource( 2 )
@@ -33,30 +78,8 @@ script = ExtResource( 2 )
 position = Vector2( 1008, 416 )
 scale = Vector2( 1.2, 1.2 )
 
-[node name="dew_boss" parent="." instance=ExtResource( 3 )]
-position = Vector2( 144, 608 )
-scale = Vector2( 0.7, 0.7 )
-
-[node name="boss_health_timer" type="Timer" parent="."]
-wait_time = 0.05
-__meta__ = {
-"_editor_description_": "use for making health increase
-at the start of the game"
-}
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
-__meta__ = {
-"_editor_description_": "Timer for random boss pose.
-Boss keeps changing pose
-# not needed"
-}
-
-[node name="death_border" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="death_border"]
-position = Vector2( -144, 352 )
-shape = SubResource( 1 )
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="yggdrasil"]
+stream = ExtResource( 8 )
 
 [node name="boss_healthbar" type="TextureProgress" parent="."]
 margin_left = 112.0
@@ -67,13 +90,73 @@ rect_scale = Vector2( 1.85225, 0.272458 )
 texture_under = ExtResource( 5 )
 texture_over = ExtResource( 4 )
 texture_progress = ExtResource( 6 )
-tint_progress = Color( 0.00392157, 0.752941, 0.67451, 1 )
+tint_progress = Color( 0.839216, 0.0313726, 0.0313726, 1 )
+script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="dew_boss" parent="." instance=ExtResource( 3 )]
+position = Vector2( 144, 608 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="dew_die_timer" type="Timer" parent="."]
+__meta__ = {
+"_editor_description_": "dew die then load scene"
+}
+
+[node name="find_dew_timer" type="Timer" parent="."]
+autostart = true
+__meta__ = {
+"_editor_description_": "if dew disappear,
+restart the scene"
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+__meta__ = {
+"_editor_description_": "Timer for random boss pose.
+Boss keeps changing pose
+# not needed"
+}
+
+[node name="death_border2" type="Area2D" parent="."]
+position = Vector2( 32, 0 )
+__meta__ = {
+"_editor_description_": "death_border near boss"
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="death_border2"]
+position = Vector2( 944, 512 )
+shape = SubResource( 1 )
+
+[node name="death_border" type="Area2D" parent="."]
+__meta__ = {
+"_editor_description_": "refill boss_health"
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="death_border"]
+position = Vector2( -144, 352 )
+shape = SubResource( 2 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/intro_health_increase = SubResource( 2 )
-[connection signal="timeout" from="boss_health_timer" to="." method="_on_boss_health_timer_timeout"]
+anims/intro_health_increase = SubResource( 3 )
+
+[node name="lava_floor" parent="." instance=ExtResource( 9 )]
+position = Vector2( 656, 880 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 672, 384 )
+current = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D"]
+anims/camera_shake = SubResource( 4 )
+[connection signal="boss_lava_floor" from="yggdrasil" to="." method="_on_yggdrasil_boss_lava_floor"]
+[connection signal="decrease_hp" from="yggdrasil" to="." method="_on_yggdrasil_decrease_hp"]
+[connection signal="hadoken" from="yggdrasil" to="." method="_on_yggdrasil_hadoken"]
+[connection signal="value_changed" from="boss_healthbar" to="boss_healthbar" method="_on_boss_healthbar_value_changed"]
+[connection signal="timeout" from="dew_die_timer" to="." method="_on_dew_die_timer_timeout"]
+[connection signal="timeout" from="find_dew_timer" to="." method="_on_find_dew_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="area_entered" from="death_border2" to="." method="_on_death_border2_area_entered"]
 [connection signal="area_entered" from="death_border" to="." method="_on_death_border_area_entered"]

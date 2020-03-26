@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/hadoken01.ogg-d0d655154cc6d5a815106b682771403d.oggstr"
+
+[deps]
+
+source_file="res://media/boss_fight/hadoken01.ogg"
+dest_files=[ "res://.import/hadoken01.ogg-d0d655154cc6d5a815106b682771403d.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -5,7 +5,7 @@
 [ext_resource path="res://script/boss_fight_transtition.gd" type="Script" id=3]
 [ext_resource path="res://prefab/dew.tscn" type="PackedScene" id=4]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "dew_move_in"
 length = 0.4
 tracks/0/type = "value"
@@ -21,8 +21,7 @@ tracks/0/keys = {
 "values": [ Vector2( -96, 608 ), Vector2( 144, 608 ) ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "move_to_boss_position"
+[sub_resource type="Animation" id=2]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("yggdrasil:position")
@@ -64,6 +63,6 @@ scale = Vector2( 0.7, 0.7 )
 dialogs = [ "Ha!", "You think you gonna get good end that easily?", "You gonna have to get pass me first!", "My name is Mugi!", "and I'm here to stop you!!" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/dew_move_in = SubResource( 2 )
-anims/move_to_boss_position = SubResource( 1 )
+anims/dew_move_in = SubResource( 1 )
+anims/move_to_boss_position = SubResource( 2 )
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

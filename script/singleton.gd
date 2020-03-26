@@ -14,6 +14,8 @@ var csgo_skip_m4 = false
 #story choices
 var csgo_clear = false
 var gf_clear = false
+#boss fight
+var attended_boss_fight = false
 	
 func _process(delta: float) -> void:
 	for i in get_tree().current_scene.get_children():

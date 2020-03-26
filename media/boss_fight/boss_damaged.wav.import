@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/boss_damaged.wav-f94a9081983e42a1a37ae7f8fb9a0ffc.sample"
+
+[deps]
+
+source_file="res://media/boss_fight/boss_damaged.wav"
+dest_files=[ "res://.import/boss_damaged.wav-f94a9081983e42a1a37ae7f8fb9a0ffc.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
