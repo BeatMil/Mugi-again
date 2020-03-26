@@ -4,6 +4,7 @@ var is_jumping = false # use to prevent keep jumping
 var is_dead = false
 var is_dead_helper = false # helper is_dead
 const DEW_HURT = preload("res://media/boss_fight/dew-hurt02.wav")
+const ERROR = preload("res://media/boss_fight/sfx_sounds_error3.wav")
 func _ready() -> void:
 	$TextureProgress.value = 5
 	pass
@@ -49,6 +50,8 @@ func _physics_process(delta: float) -> void:
 			$".".set_flip_h(true)
 			move_local_x(-speed)
 			prevent_one_frame_bug()
+		elif Input.is_action_just_pressed("ui_accept"):
+			$"/root/singleton".playsfx($AudioStreamPlayer,ERROR)
 	elif is_dead and !is_dead_helper:
 		$AnimationPlayer.play("death")
 		is_dead_helper = true # make it stop playing the death animation

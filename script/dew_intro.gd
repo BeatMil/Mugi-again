@@ -23,7 +23,7 @@ func _input(_event):
 		
 	if Input.is_key_pressed(KEY_ESCAPE):
 		get_tree().quit()
-	elif Input.is_key_pressed(KEY_SPACE):
+	elif Input.is_action_just_pressed("ui_accept"):
 		$"/root/singleton".volume = $VSlider.get_value()
 		$"/root/SfxBlock".set_stream(load(menu_confirm))
 		$"/root/SfxBlock".play()

@@ -1,0 +1,78 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://media/boss_fight/lava_block.png" type="Texture" id=1]
+[ext_resource path="res://script/meteo.gd" type="Script" id=2]
+[ext_resource path="res://media/boss_fight/star02.wav" type="AudioStream" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 32 )
+
+[node name="meteo" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 304, -48 )
+scale = Vector2( 9.375, 1 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Area2D" type="Area2D" parent="Sprite" groups=[
+"attack",
+]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Area2D"]
+shape = SubResource( 1 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 592, -624 )
+scale = Vector2( 9.375, 1 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Area2D" type="Area2D" parent="Sprite2" groups=[
+"attack",
+]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2/Area2D"]
+shape = SubResource( 1 )
+
+[node name="Sprite3" type="Sprite" parent="."]
+position = Vector2( 174, -1104 )
+scale = Vector2( 5.4375, 1 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Area2D" type="Area2D" parent="Sprite3" groups=[
+"attack",
+]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite3/Area2D"]
+shape = SubResource( 1 )
+
+[node name="Sprite4" type="Sprite" parent="."]
+position = Vector2( 731, -1104 )
+scale = Vector2( 4.96875, 1 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Area2D" type="Area2D" parent="Sprite4" groups=[
+"attack",
+]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite4/Area2D"]
+shape = SubResource( 1 )
+
+[node name="self_queue_free_timer" type="Timer" parent="."]
+wait_time = 6.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+[connection signal="timeout" from="self_queue_free_timer" to="." method="_on_self_queue_free_timer_timeout"]

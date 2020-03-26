@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://prefab/yggdrasil.tscn" type="PackedScene" id=1]
 [ext_resource path="res://script/boss_fight.gd" type="Script" id=2]
@@ -28,7 +28,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.0, 100.0 ]
+"values": [ 0.0, 70.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("yggdrasil/AudioStreamPlayer:stream")
@@ -56,7 +56,9 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-resource_name = "camera_shake"
+resource_name = "100-80"
+
+[sub_resource type="Animation" id=5]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position")
@@ -87,6 +89,8 @@ margin_top = 16.0
 margin_right = 727.0
 margin_bottom = 147.0
 rect_scale = Vector2( 1.85225, 0.272458 )
+max_value = 70.0
+value = 70.0
 texture_under = ExtResource( 5 )
 texture_over = ExtResource( 4 )
 texture_progress = ExtResource( 6 )
@@ -120,6 +124,10 @@ Boss keeps changing pose
 # not needed"
 }
 
+[node name="meteo_shake_timer" type="Timer" parent="."]
+wait_time = 0.7
+one_shot = true
+
 [node name="death_border2" type="Area2D" parent="."]
 position = Vector2( 32, 0 )
 __meta__ = {
@@ -142,6 +150,12 @@ shape = SubResource( 2 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/intro_health_increase = SubResource( 3 )
 
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+anims/100-80 = SubResource( 4 )
+__meta__ = {
+"_editor_description_": "health goes down animator"
+}
+
 [node name="lava_floor" parent="." instance=ExtResource( 9 )]
 position = Vector2( 656, 880 )
 
@@ -150,13 +164,15 @@ position = Vector2( 672, 384 )
 current = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D"]
-anims/camera_shake = SubResource( 4 )
+anims/camera_shake = SubResource( 5 )
 [connection signal="boss_lava_floor" from="yggdrasil" to="." method="_on_yggdrasil_boss_lava_floor"]
 [connection signal="decrease_hp" from="yggdrasil" to="." method="_on_yggdrasil_decrease_hp"]
 [connection signal="hadoken" from="yggdrasil" to="." method="_on_yggdrasil_hadoken"]
+[connection signal="meteo" from="yggdrasil" to="." method="_on_yggdrasil_meteo"]
 [connection signal="value_changed" from="boss_healthbar" to="boss_healthbar" method="_on_boss_healthbar_value_changed"]
 [connection signal="timeout" from="dew_die_timer" to="." method="_on_dew_die_timer_timeout"]
 [connection signal="timeout" from="find_dew_timer" to="." method="_on_find_dew_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="meteo_shake_timer" to="." method="_on_meteo_shake_timer_timeout"]
 [connection signal="area_entered" from="death_border2" to="." method="_on_death_border2_area_entered"]
 [connection signal="area_entered" from="death_border" to="." method="_on_death_border_area_entered"]
