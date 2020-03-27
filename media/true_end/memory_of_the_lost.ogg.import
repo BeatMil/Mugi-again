@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/memory_of_the_lost.ogg-057e8da1983aa984f7f75391b17bf3df.oggstr"
+
+[deps]
+
+source_file="res://media/true_end/memory_of_the_lost.ogg"
+dest_files=[ "res://.import/memory_of_the_lost.ogg-057e8da1983aa984f7f75391b17bf3df.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

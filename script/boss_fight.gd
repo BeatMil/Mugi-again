@@ -81,7 +81,9 @@ func _on_yggdrasil_hadoken() -> void:
 
 func _on_yggdrasil_decrease_hp() -> void:	# decrease boss hp 
 	$boss_healthbar.value -= 10
-	if $boss_healthbar.value <= 30:
+	if $boss_healthbar.value <= 5:
+		$yggdrasil.zero_health = true
+	elif $boss_healthbar.value <= 30:
 		$yggdrasil.phase_two = true
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://prefab/yggdrasil.tscn" type="PackedScene" id=1]
 [ext_resource path="res://script/boss_fight.gd" type="Script" id=2]
@@ -28,7 +28,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.0, 70.0 ]
+"values": [ 0.0, 10.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("yggdrasil/AudioStreamPlayer:stream")
@@ -55,9 +55,6 @@ tracks/2/keys = {
 "values": [ true, true, true, true, true ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "100-80"
-
 [sub_resource type="Animation" id=5]
 length = 0.6
 tracks/0/type = "value"
@@ -83,6 +80,8 @@ scale = Vector2( 1.2, 1.2 )
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="yggdrasil"]
 stream = ExtResource( 8 )
 
+[node name="true_end" type="Node2D" parent="yggdrasil"]
+
 [node name="boss_healthbar" type="TextureProgress" parent="."]
 margin_left = 112.0
 margin_top = 16.0
@@ -90,7 +89,6 @@ margin_right = 727.0
 margin_bottom = 147.0
 rect_scale = Vector2( 1.85225, 0.272458 )
 max_value = 70.0
-value = 70.0
 texture_under = ExtResource( 5 )
 texture_over = ExtResource( 4 )
 texture_progress = ExtResource( 6 )
@@ -149,12 +147,6 @@ shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/intro_health_increase = SubResource( 3 )
-
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
-anims/100-80 = SubResource( 4 )
-__meta__ = {
-"_editor_description_": "health goes down animator"
-}
 
 [node name="lava_floor" parent="." instance=ExtResource( 9 )]
 position = Vector2( 656, 880 )

@@ -10,6 +10,8 @@ var attack_event = 0
 var phase_one_switch = false # phase one helper; switch between lava and laser attacks
 var phase_two = false
 var meteo_count = 1 # help change meteo pattern
+var zero_health = false	# dew has beaten the boss
+
 signal hadoken 
 signal meteo
 signal decrease_hp
@@ -84,6 +86,8 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	elif anim_name == "wait":
 		$AnimationPlayer.play("idle")
 		$hurtbox.set_deferred("monitoring", false)
+	elif anim_name == "hurt" and zero_health:
+		get_tree().change_scene("res://scene/true_end.tscn")
 	elif anim_name == "hurt":
 		$AnimationPlayer.play("idle")
 		attack_event = 0
@@ -92,7 +96,7 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("dew"):
 		emit_signal("decrease_hp")
-		area.get_parent().move_local_x(-350)
+		area.get_parent().move_local_x(-500)	# push dew away after dew attacked boss
 		$AnimationPlayer.play("hurt")
 		$hurtbox.set_deferred("monitoring", false)
 

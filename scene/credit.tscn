@@ -84,7 +84,9 @@ margin_top = 352.0
 margin_right = 896.0
 margin_bottom = 412.0
 custom_fonts/font = SubResource( 1 )
-text = "DEW ADVENTURE"
+text = "DEW ADVENTURE
+(bad end)"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -236,7 +238,8 @@ Counter Strike -
 Global Offensive
 Elsword
 Kirby the amzing mirror
-Rabi ribi"
+Rabi ribi
+Granblue Fantasy Versus"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
