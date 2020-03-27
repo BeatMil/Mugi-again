@@ -2,7 +2,8 @@ extends Node2D
 
 var trigger = true # play move_to_boss_position helper
 
-	
+func _ready() -> void:
+	$yggdrasil/AnimationPlayer.play("idle")
 func _process(delta: float) -> void:
 	if !has_node("textPolygon") and trigger: # check if textPolygon is gone 
 		$AnimationPlayer.play("move_to_boss_position")

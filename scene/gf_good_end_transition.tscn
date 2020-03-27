@@ -7,7 +7,7 @@
 [ext_resource path="res://media/boss_fight/he_bounce-1.wav" type="AudioStream" id=6]
 [ext_resource path="res://prefab/yggdrasil.tscn" type="PackedScene" id=7]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=1]
 resource_name = "boom_to_boss_fight"
 length = 2.0
 tracks/0/type = "value"
@@ -122,7 +122,7 @@ wait_time = 0.7
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/boom_to_boss_fight = SubResource( 3 )
+anims/boom_to_boss_fight = SubResource( 1 )
 anims/event_move_in = SubResource( 2 )
 __meta__ = {
 "_editor_description_": "yayyy"

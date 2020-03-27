@@ -3,6 +3,7 @@ const BOOM = preload("res://media/boss_fight/explode3.wav")
 
 func _ready() -> void:
 	$AnimationPlayer.play("event_move_in")
+	$yggdrasil/AnimationPlayer.play("idle")
 
 
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
