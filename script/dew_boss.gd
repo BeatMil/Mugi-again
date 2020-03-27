@@ -52,7 +52,7 @@ func _physics_process(delta: float) -> void:
 			prevent_one_frame_bug()
 		elif Input.is_action_just_pressed("ui_accept"):
 			$"/root/singleton".playsfx($AudioStreamPlayer,ERROR)
-	elif is_dead and !is_dead_helper:
+	elif is_dead:
 		$AnimationPlayer.play("death")
 		is_dead_helper = true # make it stop playing the death animation
 

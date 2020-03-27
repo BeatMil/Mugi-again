@@ -94,7 +94,10 @@ func _on_VisibilityNotifier2D_screen_exited():
 		play01 = false
 		$AnimationPlayer2.play("fade_out")
 		karate = true
+		$"/root/singleton".karate_been_to = true
 	elif $dew.position.x > 0:
 		play01 = false
 		$AnimationPlayer2.play("fade_out")
 		go_home = true
+		if $"/root/singleton".karate_been_to == true:
+			get_tree().change_scene("res://scene/stage02.tscn")

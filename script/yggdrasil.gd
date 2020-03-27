@@ -20,6 +20,7 @@ signal boss_lava_floor
 
 func _ready() -> void:
 	$hurtbox.set_monitoring(false)
+	$heart01/AnimationPlayer.play("heart_idle")
 	if get_parent().name == "boss_fight":
 		$attack_timer_start.start()	#start boss attack after health animation
 		$AnimationPlayer.play("idle")
@@ -60,6 +61,7 @@ func _on_AnimationPlayer_animation_started(anim_name: String) -> void:
 		$hurtbox.set_deferred("monitoring", true)	# weird error, I have to use set_deferred instead of set_monitoring
 #		$hurtbox.set_monitoring(true)
 		#E 0:00:19.252   set_monitoring: Function blocked during in/out signal. Use set_deferred("monitoring", true/false).
+		$heart01/AnimationPlayer.play("heart_drop")
 	elif anim_name == "meteo":
 		$lava_down_timer.start()
 
@@ -86,6 +88,7 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	elif anim_name == "wait":
 		$AnimationPlayer.play("idle")
 		$hurtbox.set_deferred("monitoring", false)
+		$heart01/AnimationPlayer.play_backwards("heart_idle")
 	elif anim_name == "hurt" and zero_health:
 		get_tree().change_scene("res://scene/true_end.tscn")
 	elif anim_name == "hurt":
@@ -98,6 +101,7 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 		emit_signal("decrease_hp")
 		area.get_parent().move_local_x(-500)	# push dew away after dew attacked boss
 		$AnimationPlayer.play("hurt")
+		$heart01/AnimationPlayer.play_backwards("heart_idle")
 		$hurtbox.set_deferred("monitoring", false)
 
 

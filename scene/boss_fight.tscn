@@ -28,7 +28,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.0, 10.0 ]
+"values": [ 0.0, 70.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("yggdrasil/AudioStreamPlayer:stream")
@@ -55,7 +55,7 @@ tracks/2/keys = {
 "values": [ true, true, true, true, true ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position")
@@ -79,8 +79,6 @@ scale = Vector2( 1.2, 1.2 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="yggdrasil"]
 stream = ExtResource( 8 )
-
-[node name="true_end" type="Node2D" parent="yggdrasil"]
 
 [node name="boss_healthbar" type="TextureProgress" parent="."]
 margin_left = 112.0
@@ -156,7 +154,7 @@ position = Vector2( 672, 384 )
 current = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D"]
-anims/camera_shake = SubResource( 5 )
+anims/camera_shake = SubResource( 4 )
 [connection signal="boss_lava_floor" from="yggdrasil" to="." method="_on_yggdrasil_boss_lava_floor"]
 [connection signal="decrease_hp" from="yggdrasil" to="." method="_on_yggdrasil_decrease_hp"]
 [connection signal="hadoken" from="yggdrasil" to="." method="_on_yggdrasil_hadoken"]
