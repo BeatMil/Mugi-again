@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://script/baito_game.gd" type="Script" id=1]
 [ext_resource path="res://media/dew/dew_baito.png" type="Texture" id=2]
@@ -6,12 +6,13 @@
 [ext_resource path="res://media/Font/Code Vein Fonts/Roboto-Bold.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://script/tutorial_pause.gd" type="Script" id=5]
 [ext_resource path="res://media/dew/dew_buff.png" type="Texture" id=6]
+[ext_resource path="res://media/Sound/kirby/collect01_lower.wav" type="AudioStream" id=7]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=24]
 size = 50
 font_data = ExtResource( 3 )
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=25]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -50,7 +51,7 @@ tracks/2/keys = {
 "values": [ 3 ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=26]
 resource_name = "dance"
 length = 0.48
 loop = true
@@ -92,7 +93,7 @@ tracks/2/keys = {
 "values": [ 2 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=27]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -131,7 +132,7 @@ tracks/2/keys = {
 "values": [ 3 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=28]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -171,9 +172,9 @@ tracks/2/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 64, 80 )
+extents = Vector2( 80, 80 )
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=29]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("fade:color")
@@ -188,7 +189,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=30]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("fivehundred:self_modulate")
@@ -215,7 +216,7 @@ tracks/1/keys = {
 "values": [ Vector2( 600, 0 ), Vector2( 600, 160 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=31]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("hundred:self_modulate")
@@ -241,8 +242,32 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector2( 600, 160 ), Vector2( 600, 48 ), Vector2( 600, 0 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("dew_baito/AudioStreamPlayer:stream")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 7 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("dew_baito/AudioStreamPlayer:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=32]
 length = 1.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:rect_position")
@@ -257,7 +282,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, -768 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=33]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("fade:color")
@@ -272,7 +297,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=34]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("fivehundred:self_modulate")
@@ -296,10 +321,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.6 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1024, 4.76837e-07 ), Vector2( 1024, 160 ) ]
+"values": [ Vector2( 524, 0 ), Vector2( 524, 160 ) ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=35]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -315,7 +340,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 1 ), Color( 0.376471, 0.882353, 0.321569, 1 ), Color( 0, 0, 0, 1 ) ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=36]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("hundred:self_modulate")
@@ -342,7 +367,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1104, 160 ), Vector2( 1104, 48 ), Vector2( 1104, 0 ) ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=37]
 length = 1.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:rect_position")
@@ -357,19 +382,19 @@ tracks/0/keys = {
 "values": [ Vector2( 0, -768 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="DynamicFont" id=16]
+[sub_resource type="DynamicFont" id=38]
 size = 80
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
 
-[sub_resource type="Gradient" id=17]
+[sub_resource type="Gradient" id=39]
 colors = PoolColorArray( 0.785426, 0.550911, 0.865234, 1, 0.881756, 0.888672, 0.784531, 1 )
 
-[sub_resource type="GradientTexture" id=18]
-gradient = SubResource( 17 )
+[sub_resource type="GradientTexture" id=40]
+gradient = SubResource( 39 )
 
-[sub_resource type="ParticlesMaterial" id=19]
+[sub_resource type="ParticlesMaterial" id=41]
 flag_disable_z = true
 direction = Vector3( 42, -50, 0 )
 spread = 20.0
@@ -378,15 +403,15 @@ initial_velocity = 300.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 4.0
-color_ramp = SubResource( 18 )
+color_ramp = SubResource( 40 )
 
-[sub_resource type="Gradient" id=20]
+[sub_resource type="Gradient" id=42]
 colors = PoolColorArray( 0.88036, 0.886719, 0.0727386, 1, 0.147018, 0.800781, 0.708846, 1 )
 
-[sub_resource type="GradientTexture" id=21]
-gradient = SubResource( 20 )
+[sub_resource type="GradientTexture" id=43]
+gradient = SubResource( 42 )
 
-[sub_resource type="ParticlesMaterial" id=22]
+[sub_resource type="ParticlesMaterial" id=44]
 flag_disable_z = true
 direction = Vector3( -42, -50, 0 )
 spread = 20.0
@@ -395,7 +420,7 @@ initial_velocity = 300.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 4.0
-color_ramp = SubResource( 21 )
+color_ramp = SubResource( 43 )
 
 [sub_resource type="RectangleShape2D" id=23]
 extents = Vector2( 16, 80 )
@@ -410,7 +435,7 @@ margin_left = 976.0
 margin_right = 1136.0
 margin_bottom = 58.0
 rect_scale = Vector2( 2.40421, 2.40421 )
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 24 )
 text = "SCORE"
 align = 1
 valign = 1
@@ -434,10 +459,10 @@ texture = ExtResource( 2 )
 hframes = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="dew_baito"]
-anims/carry = SubResource( 2 )
-anims/dance = SubResource( 3 )
-anims/freak_out = SubResource( 4 )
-anims/put_down = SubResource( 5 )
+anims/carry = SubResource( 25 )
+anims/dance = SubResource( 26 )
+anims/freak_out = SubResource( 27 )
+anims/put_down = SubResource( 28 )
 
 [node name="dew_area2d" type="Area2D" parent="dew_baito"]
 
@@ -451,20 +476,23 @@ wait_time = 0.5
 [node name="put_down_timer" type="Timer" parent="dew_baito"]
 wait_time = 0.3
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="dew_baito"]
+stream = ExtResource( 7 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/fade_out = SubResource( 7 )
-anims/money_down = SubResource( 8 )
-anims/money_up = SubResource( 9 )
-anims/result_down = SubResource( 10 )
+anims/fade_out = SubResource( 29 )
+anims/money_down = SubResource( 30 )
+anims/money_up = SubResource( 31 )
+anims/result_down = SubResource( 32 )
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
 pause_mode = 2
-anims/fade_in = SubResource( 11 )
-anims/fade_out = SubResource( 7 )
-anims/money_down = SubResource( 12 )
-anims/money_shine = SubResource( 13 )
-anims/money_up = SubResource( 14 )
-anims/result_down = SubResource( 15 )
+anims/fade_in = SubResource( 33 )
+anims/fade_out = SubResource( 29 )
+anims/money_down = SubResource( 34 )
+anims/money_shine = SubResource( 35 )
+anims/money_up = SubResource( 36 )
+anims/result_down = SubResource( 37 )
 
 [node name="sfxblock" type="AudioStreamPlayer" parent="."]
 volume_db = 10.0
@@ -472,9 +500,8 @@ volume_db = 10.0
 [node name="hundred" type="Label" parent="."]
 self_modulate = Color( 0.286275, 0.960784, 0.0980392, 0 )
 margin_left = 600.0
-margin_top = 160.0
 margin_right = 640.0
-margin_bottom = 174.0
+margin_bottom = 14.0
 rect_scale = Vector2( 7.60542, 8.14772 )
 text = "+$100"
 align = 1
@@ -485,9 +512,9 @@ __meta__ = {
 
 [node name="fivehundred" type="Label" parent="."]
 self_modulate = Color( 0.960784, 0.137255, 0.0980392, 0 )
-margin_left = 600.0
+margin_left = 524.0
 margin_top = 160.0
-margin_right = 640.0
+margin_right = 564.0
 margin_bottom = 174.0
 rect_scale = Vector2( 7.71888, 8.26927 )
 text = "-$100"
@@ -523,7 +550,7 @@ margin_left = -121.0
 margin_top = -128.0
 margin_right = 121.0
 margin_bottom = -33.0
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = SubResource( 38 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "money"
 align = 1
@@ -539,14 +566,14 @@ position = Vector2( 0, 768 )
 scale = Vector2( 2, 2 )
 amount = 100
 lifetime = 4.0
-process_material = SubResource( 19 )
+process_material = SubResource( 41 )
 
 [node name="Particles2D4" type="Particles2D" parent="firework"]
 position = Vector2( 1360, 768 )
 scale = Vector2( 2, 2 )
 amount = 100
 lifetime = 4.0
-process_material = SubResource( 22 )
+process_material = SubResource( 44 )
 
 [node name="fade" type="ColorRect" parent="."]
 visible = false
@@ -587,6 +614,10 @@ __meta__ = {
 wait_time = 0.1
 
 [node name="border_check" type="Area2D" parent="."]
+visible = false
+__meta__ = {
+"_editor_description_": "deleted but still there"
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="border_check"]
 position = Vector2( -240, 560 )

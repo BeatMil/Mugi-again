@@ -30,6 +30,8 @@ func _input(_event):
 		$"/root/AudioBlock".stop()
 		$"/root/SfxBlock".set_volume_db($VSlider.get_value())
 		get_tree().change_scene("res://scene/intro_dialog.tscn")
+	elif Input.is_key_pressed(KEY_C):
+		get_tree().change_scene("res://scene/credit.tscn")
 		
 
 

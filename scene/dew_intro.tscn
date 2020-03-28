@@ -287,7 +287,6 @@ margin_bottom = 704.0
 min_value = -60.0
 max_value = 20.0
 step = 2.0
-value = -10.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

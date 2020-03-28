@@ -93,7 +93,7 @@ func _input(_event):
 	
 #	if state_talk01 and (Input.is_key_pressed(KEY_SPACE) or Input.is_key_pressed(KEY_ENTER)):
 	# I don't know why I put 2 Input() in there but they were there
-	if state_talk01 and (Input.is_key_pressed(KEY_SPACE)):
+	if state_talk01 and (Input.is_action_just_pressed("ui_accept")):
 		line += 1
 		if line < dialog.size():
 			$"text_above".get_child(0).text = dialog[line]
@@ -106,7 +106,7 @@ func _input(_event):
 			$choices/text_label/shop.set_monitoring(true)
 #	elif state_talk_csgo01 and (Input.is_key_pressed(KEY_SPACE) or Input.is_key_pressed(KEY_ENTER)):
 	# This one too I don't know 2 Input are there.
-	elif state_talk_csgo01 and (Input.is_key_pressed(KEY_SPACE)):
+	elif state_talk_csgo01 and (Input.is_action_just_pressed("ui_accept")):
 		if $"/root/singleton".csgo == false: # check if can play csgo or not
 			if line < dialog_csgo.size() -1:
 				line += 1

@@ -15,7 +15,7 @@ var zero_health = false	# dew has beaten the boss
 signal hadoken 
 signal meteo
 signal decrease_hp
-
+signal disappear # final dialog to true_end credit
 signal boss_lava_floor
 
 func _ready() -> void:
@@ -94,6 +94,8 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	elif anim_name == "hurt":
 		$AnimationPlayer.play("idle")
 		attack_event = 0
+	elif anim_name == "fade_away":
+		emit_signal("disappear")
 
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:

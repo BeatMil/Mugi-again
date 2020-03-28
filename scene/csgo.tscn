@@ -58,7 +58,7 @@ margin_top = 96.0
 margin_right = -358.0
 margin_bottom = 110.0
 rect_scale = Vector2( 5.37855, 5.37855 )
-text = "GUN_NAME"
+text = "M4"
 __meta__ = {
 "_edit_use_anchors_": false
 }

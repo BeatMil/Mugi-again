@@ -4,7 +4,7 @@ extends ColorRect
 
 
 func _input(event: InputEvent) -> void:
-	if Input.is_key_pressed(KEY_SPACE):
+	if Input.is_action_just_pressed("ui_accept"):
 		$queue_free_timer.start()
 
 

@@ -63,8 +63,9 @@ func _ready():
 #	pass
 
 func _input(_event):
-
-	if Input.is_action_just_pressed("ui_accept") and on_point and !freak_out and !result and !put_down:
+	if Input.is_action_just_pressed("ui_accept") and on_point and !result and !put_down:
+		$dew_baito/freak_out_timer.stop()
+		freak_out = false
 		$dew_baito/put_down_timer.start()
 		$dew_baito/AnimationPlayer.play("put_down")
 #		$sfxblock.set_stream(collect01)
@@ -96,15 +97,13 @@ func _input(_event):
 			
 	elif Input.is_action_just_pressed("ui_accept") and !on_point and !freak_out and !result and !put_down:
 		add_money(-100)
-		$AnimationPlayer.play("money_down")
+		$AnimationPlayer2.play("money_down")
 		$dew_baito/AnimationPlayer.play("freak_out")
-#		$sfxblock.set_stream(star01)
-#		$sfxblock.play()
 		freak_out = true
 		$dew_baito/freak_out_timer.start()
 		if $".".has_node("animu_fig"):
 			check_fig_and_play_sound(true)
-			get_node("animu_fig").disappear()
+			get_node("animu_fig").queue_free()
 	elif Input.is_key_pressed(KEY_ESCAPE) and !result:
 		$dew_baito/freak_out_timer.stop()
 		$dew_baito/put_down_timer.stop()
@@ -239,18 +238,18 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 
 func _on_border_check_area_entered(area):
-	if !area.get_parent().animu_fig and !put_down:
-		if $".".has_node("animu_fig"):
-			check_fig_and_play_sound(true)
-			# if two boxes go out of stage together bug would occur
-		add_money(-100)
-		$AnimationPlayer.play("money_down")
-		$dew_baito/AnimationPlayer.play("freak_out")
-#		$sfxblock.set_stream(star01)
-#		$sfxblock.play()
-		freak_out = true
-		$dew_baito/freak_out_timer.start()
-		if $".".has_node("animu_fig"):
-			get_node("animu_fig").disappear()
+#	if !area.get_parent().animu_fig and !put_down:
+#		if $".".has_node("animu_fig"):
+#			check_fig_and_play_sound(true)
+#			# if two boxes go out of stage together bug would occur
+#		add_money(-100)
+#		$AnimationPlayer.play("money_down")
+#		$dew_baito/AnimationPlayer.play("freak_out")
+##		$sfxblock.set_stream(star01)
+##		$sfxblock.play()
+#		freak_out = true
+#		$dew_baito/freak_out_timer.start()
+#		if $".".has_node("animu_fig"):
+#			get_node("animu_fig").disappear()
 	area.get_parent().queue_free()
 	

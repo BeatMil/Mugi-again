@@ -1,7 +1,7 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://media/Font/Code Vein Fonts/Roboto-Bold.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://script/credit.gd" type="Script" id=2]
+[ext_resource path="res://script/credit_true_end.gd" type="Script" id=2]
 [ext_resource path="res://prefab/uppu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://media/Block/orange_box.png" type="Texture" id=4]
 [ext_resource path="res://media/Enemy/enemy_ct.png" type="Texture" id=5]
@@ -14,14 +14,12 @@
 [ext_resource path="res://media/animu_goods/senko.png" type="Texture" id=12]
 [ext_resource path="res://media/animu_goods/shiro.png" type="Texture" id=13]
 [ext_resource path="res://media/Sound/credit/credit_faces.png" type="Texture" id=14]
-[ext_resource path="res://media/dew/dew_sad.png" type="Texture" id=15]
 [ext_resource path="res://media/dew/dew_csgo.png" type="Texture" id=16]
 [ext_resource path="res://media/dew/alex_csgo.png" type="Texture" id=17]
 [ext_resource path="res://media/dew/bill_csgo.png" type="Texture" id=18]
 [ext_resource path="res://media/dew/dew01.png" type="Texture" id=19]
 [ext_resource path="res://media/dew/dew_baito.png" type="Texture" id=20]
 [ext_resource path="res://media/dew/dew_buff.png" type="Texture" id=21]
-[ext_resource path="res://script/uppu.gd" type="Script" id=22]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -69,23 +67,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="dew_sad" type="Sprite" parent="."]
-position = Vector2( 192, 496 )
-texture = ExtResource( 15 )
-script = ExtResource( 22 )
-speed = 2
-
-[node name="Label" type="Label" parent="dew_sad"]
-margin_left = -80.0
-margin_top = -272.0
-margin_right = -21.0
-margin_bottom = -258.0
-rect_scale = Vector2( 2.5588, 2.5588 )
-text = "BAD END"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="uppu" parent="." instance=ExtResource( 3 )]
 speed = 2
 
@@ -96,7 +77,7 @@ margin_right = 896.0
 margin_bottom = 412.0
 custom_fonts/font = SubResource( 1 )
 text = "DEW ADVENTURE
-(bad end)"
+(true end)"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -410,12 +391,11 @@ __meta__ = {
 }
 
 [node name="timer_start" type="Timer" parent="."]
-wait_time = 11.4
 one_shot = true
 autostart = true
 
 [node name="timer_end" type="Timer" parent="."]
-wait_time = 151.0
+wait_time = 141.0
 one_shot = true
 autostart = true
 

@@ -8,6 +8,7 @@ var dialogs : Array = []
 onready var text = $text
 var line : int = 0
 func _ready():
+	load_text_file()
 	text.set_visible_characters(0)
 	text.set_text(dialogs[line])
 
@@ -33,4 +34,10 @@ func _on_Timer_timeout(): # Make text slowly appear (typing appear)
 	text.visible_characters += 1
 	if text.get_visible_characters() == dialogs[line].length():
 		$Timer.stop()
+		
+func load_text_file():
+	var f = File.new()
+	f.open("res://script/mugi_dialog.gd", File.READ)
+	var text = f.get_as_text()
+	dialogs = text.split("\n")
 

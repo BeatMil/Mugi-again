@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://script/stage02.gd" type="Script" id=1]
 [ext_resource path="res://prefab/dew.tscn" type="PackedScene" id=2]
 [ext_resource path="res://prefab/text_label.tscn" type="PackedScene" id=3]
 [ext_resource path="res://media/Font/Code Vein Fonts/NanumGothic.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://media/background/home_background.png" type="Texture" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "fade_in"
@@ -49,6 +50,12 @@ script = ExtResource( 1 )
 anims/fade_in = SubResource( 1 )
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="home_background" type="Sprite" parent="."]
+modulate = Color( 0.305882, 0.305882, 0.305882, 1 )
+position = Vector2( 722.222, 372 )
+scale = Vector2( 1.14444, 1.14444 )
+texture = ExtResource( 5 )
 
 [node name="dew" parent="." instance=ExtResource( 2 )]
 position = Vector2( -128, 496 )
