@@ -8,7 +8,7 @@
 [ext_resource path="res://media/boss_fight/careful02.wav" type="AudioStream" id=6]
 [ext_resource path="res://media/boss_fight/heart01.png" type="Texture" id=7]
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=1]
 resource_name = "beaten"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -59,7 +59,7 @@ tracks/3/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=2]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -109,7 +109,7 @@ tracks/3/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=3]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -159,7 +159,7 @@ tracks/3/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=4]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -174,7 +174,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=5]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -225,7 +225,7 @@ tracks/3/keys = {
 "values": [ true, true, true, false ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=6]
 resource_name = "meteo"
 length = 5.0
 tracks/0/type = "value"
@@ -277,7 +277,7 @@ tracks/3/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=7]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -292,7 +292,7 @@ tracks/0/keys = {
 "values": [ 6 ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=8]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -307,7 +307,7 @@ tracks/0/keys = {
 "values": [ 5 ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=9]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -322,7 +322,7 @@ tracks/0/keys = {
 "values": [ 7 ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=10]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -337,7 +337,7 @@ tracks/0/keys = {
 "values": [ 8 ]
 }
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=11]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -364,11 +364,10 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.94902, 0.839216, 0.984314, 1 ), Color( 1, 1, 1, 1 ), Color( 0.94902, 0.839216, 0.984314, 1 ), Color( 1, 1, 1, 1 ), Color( 0.94902, 0.839216, 0.984314, 1 ), Color( 1, 1, 1, 1 ), Color( 0.94902, 0.839216, 0.984314, 1 ), Color( 1, 1, 1, 1 ), Color( 0.94902, 0.839216, 0.984314, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=18]
+[sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 10, 82 )
 
-[sub_resource type="Animation" id=5]
-resource_name = "heart_drop"
+[sub_resource type="Animation" id=13]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position")
@@ -407,8 +406,7 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.52549, 0.52549, 0.52549, 1 ), Color( 1, 1, 1, 1 ), Color( 0.52549, 0.52549, 0.52549, 1 ), Color( 1, 1, 1, 1 ), Color( 0.52549, 0.52549, 0.52549, 1 ), Color( 1, 1, 1, 1 ), Color( 0.52549, 0.52549, 0.52549, 1 ), Color( 1, 1, 1, 1 ), Color( 0.52549, 0.52549, 0.52549, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "heart_idle"
+[sub_resource type="Animation" id=14]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -427,21 +425,20 @@ tracks/0/keys = {
 position = Vector2( -1, -15 )
 texture = ExtResource( 1 )
 hframes = 9
-frame = 4
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/beaten = SubResource( 7 )
-anims/floor_lava = SubResource( 8 )
-anims/hurt = SubResource( 9 )
-anims/idle = SubResource( 10 )
-anims/laser = SubResource( 11 )
-anims/meteo = SubResource( 12 )
-anims/true_end_cry = SubResource( 13 )
-anims/true_end_hurt = SubResource( 14 )
-anims/true_end_scream = SubResource( 15 )
-anims/true_end_smile = SubResource( 16 )
-anims/wait = SubResource( 17 )
+anims/beaten = SubResource( 1 )
+anims/floor_lava = SubResource( 2 )
+anims/hurt = SubResource( 3 )
+anims/idle = SubResource( 4 )
+anims/laser = SubResource( 5 )
+anims/meteo = SubResource( 6 )
+anims/true_end_cry = SubResource( 7 )
+anims/true_end_hurt = SubResource( 8 )
+anims/true_end_scream = SubResource( 9 )
+anims/true_end_smile = SubResource( 10 )
+anims/wait = SubResource( 11 )
 
 [node name="attack_timer_start" type="Timer" parent="."]
 wait_time = 3.0
@@ -462,7 +459,7 @@ stream = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
 position = Vector2( -61, 150 )
-shape = SubResource( 18 )
+shape = SubResource( 12 )
 
 [node name="heart01" type="Sprite" parent="."]
 position = Vector2( 23, -29 )
@@ -470,8 +467,8 @@ rotation = 1.5708
 texture = ExtResource( 7 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="heart01"]
-anims/heart_drop = SubResource( 5 )
-anims/heart_idle = SubResource( 6 )
+anims/heart_drop = SubResource( 13 )
+anims/heart_idle = SubResource( 14 )
 [connection signal="animation_changed" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_changed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]

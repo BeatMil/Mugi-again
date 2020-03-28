@@ -79,7 +79,7 @@ func walk():
 	else:
 		$dew/AnimationPlayer.play("idle")
 func _input(event):
-	if !switch and (Input.is_key_pressed(KEY_SPACE) or Input.is_key_pressed(KEY_ENTER)):
+	if !switch and (Input.is_action_just_pressed("ui_accept")):
 		line += 1
 		if line < dialog.size():
 			$"text_above".get_child(0).text = dialog[line]
